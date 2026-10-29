@@ -34,6 +34,46 @@ logger = logging.getLogger(__name__)
 
 FROZEN_NEGATIVE_QUERY_CHECKSUM = "7eaf304f4a22a4567100fb283a53f1bfc7b458eaa2f7feb7d78ba66db3d539d3"
 
+PROTECTED_RELATIVE_PATHS: List[str] = [
+    "configs/final.yaml",
+    "configs/baseline.yaml",
+    "configs/final_phase3.yaml",
+    "experiments/improvement_log.jsonl",
+    "experiments/improvement_summary.json",
+    "experiments/final_test_metrics.json",
+    "experiments/baseline_train_metrics.json",
+    "data/unanswerable_queries.json",
+]
+
+
+def is_protected_artifact(target_path: Path | str, root: Optional[Path] = None) -> bool:
+    """Check if target_path resolves to any protected frozen submission artifact.
+
+    Handles relative, absolute, normalized, and case-insensitive paths across platforms.
+    """
+    if root is None:
+        root = get_project_root()
+    root_resolved = root.resolve()
+
+    target = Path(target_path)
+    candidates: List[Path] = []
+    try:
+        candidates.append(target.resolve())
+    except Exception:
+        pass
+    try:
+        candidates.append((root_resolved / target).resolve())
+    except Exception:
+        pass
+
+    for rel in PROTECTED_RELATIVE_PATHS:
+        protected_file = (root_resolved / rel).resolve()
+        protected_str = protected_file.as_posix().lower()
+        for cand in candidates:
+            if cand == protected_file or cand.as_posix().lower() == protected_str:
+                return True
+    return False
+
 
 def evaluate_pipeline_on_training_split(
     pipeline: ContractRetrievalPipeline,
@@ -151,9 +191,41 @@ class ImprovementLoopRunner:
         self.root = root
         self.iterations = max(5, int(iterations))
         self.config_path = Path(config_path) if config_path else root / "configs" / "improvement_search.yaml"
-        self.final_config_path = Path(final_config_path) if final_config_path else root / "configs" / "final.yaml"
+        self.log_path = Path(log_path) if log_path else root / "experiments" / "replay_log.jsonl"
+        self.summary_path = Path(summary_path) if summary_path else root / "experiments" / "replay_summary.json"
+        self.final_config_path = Path(final_config_path) if final_config_path else root / "configs" / "replay_final.yaml"
 
-        self.logger = ExperimentLogger(log_path=log_path, summary_path=summary_path)
+        # Validate that destination paths do not overwrite protected submission artifacts
+        for label, path_val in [
+            ("Log path", self.log_path),
+            ("Summary path", self.summary_path),
+            ("Final config path", self.final_config_path),
+        ]:
+            if is_protected_artifact(path_val, root=root):
+                raise PermissionError(
+                    f"Protected artifact violation: {label} '{path_val}' resolves to an immutable "
+                    f"frozen submission artifact. Overwriting frozen artifacts during replay is prohibited. "
+                    f"Please provide a non-destructive destination (e.g., experiments/replay_log.jsonl, "
+                    f"experiments/replay_summary.json, configs/replay_final.yaml)."
+                )
+
+        # Handle existing replay output destinations cleanly and safely
+        if self.log_path.exists():
+            logger.info(
+                f"Existing replay log detected at {self.log_path}. "
+                f"Clearing previous replay records to ensure a clean 5-iteration reproduction."
+            )
+            self.log_path.write_text("", encoding="utf-8")
+        if self.summary_path.exists():
+            logger.info(
+                f"Existing replay summary detected at {self.summary_path}; will be safely overwritten upon completion."
+            )
+        if self.final_config_path.exists():
+            logger.info(
+                f"Existing replay configuration detected at {self.final_config_path}; will be safely overwritten upon completion."
+            )
+
+        self.logger = ExperimentLogger(log_path=self.log_path, summary_path=self.summary_path)
         self.proposer = ExperimentProposer()
         self.objective_spec = get_default_objective_spec()
 

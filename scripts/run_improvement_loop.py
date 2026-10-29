@@ -8,7 +8,7 @@ from pathlib import Path
 # Add project root to sys.path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
-from src.improvement.runner import ImprovementLoopRunner
+from src.improvement.runner import ImprovementLoopRunner, is_protected_artifact
 
 logging.basicConfig(
     level=logging.INFO,
@@ -19,7 +19,7 @@ logger = logging.getLogger("run_improvement_loop")
 
 def main() -> int:
     parser = argparse.ArgumentParser(
-        description="Run automated retrieval self-improvement loop for JioStar Contract Assistant."
+        description="Run automated retrieval self-improvement loop for JioStar Contract Assistant (Safe Replay Mode)."
     )
     parser.add_argument(
         "--config",
@@ -36,32 +36,51 @@ def main() -> int:
     parser.add_argument(
         "--log-path",
         type=str,
-        default="experiments/improvement_log.jsonl",
-        help="Path for append-only JSONL log.",
+        default="experiments/replay_log.jsonl",
+        help="Path for append-only JSONL replay log (default: experiments/replay_log.jsonl). Frozen submission logs are protected from overwrite.",
     )
     parser.add_argument(
         "--summary-path",
         type=str,
-        default="experiments/improvement_summary.json",
-        help="Path for final summary JSON report.",
+        default="experiments/replay_summary.json",
+        help="Path for final summary JSON report (default: experiments/replay_summary.json). Frozen submission summary is protected from overwrite.",
     )
     parser.add_argument(
         "--final-config-path",
         type=str,
-        default="configs/final.yaml",
-        help="Path to output final selected YAML configuration.",
+        default="configs/replay_final.yaml",
+        help="Path to output final selected YAML configuration (default: configs/replay_final.yaml). Frozen configs/final.yaml is protected from overwrite.",
     )
 
     args = parser.parse_args()
 
+    # Guard against accidental overwrite of frozen submission artifacts
+    for label, target_path in [
+        ("Log path", args.log_path),
+        ("Summary path", args.summary_path),
+        ("Final config path", args.final_config_path),
+    ]:
+        if is_protected_artifact(target_path):
+            logger.error(
+                f"[SECURITY ERROR] {label} '{target_path}' targets an immutable frozen submission artifact! "
+                f"Replaying the self-improvement loop must not overwrite original evaluation evidence. "
+                f"Please specify a non-destructive destination (e.g., experiments/replay_log.jsonl, "
+                f"experiments/replay_summary.json, configs/replay_final.yaml)."
+            )
+            return 1
+
     logger.info("Initializing Retrieval Self-Improvement Loop...")
-    runner = ImprovementLoopRunner(
-        config_path=args.config,
-        iterations=args.iterations,
-        log_path=args.log_path,
-        summary_path=args.summary_path,
-        final_config_path=args.final_config_path,
-    )
+    try:
+        runner = ImprovementLoopRunner(
+            config_path=args.config,
+            iterations=args.iterations,
+            log_path=args.log_path,
+            summary_path=args.summary_path,
+            final_config_path=args.final_config_path,
+        )
+    except PermissionError as pe:
+        logger.error(f"[SECURITY ERROR] {pe}")
+        return 1
 
     try:
         summary = runner.run()
@@ -74,6 +93,9 @@ def main() -> int:
         logger.info(f"Full Experiment Summary saved to: {args.summary_path}")
         logger.info("=" * 70)
         return 0
+    except PermissionError as pe:
+        logger.error(f"[SECURITY ERROR] {pe}")
+        return 1
     except Exception as e:
         logger.error(f"Critical failure during self-improvement loop execution: {e}", exc_info=True)
         return 1

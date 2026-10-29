@@ -124,23 +124,31 @@ python cli.py search --query "What is the average annual rainfall in the Amazon 
 # Rebuild the retrieval index
 python scripts/build_index.py --force
 
-# Run training split evaluation (safe, read-only)
-python scripts/evaluate_baseline.py --config configs/final.yaml --split train
+# Run training split evaluation on final configuration (saves to custom output path to protect baseline metrics)
+python scripts/evaluate_baseline.py --config configs/final.yaml --split train --output experiments/reproduced_final_train.json
 
-# Run full automated regression test suite (82 tests)
+# Run full automated regression test suite
 python -m pytest -v
 
 # Run submission readiness verification script
 python scripts/verify_submission.py
 ```
 
+> **Evaluation Semantics Note**: `evaluate_baseline.py` measures raw candidate retrieval (pre-abstention Recall@5 = 0.3191, matching the Phase 3 winning candidate). When end-to-end calibrated abstention ($\ge 2.40$) is applied, the frozen Phase 4 final training Recall@5 is 0.3096 (due to 5 false abstentions on answerable queries in exchange for rejecting 52.6% of unanswerable queries).
+
 ### 3.4 Automated Self-Improvement Loop
 The project includes an automated self-improvement runner (`scripts/run_improvement_loop.py`) that diagnoses errors, proposes configurations, and evaluates candidates under frozen guardrails.
 
-> **Caution for Reviewers**: By default, `scripts/run_improvement_loop.py` writes output to `configs/final.yaml` and `experiments/improvement_log.jsonl`. To avoid overwriting frozen submission artifacts, always provide custom output paths when replaying the loop:
-> ```bash
-> python scripts/run_improvement_loop.py --log-path experiments/replay_improvement_log.jsonl --summary-path experiments/replay_improvement_summary.json --final-config-path configs/replay_final.yaml
-> ```
+**Automated Overwrite Protection**:
+By default, `scripts/run_improvement_loop.py` writes safely to non-destructive replay destinations:
+- Log: `experiments/replay_log.jsonl`
+- Summary: `experiments/replay_summary.json`
+- Final config: `configs/replay_final.yaml`
+
+Frozen submission artifacts (`configs/final.yaml`, `experiments/improvement_log.jsonl`, etc.) are actively protected from accidental overwrite via canonical path resolution checks. Reviewers can safely replay the 5 genuine iterations using a single command:
+```bash
+python scripts/run_improvement_loop.py
+```
 
 ---
 
@@ -184,11 +192,19 @@ To independently reproduce the reported results from a fresh clone:
 | **3** | Validate gold spans: `python scripts/validate_dataset.py` | Confirms 272/272 spans match raw text | ~1s |
 | **4** | Build retrieval index: `python scripts/build_index.py --force` | 1,991 chunks indexed from 29 contracts | ~2s |
 | **5** | Evaluate baseline train: `python scripts/evaluate_baseline.py --config configs/baseline.yaml --split train` | Confirms baseline Rec@5 = 0.1169 | ~4s |
-| **6** | Evaluate final train: `python scripts/evaluate_baseline.py --config configs/final.yaml --split train` | Confirms final Rec@5 = 0.3191 (pre-abstention) | ~9s |
-| **7** | Run unit tests: `python -m pytest -v` | 82/82 tests pass | ~1.5s |
-| **8** | Safe improvement loop replay: `python scripts/run_improvement_loop.py --log-path experiments/replay_log.jsonl --summary-path experiments/replay_summary.json --final-config-path configs/replay_final.yaml` | Replays 5 iterations (4 accepted, 1 rejected) | ~25s |
+| **6** | Evaluate final train: `python scripts/evaluate_baseline.py --config configs/final.yaml --split train --output experiments/reproduced_final_train.json` | Confirms candidate retrieval Rec@5 = 0.3191 (Phase 3 selected). Calibrated abstention shifts end-to-end frozen Phase 4 train Rec@5 to 0.3096 while rejecting 10/19 (52.6%) unanswerable queries. | ~9s |
+| **7** | Run unit tests: `python -m pytest -v` | All tests pass | ~2s |
+| **8** | Safe improvement loop replay: `python scripts/run_improvement_loop.py` | Replays 5 iterations (4 accepted, 1 rejected) safely to replay destinations without modifying frozen artifacts | ~25s |
 | **9** | Inspect official held-out test results: `python -c "import json; print(json.dumps(json.load(open('experiments/final_test_metrics.json')), indent=2))"` | Inspects official test result artifact | < 1s |
 | **10**| Verify submission integrity: `python scripts/verify_submission.py` | 7/7 integrity checks pass | ~1s |
+
+### Scientific Context: Phase 3 Candidate vs. Phase 4 Frozen Final Training Recall
+- **Phase 3 Selected Candidate (`candidate_005`)**: Evaluated with abstention threshold set to 0.0 (raw candidate retrieval without abstention filtering). Achieved training character **Recall@5 = 0.3191** on the 140 answerable training queries.
+- **Phase 4 Frozen Final Pipeline (`configs/final.yaml`)**: Calibrated abstention was activated with normalized BM25 score threshold $\ge 2.40$ and coverage guardrails. This rejected **10 out of 19 (52.6%)** unanswerable training queries, while falsely abstaining on **5 out of 140 (3.6%)** positive training queries.
+- **Trade-off Analysis**: Sacrificing 2.97% retrieval recall across those 5 borderline answerable queries gained a 52.6% defensive rejection rate on unsupported/unanswerable queries. Setting recall to 0.0 for those 5 queries shifted the macro-average training Recall@5 from **0.3191** to **0.3096**, strictly respecting the pre-declared $\le 5\%$ allowable degradation guardrail (floor: 0.3031).
+- **Evaluation Command Mapping**:
+  - `python scripts/evaluate_baseline.py --config configs/final.yaml --split train --output experiments/reproduced_final_train.json` evaluates `search_candidates()`, reporting raw candidate **Recall@5 = 0.3191**, along with the separate abstention breakdown (10/19 negative rejections, 5/140 false positive abstentions).
+  - The end-to-end pipeline with abstention filtering produces macro-averaged **Recall@5 = 0.3096** as documented in [`REPORT.md`](REPORT.md#53-mandatory-investigation-2-phase-3-vs-phase-4-training-recall) and [`docs/PHASE4_FREEZE.md`](docs/PHASE4_FREEZE.md).
 
 ### Held-Out Evaluation Protection Notice:
 In accordance with strict scientific evaluation protocols, `scripts/final_evaluation.py` was executed **exactly once** on the held-out test set (54 answerable + 13 unanswerable queries). The script contains an automated guardrail that aborts execution if `experiments/final_test_metrics.json` already exists. Reviewers should inspect the committed artifact (Step 9) rather than re-running the held-out evaluation.

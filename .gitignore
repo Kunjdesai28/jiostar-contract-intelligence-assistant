@@ -42,3 +42,8 @@ data/processed/*
 *.swo
 .DS_Store
 Thumbs.db
+
+# Replay and reproduction artifacts
+experiments/replay_*
+experiments/reproduced_*
+configs/replay_*

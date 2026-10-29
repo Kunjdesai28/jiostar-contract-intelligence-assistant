@@ -23,8 +23,8 @@ class ExperimentLogger:
             log_path: Path to improvement_log.jsonl.
             summary_path: Path to improvement_summary.json.
         """
-        self.log_path = Path(log_path) if log_path else Path("experiments/improvement_log.jsonl")
-        self.summary_path = Path(summary_path) if summary_path else Path("experiments/improvement_summary.json")
+        self.log_path = Path(log_path) if log_path else Path("experiments/replay_log.jsonl")
+        self.summary_path = Path(summary_path) if summary_path else Path("experiments/replay_summary.json")
 
         self.log_path.parent.mkdir(parents=True, exist_ok=True)
         self.summary_path.parent.mkdir(parents=True, exist_ok=True)
