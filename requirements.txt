@@ -3,3 +3,5 @@ huggingface_hub>=0.20.0
 PyYAML>=6.0.1
 tqdm>=4.66.0
 pytest>=8.0.0
+rank-bm25>=0.2.2
+streamlit>=1.30.0

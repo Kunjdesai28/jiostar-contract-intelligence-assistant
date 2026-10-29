@@ -1,0 +1,97 @@
+{
+  "evaluation_name": "BM25 Baseline Retrieval Evaluation (Train Split)",
+  "evaluated_at_utc": "2026-10-29T16:07:22.967488+00:00",
+  "elapsed_seconds": 3.94,
+  "split_evaluated": "train",
+  "configuration": {
+    "pipeline": {
+      "name": "bm25_baseline",
+      "version": 1
+    },
+    "chunking": {
+      "strategy": "fixed_character",
+      "chunk_size": 800,
+      "overlap": 150
+    },
+    "tokenization": {
+      "lowercase": true
+    },
+    "retrieval": {
+      "method": "bm25",
+      "top_k": 5
+    },
+    "bm25": {
+      "k1": 1.5,
+      "b": 0.75
+    },
+    "abstention": {
+      "enabled": true,
+      "strategy": "top_score_threshold",
+      "threshold": 0.0
+    },
+    "evaluation": {
+      "k_values": [
+        1,
+        3,
+        5,
+        10
+      ],
+      "split": "train"
+    }
+  },
+  "provenance": {
+    "dataset_source": "https://huggingface.co/datasets/awinml/legalbench-rag",
+    "repo_id": "awinml/legalbench-rag",
+    "revision_configured": "2b9c248bc8179ef0908fd6ba01d50b156facd48b",
+    "commit_sha": "2b9c248bc8179ef0908fd6ba01d50b156facd48b",
+    "acquired_at_utc": "2026-10-29T15:30:54.488528+00:00",
+    "benchmark_file": "benchmarks/cuad.json",
+    "corpus_dir": "corpus/cuad/",
+    "corpus_file_count": 462,
+    "total_files": 463,
+    "newly_downloaded": 463,
+    "cached_files": 0
+  },
+  "dataset_counts": {
+    "indexed_contracts": 29,
+    "indexed_chunks": 1874,
+    "answerable_train_queries": 140,
+    "unanswerable_train_queries": 19,
+    "total_evaluated_queries": 159
+  },
+  "retrieval_metrics_character_level": {
+    "precision@1": 0.0018,
+    "precision@3": 0.0056,
+    "precision@5": 0.0141,
+    "precision@10": 0.015,
+    "recall@1": 0.0037,
+    "recall@3": 0.031,
+    "recall@5": 0.1169,
+    "recall@10": 0.2318
+  },
+  "abstention_metrics": {
+    "unanswerable_queries": {
+      "total": 19,
+      "correct_abstentions": 0,
+      "incorrect_returns": 19,
+      "correct_abstention_rate": 0.0,
+      "correct_abstention_percentage": "0.0%"
+    },
+    "answerable_queries": {
+      "total": 140,
+      "false_abstentions": 0,
+      "covered_queries": 140,
+      "false_abstention_rate": 0.0,
+      "false_abstention_percentage": "0.0%",
+      "coverage_rate": 1.0,
+      "coverage_percentage": "100.0%"
+    }
+  },
+  "metric_definitions": {
+    "precision@k": "Mean character-level precision: Overlap characters between retrieved passages and ground-truth divided by total retrieved characters at cutoff K.",
+    "recall@k": "Mean character-level recall: Overlap characters between retrieved passages and ground-truth divided by total ground-truth characters at cutoff K.",
+    "correct_abstention_rate": "Fraction of unanswerable queries for which the system successfully returned no passages (abstained).",
+    "false_abstention_rate": "Fraction of answerable queries where the system incorrectly abstained.",
+    "coverage_rate": "Fraction of answerable queries where the system returned retrieved evidence."
+  }
+}

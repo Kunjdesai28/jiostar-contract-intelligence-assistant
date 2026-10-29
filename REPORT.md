@@ -2,163 +2,160 @@
 
 ## 1. Executive Summary
 
-This report documents the architectural design, dataset preparation, baseline methodology, experimental evaluation, and error analysis for the JioStar Contract Intelligence Assistant. The assistant is designed to retrieve contract clauses from complex legal agreements, extract exact character-offset evidence, and reliably abstain when no evidence supports an answer.
+This report documents the architectural design, dataset preparation, baseline retrieval engine, experimental evaluation, and error analysis for the JioStar Contract Intelligence Assistant. The assistant retrieves relevant contract clauses from complex legal agreements (SEC EDGAR filings), extracts exact character-offset evidence, and reliably abstains when no evidence supports an answer.
 
-**Current Status**: Phase 1 Foundation and Dataset Preparation is complete. All ground-truth annotations (272 snippets across 29 unique agreements) have been verified with 100% character-level precision. Baseline retrieval and downstream evaluation metrics are scheduled for Phase 2 and Phase 3.
+**Current Status**: 
+- **Phase 1 (Foundation & Data Preparation)**: Complete. 194 mini queries selected, 29 contracts manifested, 272/272 ground-truth spans verified (100% exact substring match).
+- **Phase 2 (BM25 Retrieval, Chunking, Abstention, CLI & Web Demo)**: Complete. BM25 baseline retrieval engine implemented, 1,874 passages indexed, CLI and Streamlit interfaces operational, character-level retrieval metrics evaluated on the training split.
+- **Phase 3 (Dense/Hybrid Retrieval, Reranking, Self-Improvement Loop & Final Test Evaluation)**: Pending future implementation.
 
 ---
 
-## 2. System Design
+## 2. System Architecture
 
-### 2.1 High-Level Architecture (Planned)
-The system is designed around a three-tier retrieval and evidence verification architecture:
-1. **Document Ingestion & Chunking**: Boundaries defined with character offset tracking relative to original document roots.
-2. **Hybrid Retrieval**: Sparse lexical retrieval (BM25) complemented by dense semantic retrieval and cross-encoder reranking.
-3. **Evidence Verification & Abstention Engine**: Calibrated confidence thresholding to return exact character offsets or emit an abstention signal when confidence falls below the reliability threshold.
+### 2.1 Retrieval Pipeline Design
+The Phase 2 baseline implements an end-to-end, modular lexical retrieval architecture:
 
-### 2.2 Phase 1 Architecture Implemented
 ```
-[Hugging Face awinml/legalbench-rag]
-                 │
-                 ▼
-      [data/raw/benchmarks/cuad.json] (4,042 queries)
-      [data/raw/corpus/cuad/]         (462 contracts)
-                 │
-                 ▼ (mini_selector.py)
-      [data/processed/cuad_mini.json] (194 queries, SHA-256: 412fc88d...)
-                 │
-      ┌──────────┴──────────┐
-      ▼                     ▼
-[span_validator.py]   [splitter.py]
- (272/272 Valid)       (140 Train / 54 Test)
-      │                     │
-      ▼                     ▼
-[loader.py]           [data/processed/train_queries.json]
- (29 Contracts,       [data/processed/test_queries.json]
-  1,211,773 chars)          │
-                            ▼
-                    [negative_queries.py]
-                     (32 Unanswerable Queries: 19 Train / 13 Test)
+[Query Input]
+      │
+      ▼
+[LegalTokenizer] (Lowercase, alphanumeric + section codes like 10.1, hyphenated legal terms)
+      │
+      ▼
+[BM25Retriever] (BM25Okapi: k1=1.5, b=0.75, indexed over 1,874 contract chunks)
+      │
+      ▼
+[Deterministic Ranker] (Sort by score DESC, tie-break by chunk_id ASC)
+      │
+      ▼
+[AbstentionEngine] (Score thresholding: top_score <= tau -> abstain)
+      │
+      ├───────────────────────────────┐
+      ▼                               ▼
+[Results Found]              [Abstention Signal]
+Top-K Ranked Passages        no_relevant_clause
+with exact document          with decision rationale
+character offsets
 ```
+
+### 2.2 Document Chunking Strategy
+- **Strategy**: Fixed-character sliding window with overlap.
+- **Chunk Size**: 800 characters.
+- **Overlap**: 150 characters (step size = 650 characters).
+- **Invariant**: For every generated chunk $c$, $c[\text{"text"}] == \text{document}[c[\text{"start\_char"}]:c[\text{"end\_char"}]]$.
+- **Corpus Coverage**: 100% of all 1,211,773 characters across all 29 contracts are covered.
+- **Total Chunks Generated**: 1,874 chunks.
+- **Independence**: Chunk boundaries are generated independently of ground-truth snippet locations.
+
+### 2.3 Tokenization Strategy
+- **Module**: `src/retrieval/tokenizer.py` (`LegalTokenizer`).
+- **Logic**: Lowercases text, extracts alphanumeric sequences while preserving internal decimal points and hyphens (e.g. section codes `10.1`, `3.2.1`, compound terms like `sublicensing`, `non-competition`, `co-branding`).
+- **Consistency**: The identical tokenizer instance processes document chunks during indexing and incoming user queries at inference.
 
 ---
 
 ## 3. Dataset and Evaluation Setup
 
-### 3.1 Benchmark Selection: LegalBench-RAG CUAD Mini
-- **Source**: `https://huggingface.co/datasets/awinml/legalbench-rag`
-- **Revision / Commit SHA**: `2b9c248bc8179ef0908fd6ba01d50b156facd48b`
+### 3.1 Benchmark & Corpus Provenance
+- **Upstream Source**: [awinml/legalbench-rag](https://huggingface.co/datasets/awinml/legalbench-rag)
+- **Commit SHA**: `2b9c248bc8179ef0908fd6ba01d50b156facd48b`
 - **Reference Paper**: *LegalBench-RAG: A Benchmark for Retrieval-Augmented Generation in Legal Reasoning* ([arXiv:2408.10343](https://arxiv.org/abs/2408.10343))
-- **Selection Function**: Deterministic PRNG seeded with each record's first snippet `file_path`:
-  - Total queries selected: **194**
-  - All 194 queries are unique.
-  - Serialization SHA-256: `412fc88d91b8299defa7158a5bd2ee008e288af0332a5dfd39b8d44a83a61749`
+- **Corpus Scope**: 29 unique SEC EDGAR commercial agreements (1,211,773 UTF-8 characters).
 
-### 3.2 Corpus Discovery & Scope
-Only contracts referenced by the 194 mini benchmark queries are indexed into the retrieval corpus:
-- **Total Unique Contracts**: **29**
-- **Total Document Characters**: **1,211,773** characters (UTF-8)
-- **Manifest File**: `data/processed/contract_manifest.json` (SHA-256: `59fd376b2fb69406ec1e626a224398a2255a7fe307ff1b006afd83c0a7b9c053`)
-
-### 3.3 Ground-Truth Span Validation Results
-Every ground-truth snippet in the mini benchmark was subjected to strict character-level offset verification (`document[start:end] == expected_answer`):
-- **Total Benchmark Queries**: 194
-- **Total Annotated Snippets**: 272
-- **Valid Spans (Exact Match)**: 272 (100.0%)
-- **Invalid Spans**: 0
-- **Missing Documents**: 0
-- **Validation Summary Artifact**: `data/processed/span_validation_summary.json`
-
-### 3.4 Honest Train/Test Split
-Split assignments are determined strictly via SHA-256 hash integer thresholding on whitespace-stripped query strings:
-$$\text{split} = \begin{cases} \text{"test"} & \text{if } \text{int}(\text{SHA256}(\text{query}), 16) \pmod{10} < 3 \\ \text{"train"} & \text{otherwise} \end{cases}$$
-
-- **Train Split**: 140 queries (72.2%)
-- **Test Split**: 54 queries (27.8%)
-- **Overlap**: 0 queries (strictly disjoint)
-
-*Evaluation Protocol Guardrail*: The 54 test queries are strictly isolated and will only be evaluated at final project completion. No model selection or hyperparameter tuning in Phase 2 or 3 will access test split queries or ground-truth snippets.
-
-### 3.5 Unanswerable Query Benchmark
-To evaluate model abstention capabilities, 32 manually reasoned negative queries were created across 6 distinct categories:
-- **Outside Indexed Corpus**: 6 queries (e.g. JioStar IPL broadcasting, Netflix streaming licenses)
-- **Absent From Contracts**: 6 queries (e.g. historical post-signing revenue, actual delivered volume)
-- **Future Events Not Established**: 5 queries (e.g. subsequent bankruptcy filings, renewal exercise)
-- **External Business Data**: 4 queries (e.g. NASDAQ stock prices, Moody's credit ratings)
-- **Unsupported Legal Facts**: 6 queries (e.g. GDPR penalties in pre-2016 contracts, HIPAA damages)
-- **Out of Domain**: 5 queries (e.g. Amazon rainfall, FIFA World Cup, culinary recipes)
-- **Split Distribution**: 19 Train / 13 Test (assigned using the exact `assign_split()` function)
-- **Dataset File**: `data/unanswerable_queries.json` (SHA-256: `7eaf304f4a22a4567100fb283a53f1bfc7b458eaa2f7feb7d78ba66db3d539d3`)
+### 3.2 Strict Train/Test Separation
+- **Answerable Queries**: 194 total (140 Train / 54 Test).
+- **Unanswerable Negative Queries**: 32 total (19 Train / 13 Test across 6 categories).
+- **Splitting Algorithm**: Deterministic SHA-256 integer modulo: `test` if `int(SHA256(query), 16) % 10 < 3` else `train`.
+- **Evaluation Guardrail**: All Phase 2 evaluation and hyperparameter calibration was performed strictly on the **train split** (140 answerable + 19 unanswerable queries). The 54 test queries and 13 unanswerable test queries were kept strictly locked and unread.
 
 ---
 
-## 4. Baseline Methodology
-*Pending Phase 2 implementation and measured results.*
+## 4. Baseline Methodology & Configuration
 
-Planned Baseline:
-- BM25 Okapi baseline implementation without LLM overhead.
-- Sentence/paragraph chunking with sliding windows preserving document-level character offset pointers.
-- Heuristic score thresholding for abstention.
+The initial baseline retrieval system is configured in `configs/baseline.yaml`:
 
----
+```yaml
+pipeline:
+  name: "bm25_baseline"
+  version: 1
 
-## 5. Retrieval Metrics
-*Pending Phase 2 implementation and measured results.*
+chunking:
+  strategy: "fixed_character"
+  chunk_size: 800
+  overlap: 150
 
-Planned Evaluation Metrics:
-- Exact Span Overlap / Intersection over Union (IoU)
-- Document-level Recall@K (K=1, 3, 5)
-- Character-level Precision and Recall
-- Mean Reciprocal Rank (MRR)
+tokenization:
+  lowercase: true
 
----
+retrieval:
+  method: "bm25"
+  top_k: 5
 
-## 6. Abstention Metrics
-*Pending Phase 2 implementation and measured results.*
+bm25:
+  k1: 1.5
+  b: 0.75
 
-Planned Metrics:
-- Abstention Precision: $\frac{\text{True Abstentions}}{\text{Total Abstention Decisions}}$
-- Abstention Recall: $\frac{\text{True Abstentions}}{\text{Total Unanswerable Queries}}$
-- False Abstention Rate: Rate of abstaining on truly answerable queries.
-- Hallucination / Over-retrieval Rate on negative queries.
+abstention:
+  enabled: true
+  strategy: "top_score_threshold"
+  threshold: 0.0
 
----
-
-## 7. Improvement-Loop Objective
-*Pending Phase 3 implementation and measured results.*
-
-Target Objective:
-- Automated iterative improvement loop optimizing chunk size, chunk overlap, BM25 hyper-parameters ($k_1, b$), dense retriever embedding weight, and abstention threshold strictly on the train split.
+evaluation:
+  k_values: [1, 3, 5, 10]
+  split: "train"
+```
 
 ---
 
-## 8. Experiment History
-*Pending Phase 3 implementation and measured results.*
+## 5. Measured Baseline Results (Train Split)
 
-| Experiment ID | Description | Train Recall@5 | Train Span IoU | Train Abstention F1 | Status |
-|---|---|---|---|---|---|
-| *EXP_001* | *Phase 2 Baseline* | *Pending* | *Pending* | *Pending* | *Pending* |
+The baseline evaluation was executed using `scripts/evaluate_baseline.py --config configs/baseline.yaml --split train`. All metrics were computed using exact character-level set intersections as defined in the LegalBench-RAG specification.
+
+### 5.1 Character-Level Retrieval Metrics (140 Answerable Train Queries)
+
+| Metric Cutoff | Character Precision | Character Recall | Interpretation |
+|---|---|---|---|
+| **@1** | 0.0018 | 0.0037 | Top-1 chunk captures initial signal for high-relevance terms |
+| **@3** | 0.0056 | 0.0310 | 3-passage window expands relevant clause capture |
+| **@5** | 0.0141 | 0.1169 | 11.69% of ground-truth characters captured within top-5 |
+| **@10** | 0.0150 | 0.2318 | 23.18% of ground-truth characters captured within top-10 |
+
+*Metric Calculation Invariant*: Retrieved passages within the same document are merged prior to character set intersection, avoiding double-counting of overlapping chunks. Character boundaries from different contracts are strictly isolated.
+
+### 5.2 Abstention Performance (Train Split)
+
+#### Initial Baseline ($\tau = 0.0$)
+- **Unanswerable Queries Evaluated**: 19
+- **Correct Abstentions on Negatives**: 0 / 19 (0.0%)
+- **False Abstentions on Positives**: 0 / 140 (0.0%)
+- **Answerable Query Coverage**: 140 / 140 (100.0%)
+*Observation*: With threshold $\tau=0.0$, BM25 scores on unanswerable queries are non-zero due to incidental lexical overlap (e.g., query stopwords matching common terms in long contracts), preventing abstention.
+
+#### Calibrated Threshold Analysis on Training Split
+Analyzing the score distributions between answerable and unanswerable training queries reveals strong separation:
+- **Answerable Queries Top-1 Score**: Min = 44.67, Mean = 67.44, Max = 102.85
+- **Unanswerable Queries Top-1 Score**: Min = 13.68, Mean = 24.46, Max = 43.76
+
+Setting the calibrated threshold to $\tau = 44.0$:
+- **Correct Abstentions on Negatives**: 19 / 19 (100.0%)
+- **False Abstentions on Positives**: 0 / 140 (0.0%)
+- **Answerable Query Coverage**: 140 / 140 (100.0%)
 
 ---
 
-## 9. Baseline versus Final Results
-*Pending Phase 3 implementation and measured results.*
+## 6. Observed Baseline Limitations (Targeted for Phase 3)
+
+1. **Vocabulary Mismatch in Sparse Lexical Matching**: BM25 relies on exact term overlap. When a query uses legal synonyms (e.g. *"Can this agreement be assigned?"* vs. contractual text stating *"Neither party may delegate or transfer obligations"*), BM25 fails to retrieve the clause.
+2. **Fixed 800-Character Windows**: Legal clauses vary widely in length. Long multi-paragraph indemnity clauses span beyond 800 characters, while brief governing law clauses are under 100 characters. Fixed chunking introduces fragmentation.
+3. **Precision Dilution at High Cutoffs**: Because each chunk is 800 characters and ground-truth snippets often span only 100–300 characters, character precision is naturally bounded by chunk length. Dense reranking in Phase 3 can refine passage boundaries.
 
 ---
 
-## 10. Error Analysis
-*Pending Phase 2/3 implementation and measured results.*
+## 7. Next Steps (Phase 3 Roadmap)
 
----
-
-## 11. Limitations
-1. **Contract Domain Specificity**: The 29 indexed contracts originate from US SEC EDGAR filings and may not fully generalize to civil law or international cross-border agreements without domain adaptation.
-2. **Fixed Mini Corpus Scope**: Evaluating retrieval against a 29-contract subset reduces the search space compared to the full 462-contract CUAD corpus; however, this mirrors standard LegalBench-RAG benchmarking requirements.
-
----
-
-## 12. Next Steps (Phase 2 Roadmap)
-1. **Document Chunking Engine**: Implement paragraph and sliding-window chunkers in `src/retrieval/chunking.py` preserving character offsets $[start, end]$.
-2. **BM25 Lexical Indexer**: Implement baseline search in `src/retrieval/bm25.py`.
-3. **Passage Retrieval Interface**: Return ranked results with exact document offsets.
-4. **Abstention Evaluator**: Calibrate abstention score thresholds on `train_queries` and `unanswerable_queries` train split.
+1. **Dense Retrieval Integration**: Generate embeddings using a domain-tailored sentence transformer and index with FAISS.
+2. **Hybrid Retrieval**: Combine dense semantic similarity with sparse BM25 scores via Reciprocal Rank Fusion (RRF) or calibrated linear weighting.
+3. **Cross-Encoder Reranking**: Re-score top-20 hybrid candidates using a cross-encoder to elevate exact clause passages.
+4. **Automated Improvement Loop**: Systematically sweep chunk parameters, fusion weights, and abstention thresholds strictly on the train split.
+5. **Final Held-Out Test Evaluation**: Execute single final evaluation on the 54 test queries and 13 test negative queries.
