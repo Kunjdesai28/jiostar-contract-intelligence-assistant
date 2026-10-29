@@ -1,0 +1,45 @@
+# JioStar Contract Intelligence Assistant - Retrieval Self-Improvement Configuration
+experiment_loop:
+  name: "phase3_retrieval_self_improvement"
+  iterations: 5
+  evaluation_split: "train"
+  random_seed: 42
+  proposer_strategy: "rule_based"
+
+baseline_reference:
+  config_path: "configs/baseline.yaml"
+
+objective:
+  primary_metric: "retrieval_metrics_character_level.recall@5"
+  direction: "maximize"
+  evaluated_queries: 140
+  min_improvement_delta: 0.000001
+
+guardrails:
+  max_precision_at_5_relative_drop: 0.20
+  max_correct_abstention_drop_pp: 0.10
+  max_false_abstention_increase_pp: 0.05
+  max_latency_multiplier: 3.0
+  require_valid_execution: true
+
+paths:
+  log_output: "experiments/improvement_log.jsonl"
+  summary_output: "experiments/improvement_summary.json"
+  final_config_output: "configs/final.yaml"
+  embeddings_cache_dir: "data/processed"
+
+search_space:
+  query_processing:
+    modes: ["original", "focused", "two_stage"]
+  tokenization:
+    enhancement_modes: ["none", "legal_stem"]
+  bm25:
+    k1_values: [1.2, 1.5, 1.8]
+    b_values: [0.65, 0.75, 0.80]
+  chunking:
+    overlap_values: [150, 250]
+    chunk_sizes: [800, 1000]
+    strategies: ["fixed_character", "clause_aware"]
+  abstention:
+    threshold_values: [0.0, 4.0, 8.0]
+    strategies: ["top_score_threshold", "candidate_filtering"]

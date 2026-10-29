@@ -96,10 +96,13 @@ st.markdown(
 )
 
 
-@st.cache_resource(show_spinner="Loading contract corpus and building BM25 index...")
-def get_cached_pipeline() -> ContractRetrievalPipeline:
-    """Load and cache the ContractRetrievalPipeline once per session."""
-    pipeline = ContractRetrievalPipeline()
+@st.cache_resource(show_spinner="Loading contract corpus and building retrieval index...")
+def get_cached_pipeline(config_path: str = "configs/baseline.yaml") -> ContractRetrievalPipeline:
+    """Load and cache the ContractRetrievalPipeline per configuration."""
+    cfg_p = Path(config_path)
+    if not cfg_p.exists():
+        cfg_p = Path("configs/baseline.yaml")
+    pipeline = ContractRetrievalPipeline(config_path=cfg_p)
     pipeline.build_index()
     return pipeline
 
@@ -120,9 +123,20 @@ def main():
         unsafe_allow_html=True,
     )
 
+    # Configuration Selection
+    available_configs = {}
+    if Path("configs/final.yaml").exists():
+        available_configs["Final Selected Pipeline (configs/final.yaml)"] = "configs/final.yaml"
+    available_configs["Baseline BM25 Pipeline (configs/baseline.yaml)"] = "configs/baseline.yaml"
+
+    with st.sidebar:
+        st.header("Pipeline Configuration")
+        selected_config_label = st.selectbox("Active Configuration", list(available_configs.keys()))
+        config_path = available_configs[selected_config_label]
+
     # Initialize Pipeline
     try:
-        pipeline = get_cached_pipeline()
+        pipeline = get_cached_pipeline(config_path)
     except Exception as e:
         st.error(f"Failed to initialize retrieval index: {e}")
         st.info("Ensure that 'python scripts/prepare_dataset.py' has been executed.")

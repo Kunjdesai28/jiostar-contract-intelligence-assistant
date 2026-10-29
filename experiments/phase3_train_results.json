@@ -1,0 +1,1053 @@
+{
+  "elapsed_seconds": 8.86,
+  "split_evaluated": "train",
+  "configuration": {
+    "pipeline": {
+      "name": "candidate_005",
+      "version": 1
+    },
+    "chunking": {
+      "strategy": "clause_aware",
+      "chunk_size": 1000,
+      "overlap": 250
+    },
+    "tokenization": {
+      "lowercase": true,
+      "enhancement_mode": "legal_stem"
+    },
+    "retrieval": {
+      "method": "bm25",
+      "top_k": 5
+    },
+    "bm25": {
+      "k1": 1.5,
+      "b": 0.75
+    },
+    "abstention": {
+      "enabled": true,
+      "strategy": "top_score_threshold",
+      "threshold": 0.0
+    },
+    "evaluation": {
+      "k_values": [
+        1,
+        3,
+        5,
+        10
+      ],
+      "split": "train"
+    },
+    "query_processing": {
+      "mode": "two_stage"
+    }
+  },
+  "dataset_counts": {
+    "indexed_contracts": 29,
+    "indexed_chunks": 1991,
+    "answerable_train_queries": 140,
+    "unanswerable_train_queries": 19,
+    "total_evaluated_queries": 159
+  },
+  "retrieval_metrics_character_level": {
+    "precision@1": 0.0741,
+    "precision@3": 0.0552,
+    "precision@5": 0.0374,
+    "precision@10": 0.0255,
+    "recall@1": 0.1456,
+    "recall@3": 0.2741,
+    "recall@5": 0.3191,
+    "recall@10": 0.4303
+  },
+  "abstention_metrics": {
+    "unanswerable_queries": {
+      "total": 19,
+      "correct_abstentions": 0,
+      "incorrect_returns": 19,
+      "correct_abstention_rate": 0.0,
+      "correct_abstention_percentage": "0.0%"
+    },
+    "answerable_queries": {
+      "total": 140,
+      "false_abstentions": 0,
+      "covered_queries": 140,
+      "false_abstention_rate": 0.0,
+      "false_abstention_percentage": "0.0%",
+      "coverage_rate": 1.0,
+      "coverage_percentage": "100.0%"
+    }
+  },
+  "diagnostics": {
+    "total_queries_evaluated": 159,
+    "total_errors": 117,
+    "category_counts": {
+      "wrong_document": 10,
+      "wrong_section": 60,
+      "partial_span": 28,
+      "incorrect_abstention": 0,
+      "failed_abstention": 19,
+      "successful_retrieval": 42
+    },
+    "dominant_failure": "wrong_section",
+    "wrong_document_rate": 0.0629,
+    "wrong_section_rate": 0.3774,
+    "partial_span_rate": 0.1761,
+    "incorrect_abstention_rate": 0.0,
+    "failed_abstention_rate": 0.1195,
+    "per_query_diagnostics": [
+      {
+        "query": "Consider the Amendment No. 3 to Wireless Content License Agreement between Fox Mobile Entertainment, Inc. and Glu Mobile Inc.; What is the expiration date of this contract?",
+        "category": "successful_retrieval",
+        "is_unanswerable": false,
+        "details": "Retrieved passage successfully and completely covers the annotated answer span."
+      },
+      {
+        "query": "Consider the Service Agreement between BicycleTX Ltd and Nigel Crockett for Chief Business Officer Position; What is the governing law for this contract?",
+        "category": "successful_retrieval",
+        "is_unanswerable": false,
+        "details": "Retrieved passage successfully and completely covers the annotated answer span."
+      },
+      {
+        "query": "Consider the Service Agreement between BicycleTX Ltd and Nigel Crockett for Chief Business Officer Position; Are there any exceptions to competitive restrictions in this contract?",
+        "category": "partial_span",
+        "is_unanswerable": false,
+        "details": "Passage overlaps gold span (384/462 chars) but does not fully cover it."
+      },
+      {
+        "query": "Consider the Service Agreement between BicycleTX Ltd and Nigel Crockett for Chief Business Officer Position; Does this contract include any right of first refusal, right of first offer, or right of first negotiation?",
+        "category": "wrong_section",
+        "is_unanswerable": false,
+        "details": "Correct document retrieved, but 0 returned passages overlap the gold answer span."
+      },
+      {
+        "query": "Consider the Service Agreement between BicycleTX Ltd and Nigel Crockett for Chief Business Officer Position; How is intellectual property ownership assigned in this contract?",
+        "category": "partial_span",
+        "is_unanswerable": false,
+        "details": "Passage overlaps gold span (187/519 chars) but does not fully cover it."
+      },
+      {
+        "query": "Consider the Cooperation Agreement between HPIL ENERGYTECH Inc. and GINARES GROUP AG for Renewable Energy Projects; What is the expiration date of this contract?",
+        "category": "wrong_document",
+        "is_unanswerable": false,
+        "details": "Retrieved docs {'cuad/PapaJohnsInternationalInc_20190617_8-K_EX-10.1_11707365_EX-10.1_Endorsement Agreement.txt', 'cuad/BONTONSTORESINC_04_20_2018-EX-99.3-AGENCY AGREEMENT.txt'} did not intersect gold docs {'cuad/HPILHOLDING_01_07_2015-EX-99.1-COOPERATION AGREEMENT.txt'}."
+      },
+      {
+        "query": "Consider the Cooperation Agreement between HPIL ENERGYTECH Inc. and GINARES GROUP AG for Renewable Energy Projects; What is the governing law for this contract?",
+        "category": "successful_retrieval",
+        "is_unanswerable": false,
+        "details": "Retrieved passage successfully and completely covers the annotated answer span."
+      },
+      {
+        "query": "Consider the Cooperation Agreement between HPIL ENERGYTECH Inc. and GINARES GROUP AG for Renewable Energy Projects; Is there an anti-assignment clause in this contract?",
+        "category": "wrong_section",
+        "is_unanswerable": false,
+        "details": "Correct document retrieved, but 0 returned passages overlap the gold answer span."
+      },
+      {
+        "query": "Consider the Cooperation Agreement between HPIL ENERGYTECH Inc. and GINARES GROUP AG for Renewable Energy Projects; Is there a cap on liability under this contract?",
+        "category": "wrong_section",
+        "is_unanswerable": false,
+        "details": "Correct document retrieved, but 0 returned passages overlap the gold answer span."
+      },
+      {
+        "query": "Consider the Sponsorship Agreement between Jacksonville Jaguars, LLC and The ARC Group, Inc.; What is the expiration date of this contract?",
+        "category": "successful_retrieval",
+        "is_unanswerable": false,
+        "details": "Retrieved passage successfully and completely covers the annotated answer span."
+      },
+      {
+        "query": "Consider the Sponsorship Agreement between Jacksonville Jaguars, LLC and The ARC Group, Inc.; What licenses are granted under this contract?",
+        "category": "partial_span",
+        "is_unanswerable": false,
+        "details": "Passage overlaps gold span (238/791 chars) but does not fully cover it."
+      },
+      {
+        "query": "Consider the Service Agreement between Theravance Biopharma UK Limited and Brett Haumann; What is the expiration date of this contract?",
+        "category": "wrong_section",
+        "is_unanswerable": false,
+        "details": "Correct document retrieved, but 0 returned passages overlap the gold answer span."
+      },
+      {
+        "query": "Consider the Service Agreement between Theravance Biopharma UK Limited and Brett Haumann; Is there a clause preventing the solicitation of employees in this contract?",
+        "category": "wrong_section",
+        "is_unanswerable": false,
+        "details": "Correct document retrieved, but 0 returned passages overlap the gold answer span."
+      },
+      {
+        "query": "Consider the Service Agreement between Theravance Biopharma UK Limited and Brett Haumann; Can this contract be terminated for convenience, and under what conditions?",
+        "category": "wrong_section",
+        "is_unanswerable": false,
+        "details": "Correct document retrieved, but 0 returned passages overlap the gold answer span."
+      },
+      {
+        "query": "Consider the Service Agreement between Theravance Biopharma UK Limited and Brett Haumann; How is intellectual property ownership assigned in this contract?",
+        "category": "successful_retrieval",
+        "is_unanswerable": false,
+        "details": "Retrieved passage successfully and completely covers the annotated answer span."
+      },
+      {
+        "query": "Consider the Service Agreement between Theravance Biopharma UK Limited and Brett Haumann; Is there a covenant not to sue included in this contract?",
+        "category": "wrong_section",
+        "is_unanswerable": false,
+        "details": "Correct document retrieved, but 0 returned passages overlap the gold answer span."
+      },
+      {
+        "query": "Consider the Sponsorship Agreement between R. C. Boyd Enterprises, LLC and Cano Petroleum, Inc. for 'Honey Hole'; What is the expiration date of this contract?",
+        "category": "wrong_section",
+        "is_unanswerable": false,
+        "details": "Correct document retrieved, but 0 returned passages overlap the gold answer span."
+      },
+      {
+        "query": "Consider the Sponsorship Agreement between R. C. Boyd Enterprises, LLC and Cano Petroleum, Inc. for 'Honey Hole'; Is there an anti-assignment clause in this contract?",
+        "category": "successful_retrieval",
+        "is_unanswerable": false,
+        "details": "Retrieved passage successfully and completely covers the annotated answer span."
+      },
+      {
+        "query": "Consider the Sponsorship Agreement between Excite, Inc. and Vitamin Shoppe Industries Inc. for Promotion on WebCrawler Channels; What is the expiration date of this contract?",
+        "category": "successful_retrieval",
+        "is_unanswerable": false,
+        "details": "Retrieved passage successfully and completely covers the annotated answer span."
+      },
+      {
+        "query": "Consider the Sponsorship Agreement between Excite, Inc. and Vitamin Shoppe Industries Inc. for Promotion on WebCrawler Channels; What is the governing law for this contract?",
+        "category": "successful_retrieval",
+        "is_unanswerable": false,
+        "details": "Retrieved passage successfully and completely covers the annotated answer span."
+      },
+      {
+        "query": "Consider the Sponsorship Agreement between Excite, Inc. and Vitamin Shoppe Industries Inc. for Promotion on WebCrawler Channels; What licenses are granted under this contract?",
+        "category": "successful_retrieval",
+        "is_unanswerable": false,
+        "details": "Retrieved passage successfully and completely covers the annotated answer span."
+      },
+      {
+        "query": "Consider the Sponsorship Agreement between Excite, Inc. and Vitamin Shoppe Industries Inc. for Promotion on WebCrawler Channels; Is there a cap on liability under this contract?",
+        "category": "successful_retrieval",
+        "is_unanswerable": false,
+        "details": "Retrieved passage successfully and completely covers the annotated answer span."
+      },
+      {
+        "query": "Consider the Strategic Alliance Agreement between Information System Associates, Inc. and Rubicon Software Group plc; What is the expiration date of this contract?",
+        "category": "wrong_section",
+        "is_unanswerable": false,
+        "details": "Correct document retrieved, but 0 returned passages overlap the gold answer span."
+      },
+      {
+        "query": "Consider the Strategic Alliance Agreement between Information System Associates, Inc. and Rubicon Software Group plc; What is the renewal term for this contract?",
+        "category": "partial_span",
+        "is_unanswerable": false,
+        "details": "Passage overlaps gold span (737/487 chars) but does not fully cover it."
+      },
+      {
+        "query": "Consider the Strategic Alliance Agreement between Information System Associates, Inc. and Rubicon Software Group plc; What is the notice period required to terminate the renewal?",
+        "category": "partial_span",
+        "is_unanswerable": false,
+        "details": "Passage overlaps gold span (737/487 chars) but does not fully cover it."
+      },
+      {
+        "query": "Consider the Strategic Alliance Agreement between Information System Associates, Inc. and Rubicon Software Group plc; What is the governing law for this contract?",
+        "category": "successful_retrieval",
+        "is_unanswerable": false,
+        "details": "Retrieved passage successfully and completely covers the annotated answer span."
+      },
+      {
+        "query": "Consider the Strategic Alliance Agreement between Information System Associates, Inc. and Rubicon Software Group plc; Are there any exceptions to competitive restrictions in this contract?",
+        "category": "partial_span",
+        "is_unanswerable": false,
+        "details": "Passage overlaps gold span (81/214 chars) but does not fully cover it."
+      },
+      {
+        "query": "Consider the Strategic Alliance Agreement between Information System Associates, Inc. and Rubicon Software Group plc; Does this contract include an exclusivity agreement?",
+        "category": "wrong_section",
+        "is_unanswerable": false,
+        "details": "Correct document retrieved, but 0 returned passages overlap the gold answer span."
+      },
+      {
+        "query": "Consider the Strategic Alliance Agreement between Information System Associates, Inc. and Rubicon Software Group plc; Is there a clause preventing the solicitation of employees in this contract?",
+        "category": "partial_span",
+        "is_unanswerable": false,
+        "details": "Passage overlaps gold span (129/258 chars) but does not fully cover it."
+      },
+      {
+        "query": "Consider the Strategic Alliance Agreement between Information System Associates, Inc. and Rubicon Software Group plc; How is intellectual property ownership assigned in this contract?",
+        "category": "partial_span",
+        "is_unanswerable": false,
+        "details": "Passage overlaps gold span (274/1805 chars) but does not fully cover it."
+      },
+      {
+        "query": "Consider the Strategic Alliance Agreement between Information System Associates, Inc. and Rubicon Software Group plc; What licenses are granted under this contract?",
+        "category": "successful_retrieval",
+        "is_unanswerable": false,
+        "details": "Retrieved passage successfully and completely covers the annotated answer span."
+      },
+      {
+        "query": "Consider the Strategic Alliance Agreement between Information System Associates, Inc. and Rubicon Software Group plc; Are the licenses granted under this contract non-transferable?",
+        "category": "successful_retrieval",
+        "is_unanswerable": false,
+        "details": "Retrieved passage successfully and completely covers the annotated answer span."
+      },
+      {
+        "query": "Consider the Strategic Alliance Agreement between Information System Associates, Inc. and Rubicon Software Group plc; Are there any third-party beneficiaries designated in this contract?",
+        "category": "successful_retrieval",
+        "is_unanswerable": false,
+        "details": "Retrieved passage successfully and completely covers the annotated answer span."
+      },
+      {
+        "query": "Consider the Supply Agreement between Florida Chemical Company, LLC and Flotek Chemistry, LLC for Terpene Products; What is the expiration date of this contract?",
+        "category": "successful_retrieval",
+        "is_unanswerable": false,
+        "details": "Retrieved passage successfully and completely covers the annotated answer span."
+      },
+      {
+        "query": "Consider the Supply Agreement between Florida Chemical Company, LLC and Flotek Chemistry, LLC for Terpene Products; What is the governing law for this contract?",
+        "category": "successful_retrieval",
+        "is_unanswerable": false,
+        "details": "Retrieved passage successfully and completely covers the annotated answer span."
+      },
+      {
+        "query": "Consider the Supply Agreement between Florida Chemical Company, LLC and Flotek Chemistry, LLC for Terpene Products; Does this contract include any volume restrictions?",
+        "category": "wrong_section",
+        "is_unanswerable": false,
+        "details": "Correct document retrieved, but 0 returned passages overlap the gold answer span."
+      },
+      {
+        "query": "Consider the Supply Agreement between Florida Chemical Company, LLC and Flotek Chemistry, LLC for Terpene Products; What are the audit rights under this contract?",
+        "category": "successful_retrieval",
+        "is_unanswerable": false,
+        "details": "Retrieved passage successfully and completely covers the annotated answer span."
+      },
+      {
+        "query": "Consider the Supply Agreement between Florida Chemical Company, LLC and Flotek Chemistry, LLC for Terpene Products; What is the duration of any warranties provided in this contract?",
+        "category": "wrong_section",
+        "is_unanswerable": false,
+        "details": "Correct document retrieved, but 0 returned passages overlap the gold answer span."
+      },
+      {
+        "query": "Consider the Supply Agreement between Florida Chemical Company, LLC and Flotek Chemistry, LLC for Terpene Products; What are the insurance requirements under this contract?",
+        "category": "successful_retrieval",
+        "is_unanswerable": false,
+        "details": "Retrieved passage successfully and completely covers the annotated answer span."
+      },
+      {
+        "query": "Consider the Intellectual Property Agreement for COVID-19 Treatment Development between Marv Enterprises, LLC, Premier Biomedical, Inc., and Technology Health, Inc.; What is the governing law for this contract?",
+        "category": "successful_retrieval",
+        "is_unanswerable": false,
+        "details": "Retrieved passage successfully and completely covers the annotated answer span."
+      },
+      {
+        "query": "Consider the Intellectual Property Agreement for COVID-19 Treatment Development between Marv Enterprises, LLC, Premier Biomedical, Inc., and Technology Health, Inc.; Does this contract include an exclusivity agreement?",
+        "category": "wrong_section",
+        "is_unanswerable": false,
+        "details": "Correct document retrieved, but 0 returned passages overlap the gold answer span."
+      },
+      {
+        "query": "Consider the Intellectual Property Agreement for COVID-19 Treatment Development between Marv Enterprises, LLC, Premier Biomedical, Inc., and Technology Health, Inc.; Does this contract include any revenue or profit-sharing arrangements?",
+        "category": "partial_span",
+        "is_unanswerable": false,
+        "details": "Passage overlaps gold span (262/784 chars) but does not fully cover it."
+      },
+      {
+        "query": "Consider the Intellectual Property Agreement for COVID-19 Treatment Development between Marv Enterprises, LLC, Premier Biomedical, Inc., and Technology Health, Inc.; What licenses are granted under this contract?",
+        "category": "partial_span",
+        "is_unanswerable": false,
+        "details": "Passage overlaps gold span (1903/2159 chars) but does not fully cover it."
+      },
+      {
+        "query": "Consider the Intellectual Property Agreement for COVID-19 Treatment Development between Marv Enterprises, LLC, Premier Biomedical, Inc., and Technology Health, Inc.; Does the licensee's affiliates have any licensing rights under this contract?",
+        "category": "partial_span",
+        "is_unanswerable": false,
+        "details": "Passage overlaps gold span (142/301 chars) but does not fully cover it."
+      },
+      {
+        "query": "Consider the Marketing and Transportation Services Agreement between Purolator Courier Ltd. and Parcelway Courier Systems Canada Ltd. (Dynamex Inc.); What is the expiration date of this contract?",
+        "category": "wrong_section",
+        "is_unanswerable": false,
+        "details": "Correct document retrieved, but 0 returned passages overlap the gold answer span."
+      },
+      {
+        "query": "Consider the Marketing and Transportation Services Agreement between Purolator Courier Ltd. and Parcelway Courier Systems Canada Ltd. (Dynamex Inc.); What is the governing law for this contract?",
+        "category": "successful_retrieval",
+        "is_unanswerable": false,
+        "details": "Retrieved passage successfully and completely covers the annotated answer span."
+      },
+      {
+        "query": "Consider the Marketing and Transportation Services Agreement between Purolator Courier Ltd. and Parcelway Courier Systems Canada Ltd. (Dynamex Inc.); Are there any exceptions to competitive restrictions in this contract?",
+        "category": "partial_span",
+        "is_unanswerable": false,
+        "details": "Passage overlaps gold span (298/744 chars) but does not fully cover it."
+      },
+      {
+        "query": "Consider the Marketing and Transportation Services Agreement between Purolator Courier Ltd. and Parcelway Courier Systems Canada Ltd. (Dynamex Inc.); Is there a non-compete clause in this contract?",
+        "category": "wrong_section",
+        "is_unanswerable": false,
+        "details": "Correct document retrieved, but 0 returned passages overlap the gold answer span."
+      },
+      {
+        "query": "Consider the Marketing and Transportation Services Agreement between Purolator Courier Ltd. and Parcelway Courier Systems Canada Ltd. (Dynamex Inc.); Is there a clause preventing the solicitation of customers in this contract?",
+        "category": "wrong_section",
+        "is_unanswerable": false,
+        "details": "Correct document retrieved, but 0 returned passages overlap the gold answer span."
+      },
+      {
+        "query": "Consider the Marketing and Transportation Services Agreement between Purolator Courier Ltd. and Parcelway Courier Systems Canada Ltd. (Dynamex Inc.); Are there any services to be provided after the termination of this contract?",
+        "category": "successful_retrieval",
+        "is_unanswerable": false,
+        "details": "Retrieved passage successfully and completely covers the annotated answer span."
+      },
+      {
+        "query": "Consider the Marketing and Transportation Services Agreement between Purolator Courier Ltd. and Parcelway Courier Systems Canada Ltd. (Dynamex Inc.); What are the audit rights under this contract?",
+        "category": "wrong_section",
+        "is_unanswerable": false,
+        "details": "Correct document retrieved, but 0 returned passages overlap the gold answer span."
+      },
+      {
+        "query": "Consider the Marketing and Transportation Services Agreement between Purolator Courier Ltd. and Parcelway Courier Systems Canada Ltd. (Dynamex Inc.); Is there a cap on liability under this contract?",
+        "category": "partial_span",
+        "is_unanswerable": false,
+        "details": "Passage overlaps gold span (468/662 chars) but does not fully cover it."
+      },
+      {
+        "query": "Consider the Gas Franchise Agreement between the Town of Vinton and Roanoke Gas Company; What is the expiration date of this contract?",
+        "category": "wrong_document",
+        "is_unanswerable": false,
+        "details": "Retrieved docs {'cuad/PenntexMidstreamPartnersLp_20150416_S-1A_EX-10.4_9042833_EX-10.4_Transportation Agreement.txt'} did not intersect gold docs {'cuad/RgcResourcesInc_20151216_8-K_EX-10.3_9372751_EX-10.3_Franchise Agreement.txt'}."
+      },
+      {
+        "query": "Consider the Gas Franchise Agreement between the Town of Vinton and Roanoke Gas Company; Does this contract include any revenue or profit-sharing arrangements?",
+        "category": "wrong_document",
+        "is_unanswerable": false,
+        "details": "Retrieved docs {'cuad/PenntexMidstreamPartnersLp_20150416_S-1A_EX-10.4_9042833_EX-10.4_Transportation Agreement.txt'} did not intersect gold docs {'cuad/RgcResourcesInc_20151216_8-K_EX-10.3_9372751_EX-10.3_Franchise Agreement.txt'}."
+      },
+      {
+        "query": "Consider the Co-Branding Agreement between PC Quote, Inc. and A.B. Watley, Inc. for Market Data Software; What is the governing law for this contract?",
+        "category": "successful_retrieval",
+        "is_unanswerable": false,
+        "details": "Retrieved passage successfully and completely covers the annotated answer span."
+      },
+      {
+        "query": "Consider the Co-Branding Agreement between PC Quote, Inc. and A.B. Watley, Inc. for Market Data Software; What licenses are granted under this contract?",
+        "category": "wrong_section",
+        "is_unanswerable": false,
+        "details": "Correct document retrieved, but 0 returned passages overlap the gold answer span."
+      },
+      {
+        "query": "Consider the Co-Branding Agreement between PC Quote, Inc. and A.B. Watley, Inc. for Market Data Software; Is there a cap on liability under this contract?",
+        "category": "wrong_section",
+        "is_unanswerable": false,
+        "details": "Correct document retrieved, but 0 returned passages overlap the gold answer span."
+      },
+      {
+        "query": "Consider the Promotion Agreement between Depomed, Inc. and King Pharmaceuticals, Inc. for Glumetza; What is the expiration date of this contract?",
+        "category": "wrong_section",
+        "is_unanswerable": false,
+        "details": "Correct document retrieved, but 0 returned passages overlap the gold answer span."
+      },
+      {
+        "query": "Consider the Promotion Agreement between Depomed, Inc. and King Pharmaceuticals, Inc. for Glumetza; What is the renewal term for this contract?",
+        "category": "successful_retrieval",
+        "is_unanswerable": false,
+        "details": "Retrieved passage successfully and completely covers the annotated answer span."
+      },
+      {
+        "query": "Consider the Promotion Agreement between Depomed, Inc. and King Pharmaceuticals, Inc. for Glumetza; What is the governing law for this contract?",
+        "category": "successful_retrieval",
+        "is_unanswerable": false,
+        "details": "Retrieved passage successfully and completely covers the annotated answer span."
+      },
+      {
+        "query": "Consider the Promotion Agreement between Depomed, Inc. and King Pharmaceuticals, Inc. for Glumetza; Does this contract include an exclusivity agreement?",
+        "category": "wrong_section",
+        "is_unanswerable": false,
+        "details": "Correct document retrieved, but 0 returned passages overlap the gold answer span."
+      },
+      {
+        "query": "Consider the Promotion Agreement between Depomed, Inc. and King Pharmaceuticals, Inc. for Glumetza; Is there an anti-assignment clause in this contract?",
+        "category": "wrong_section",
+        "is_unanswerable": false,
+        "details": "Correct document retrieved, but 0 returned passages overlap the gold answer span."
+      },
+      {
+        "query": "Consider the Promotion Agreement between Depomed, Inc. and King Pharmaceuticals, Inc. for Glumetza; Does this contract include any revenue or profit-sharing arrangements?",
+        "category": "wrong_section",
+        "is_unanswerable": false,
+        "details": "Correct document retrieved, but 0 returned passages overlap the gold answer span."
+      },
+      {
+        "query": "Consider the Promotion Agreement between Depomed, Inc. and King Pharmaceuticals, Inc. for Glumetza; What licenses are granted under this contract?",
+        "category": "partial_span",
+        "is_unanswerable": false,
+        "details": "Passage overlaps gold span (913/2247 chars) but does not fully cover it."
+      },
+      {
+        "query": "Consider the Promotion Agreement between Depomed, Inc. and King Pharmaceuticals, Inc. for Glumetza; Are the licenses granted under this contract non-transferable?",
+        "category": "partial_span",
+        "is_unanswerable": false,
+        "details": "Passage overlaps gold span (303/931 chars) but does not fully cover it."
+      },
+      {
+        "query": "Consider the Promotion Agreement between Depomed, Inc. and King Pharmaceuticals, Inc. for Glumetza; Does the licensee's affiliates have any licensing rights under this contract?",
+        "category": "wrong_section",
+        "is_unanswerable": false,
+        "details": "Correct document retrieved, but 0 returned passages overlap the gold answer span."
+      },
+      {
+        "query": "Consider the Promotion Agreement between Depomed, Inc. and King Pharmaceuticals, Inc. for Glumetza; What are the audit rights under this contract?",
+        "category": "partial_span",
+        "is_unanswerable": false,
+        "details": "Passage overlaps gold span (2541/1791 chars) but does not fully cover it."
+      },
+      {
+        "query": "Consider the Promotion Agreement between Depomed, Inc. and King Pharmaceuticals, Inc. for Glumetza; Is there a cap on liability under this contract?",
+        "category": "wrong_section",
+        "is_unanswerable": false,
+        "details": "Correct document retrieved, but 0 returned passages overlap the gold answer span."
+      },
+      {
+        "query": "Consider the Gas Transportation Agreement between PennTex North Louisiana Operating, LLC and MRD Operating LLC; What is the expiration date of this contract?",
+        "category": "successful_retrieval",
+        "is_unanswerable": false,
+        "details": "Retrieved passage successfully and completely covers the annotated answer span."
+      },
+      {
+        "query": "Consider the Gas Transportation Agreement between PennTex North Louisiana Operating, LLC and MRD Operating LLC; What is the notice period required to terminate the renewal?",
+        "category": "partial_span",
+        "is_unanswerable": false,
+        "details": "Passage overlaps gold span (209/443 chars) but does not fully cover it."
+      },
+      {
+        "query": "Consider the Gas Transportation Agreement between PennTex North Louisiana Operating, LLC and MRD Operating LLC; What is the governing law for this contract?",
+        "category": "successful_retrieval",
+        "is_unanswerable": false,
+        "details": "Retrieved passage successfully and completely covers the annotated answer span."
+      },
+      {
+        "query": "Consider the Gas Transportation Agreement between PennTex North Louisiana Operating, LLC and MRD Operating LLC; Does this contract include any volume restrictions?",
+        "category": "wrong_section",
+        "is_unanswerable": false,
+        "details": "Correct document retrieved, but 0 returned passages overlap the gold answer span."
+      },
+      {
+        "query": "Consider the Gas Transportation Agreement between PennTex North Louisiana Operating, LLC and MRD Operating LLC; What are the audit rights under this contract?",
+        "category": "partial_span",
+        "is_unanswerable": false,
+        "details": "Passage overlaps gold span (343/458 chars) but does not fully cover it."
+      },
+      {
+        "query": "Consider the Gas Transportation Agreement between PennTex North Louisiana Operating, LLC and MRD Operating LLC; Is there uncapped liability under this contract?",
+        "category": "wrong_section",
+        "is_unanswerable": false,
+        "details": "Correct document retrieved, but 0 returned passages overlap the gold answer span."
+      },
+      {
+        "query": "Consider the Gas Transportation Agreement between PennTex North Louisiana Operating, LLC and MRD Operating LLC; Is there a cap on liability under this contract?",
+        "category": "wrong_section",
+        "is_unanswerable": false,
+        "details": "Correct document retrieved, but 0 returned passages overlap the gold answer span."
+      },
+      {
+        "query": "Consider the Endorsement Agreement between ABG-Shaq, LLC and Papa John's International, Inc.; What is the renewal term for this contract?",
+        "category": "wrong_section",
+        "is_unanswerable": false,
+        "details": "Correct document retrieved, but 0 returned passages overlap the gold answer span."
+      },
+      {
+        "query": "Consider the Endorsement Agreement between ABG-Shaq, LLC and Papa John's International, Inc.; What is the governing law for this contract?",
+        "category": "successful_retrieval",
+        "is_unanswerable": false,
+        "details": "Retrieved passage successfully and completely covers the annotated answer span."
+      },
+      {
+        "query": "Consider the Endorsement Agreement between ABG-Shaq, LLC and Papa John's International, Inc.; Are there any exceptions to competitive restrictions in this contract?",
+        "category": "partial_span",
+        "is_unanswerable": false,
+        "details": "Passage overlaps gold span (1638/1388 chars) but does not fully cover it."
+      },
+      {
+        "query": "Consider the Endorsement Agreement between ABG-Shaq, LLC and Papa John's International, Inc.; Does this contract include an exclusivity agreement?",
+        "category": "wrong_section",
+        "is_unanswerable": false,
+        "details": "Correct document retrieved, but 0 returned passages overlap the gold answer span."
+      },
+      {
+        "query": "Consider the Endorsement Agreement between ABG-Shaq, LLC and Papa John's International, Inc.; Is there an anti-assignment clause in this contract?",
+        "category": "wrong_section",
+        "is_unanswerable": false,
+        "details": "Correct document retrieved, but 0 returned passages overlap the gold answer span."
+      },
+      {
+        "query": "Consider the Endorsement Agreement between ABG-Shaq, LLC and Papa John's International, Inc.; Is there a minimum commitment required under this contract?",
+        "category": "wrong_section",
+        "is_unanswerable": false,
+        "details": "Correct document retrieved, but 0 returned passages overlap the gold answer span."
+      },
+      {
+        "query": "Consider the Endorsement Agreement between ABG-Shaq, LLC and Papa John's International, Inc.; How is intellectual property ownership assigned in this contract?",
+        "category": "partial_span",
+        "is_unanswerable": false,
+        "details": "Passage overlaps gold span (606/740 chars) but does not fully cover it."
+      },
+      {
+        "query": "Consider the Endorsement Agreement between ABG-Shaq, LLC and Papa John's International, Inc.; Are the licenses granted under this contract non-transferable?",
+        "category": "wrong_section",
+        "is_unanswerable": false,
+        "details": "Correct document retrieved, but 0 returned passages overlap the gold answer span."
+      },
+      {
+        "query": "Consider the Endorsement Agreement between ABG-Shaq, LLC and Papa John's International, Inc.; Are any of the licenses granted under this contract irrevocable or perpetual?",
+        "category": "successful_retrieval",
+        "is_unanswerable": false,
+        "details": "Retrieved passage successfully and completely covers the annotated answer span."
+      },
+      {
+        "query": "Consider the Endorsement Agreement between ABG-Shaq, LLC and Papa John's International, Inc.; Is there a cap on liability under this contract?",
+        "category": "successful_retrieval",
+        "is_unanswerable": false,
+        "details": "Retrieved passage successfully and completely covers the annotated answer span."
+      },
+      {
+        "query": "Consider the Endorsement Agreement between ABG-Shaq, LLC and Papa John's International, Inc.; What are the insurance requirements under this contract?",
+        "category": "partial_span",
+        "is_unanswerable": false,
+        "details": "Passage overlaps gold span (1902/1402 chars) but does not fully cover it."
+      },
+      {
+        "query": "Consider the Endorsement Agreement between ABG-Shaq, LLC and Papa John's International, Inc.; Is there a covenant not to sue included in this contract?",
+        "category": "wrong_section",
+        "is_unanswerable": false,
+        "details": "Correct document retrieved, but 0 returned passages overlap the gold answer span."
+      },
+      {
+        "query": "Consider the Agency Agreement between General Electric Capital Corporation and Duckwall-Alco Stores, Inc. for Equipment Leasing; Can this contract be terminated for convenience, and under what conditions?",
+        "category": "successful_retrieval",
+        "is_unanswerable": false,
+        "details": "Retrieved passage successfully and completely covers the annotated answer span."
+      },
+      {
+        "query": "Consider the Agency Agreement between General Electric Capital Corporation and Duckwall-Alco Stores, Inc. for Equipment Leasing; What licenses are granted under this contract?",
+        "category": "wrong_section",
+        "is_unanswerable": false,
+        "details": "Correct document retrieved, but 0 returned passages overlap the gold answer span."
+      },
+      {
+        "query": "Consider the Agency Agreement between General Electric Capital Corporation and Duckwall-Alco Stores, Inc. for Equipment Leasing; Does the licensee's affiliates have any licensing rights under this contract?",
+        "category": "wrong_document",
+        "is_unanswerable": false,
+        "details": "Retrieved docs {'cuad/VITAMINSHOPPECOMINC_09_13_1999-EX-10.26-SPONSORSHIP AGREEMENT.txt', 'cuad/BONTONSTORESINC_04_20_2018-EX-99.3-AGENCY AGREEMENT.txt'} did not intersect gold docs {'cuad/ALCOSTORESINC_12_14_2005-EX-10.26-AGENCY AGREEMENT.txt'}."
+      },
+      {
+        "query": "Consider the Agency Agreement between General Electric Capital Corporation and Duckwall-Alco Stores, Inc. for Equipment Leasing; What are the audit rights under this contract?",
+        "category": "wrong_document",
+        "is_unanswerable": false,
+        "details": "Retrieved docs {'cuad/VITAMINSHOPPECOMINC_09_13_1999-EX-10.26-SPONSORSHIP AGREEMENT.txt', 'cuad/BONTONSTORESINC_04_20_2018-EX-99.3-AGENCY AGREEMENT.txt'} did not intersect gold docs {'cuad/ALCOSTORESINC_12_14_2005-EX-10.26-AGENCY AGREEMENT.txt'}."
+      },
+      {
+        "query": "Consider the Endorsement Agreement between Holiday RV Superstores, Inc. and Affinity Group, Inc. for Good Sam Branding; What is the expiration date of this contract?",
+        "category": "partial_span",
+        "is_unanswerable": false,
+        "details": "Passage overlaps gold span (230/230 chars) but does not fully cover it."
+      },
+      {
+        "query": "Consider the Endorsement Agreement between Holiday RV Superstores, Inc. and Affinity Group, Inc. for Good Sam Branding; Is there an anti-assignment clause in this contract?",
+        "category": "wrong_document",
+        "is_unanswerable": false,
+        "details": "Retrieved docs {'cuad/HPILHOLDING_01_07_2015-EX-99.1-COOPERATION AGREEMENT.txt', 'cuad/PapaJohnsInternationalInc_20190617_8-K_EX-10.1_11707365_EX-10.1_Endorsement Agreement.txt'} did not intersect gold docs {'cuad/HOLIDAYRVSUPERSTORESINC_04_15_2002-EX-10.13-ENDORSEMENT AGREEMENT.txt'}."
+      },
+      {
+        "query": "Consider the Endorsement Agreement between Holiday RV Superstores, Inc. and Affinity Group, Inc. for Good Sam Branding; What licenses are granted under this contract?",
+        "category": "successful_retrieval",
+        "is_unanswerable": false,
+        "details": "Retrieved passage successfully and completely covers the annotated answer span."
+      },
+      {
+        "query": "Consider the Endorsement Agreement between Holiday RV Superstores, Inc. and Affinity Group, Inc. for Good Sam Branding; Does the licensee's affiliates have any licensing rights under this contract?",
+        "category": "wrong_section",
+        "is_unanswerable": false,
+        "details": "Correct document retrieved, but 0 returned passages overlap the gold answer span."
+      },
+      {
+        "query": "Consider the Endorsement Agreement between Holiday RV Superstores, Inc. and Affinity Group, Inc. for Good Sam Branding; Are there any services to be provided after the termination of this contract?",
+        "category": "wrong_section",
+        "is_unanswerable": false,
+        "details": "Correct document retrieved, but 0 returned passages overlap the gold answer span."
+      },
+      {
+        "query": "Consider the Business Affiliate Agreement between Dr. George D. Green and UNION DENTAL CORP.; What is the expiration date of this contract?",
+        "category": "wrong_document",
+        "is_unanswerable": false,
+        "details": "Retrieved docs {'cuad/PenntexMidstreamPartnersLp_20150416_S-1A_EX-10.4_9042833_EX-10.4_Transportation Agreement.txt', 'cuad/KINGPHARMACEUTICALSINC_08_09_2006-EX-10.1-PROMOTION AGREEMENT.txt'} did not intersect gold docs {'cuad/UnionDentalHoldingsInc_20050204_8-KA_EX-10_3345577_EX-10_Affiliate Agreement.txt'}."
+      },
+      {
+        "query": "Consider the Business Affiliate Agreement between Dr. George D. Green and UNION DENTAL CORP.; Can this contract be terminated for convenience, and under what conditions?",
+        "category": "successful_retrieval",
+        "is_unanswerable": false,
+        "details": "Retrieved passage successfully and completely covers the annotated answer span."
+      },
+      {
+        "query": "Consider the Support and Maintenance Agreement between On2 Technologies, Inc. and Wildform, Inc.; What is the expiration date of this contract?",
+        "category": "wrong_section",
+        "is_unanswerable": false,
+        "details": "Correct document retrieved, but 0 returned passages overlap the gold answer span."
+      },
+      {
+        "query": "Consider the Support and Maintenance Agreement between On2 Technologies, Inc. and Wildform, Inc.; What is the governing law for this contract?",
+        "category": "successful_retrieval",
+        "is_unanswerable": false,
+        "details": "Retrieved passage successfully and completely covers the annotated answer span."
+      },
+      {
+        "query": "Consider the Support and Maintenance Agreement between On2 Technologies, Inc. and Wildform, Inc.; Is there an anti-assignment clause in this contract?",
+        "category": "wrong_section",
+        "is_unanswerable": false,
+        "details": "Correct document retrieved, but 0 returned passages overlap the gold answer span."
+      },
+      {
+        "query": "Consider the Support and Maintenance Agreement between On2 Technologies, Inc. and Wildform, Inc.; Does this contract include any volume restrictions?",
+        "category": "wrong_section",
+        "is_unanswerable": false,
+        "details": "Correct document retrieved, but 0 returned passages overlap the gold answer span."
+      },
+      {
+        "query": "Consider the Co-Branding and Services Agreement between RSL COM PrimeCall, Inc. and deltathree.com, Inc.; What is the expiration date of this contract?",
+        "category": "wrong_section",
+        "is_unanswerable": false,
+        "details": "Correct document retrieved, but 0 returned passages overlap the gold answer span."
+      },
+      {
+        "query": "Consider the Co-Branding and Services Agreement between RSL COM PrimeCall, Inc. and deltathree.com, Inc.; What is the governing law for this contract?",
+        "category": "successful_retrieval",
+        "is_unanswerable": false,
+        "details": "Retrieved passage successfully and completely covers the annotated answer span."
+      },
+      {
+        "query": "Consider the Co-Branding and Services Agreement between RSL COM PrimeCall, Inc. and deltathree.com, Inc.; What happens in the event of a change of control of one of the parties in this contract?",
+        "category": "wrong_section",
+        "is_unanswerable": false,
+        "details": "Correct document retrieved, but 0 returned passages overlap the gold answer span."
+      },
+      {
+        "query": "Consider the Co-Branding and Services Agreement between RSL COM PrimeCall, Inc. and deltathree.com, Inc.; Is there an anti-assignment clause in this contract?",
+        "category": "wrong_section",
+        "is_unanswerable": false,
+        "details": "Correct document retrieved, but 0 returned passages overlap the gold answer span."
+      },
+      {
+        "query": "Consider the Co-Branding and Services Agreement between RSL COM PrimeCall, Inc. and deltathree.com, Inc.; What licenses are granted under this contract?",
+        "category": "wrong_document",
+        "is_unanswerable": false,
+        "details": "Retrieved docs {'cuad/ON2TECHNOLOGIES,INC_11_17_2006-EX-10.3-SUPPORT AND MAINTENANCE AGREEMENT.txt', 'cuad/PcquoteComInc_19990721_S-1A_EX-10.11_6377149_EX-10.11_Co-Branding Agreement1.txt'} did not intersect gold docs {'cuad/DeltathreeInc_19991102_S-1A_EX-10.19_6227850_EX-10.19_Co-Branding Agreement_ Service Agreement.txt'}."
+      },
+      {
+        "query": "Consider the Co-Branding and Services Agreement between RSL COM PrimeCall, Inc. and deltathree.com, Inc.; Is there a cap on liability under this contract?",
+        "category": "successful_retrieval",
+        "is_unanswerable": false,
+        "details": "Retrieved passage successfully and completely covers the annotated answer span."
+      },
+      {
+        "query": "Consider the Walabot HOME Reseller Agreement between Vayyar Imaging Ltd. and Inde Living Holdings, Inc.; What is the expiration date of this contract?",
+        "category": "wrong_section",
+        "is_unanswerable": false,
+        "details": "Correct document retrieved, but 0 returned passages overlap the gold answer span."
+      },
+      {
+        "query": "Consider the Walabot HOME Reseller Agreement between Vayyar Imaging Ltd. and Inde Living Holdings, Inc.; What is the renewal term for this contract?",
+        "category": "successful_retrieval",
+        "is_unanswerable": false,
+        "details": "Retrieved passage successfully and completely covers the annotated answer span."
+      },
+      {
+        "query": "Consider the Walabot HOME Reseller Agreement between Vayyar Imaging Ltd. and Inde Living Holdings, Inc.; Is there an anti-assignment clause in this contract?",
+        "category": "wrong_document",
+        "is_unanswerable": false,
+        "details": "Retrieved docs {'cuad/IGENEBIOTECHNOLOGYINC_05_13_2003-EX-1-JOINT VENTURE AGREEMENT.txt', 'cuad/VEONEER,INC_02_21_2020-EX-10.11-JOINT VENTURE AGREEMENT.txt'} did not intersect gold docs {'cuad/HealthcareIntegratedTechnologiesInc_20190812_8-K_EX-10.1_11776966_EX-10.1_Reseller Agreement.txt'}."
+      },
+      {
+        "query": "Consider the Walabot HOME Reseller Agreement between Vayyar Imaging Ltd. and Inde Living Holdings, Inc.; Are the licenses granted under this contract non-transferable?",
+        "category": "successful_retrieval",
+        "is_unanswerable": false,
+        "details": "Retrieved passage successfully and completely covers the annotated answer span."
+      },
+      {
+        "query": "Consider the Walabot HOME Reseller Agreement between Vayyar Imaging Ltd. and Inde Living Holdings, Inc.; Is there a cap on liability under this contract?",
+        "category": "partial_span",
+        "is_unanswerable": false,
+        "details": "Passage overlaps gold span (830/580 chars) but does not fully cover it."
+      },
+      {
+        "query": "Consider the Joint Venture Agreement between MJ Syndicated, Inc. and Simply Herbals for Manufacturing and Selling Health-Related Products; What is the governing law for this contract?",
+        "category": "wrong_section",
+        "is_unanswerable": false,
+        "details": "Correct document retrieved, but 0 returned passages overlap the gold answer span."
+      },
+      {
+        "query": "Consider the Joint Venture Agreement between MJ Syndicated, Inc. and Simply Herbals for Manufacturing and Selling Health-Related Products; Can this contract be terminated for convenience, and under what conditions?",
+        "category": "wrong_section",
+        "is_unanswerable": false,
+        "details": "Correct document retrieved, but 0 returned passages overlap the gold answer span."
+      },
+      {
+        "query": "Consider the Joint Venture Agreement between MJ Syndicated, Inc. and Simply Herbals for Manufacturing and Selling Health-Related Products; Are there any services to be provided after the termination of this contract?",
+        "category": "wrong_section",
+        "is_unanswerable": false,
+        "details": "Correct document retrieved, but 0 returned passages overlap the gold answer span."
+      },
+      {
+        "query": "Consider the Joint Venture Agreement between MJ Syndicated, Inc. and Simply Herbals for Manufacturing and Selling Health-Related Products; What are the audit rights under this contract?",
+        "category": "partial_span",
+        "is_unanswerable": false,
+        "details": "Passage overlaps gold span (522/599 chars) but does not fully cover it."
+      },
+      {
+        "query": "Consider the Joint Venture Agreement between MJ Syndicated, Inc. and Simply Herbals for Manufacturing and Selling Health-Related Products; What are the insurance requirements under this contract?",
+        "category": "successful_retrieval",
+        "is_unanswerable": false,
+        "details": "Retrieved passage successfully and completely covers the annotated answer span."
+      },
+      {
+        "query": "Consider the Non-Competition Agreement and Right of First Offer between Glamis Gold Ltd. and Western Copper Corporation; Does this contract include any right of first refusal, right of first offer, or right of first negotiation?",
+        "category": "partial_span",
+        "is_unanswerable": false,
+        "details": "Passage overlaps gold span (772/1680 chars) but does not fully cover it."
+      },
+      {
+        "query": "Consider the Agency Agreement for Asset Sale between The Bon-Ton Stores, Inc., GA Retail, Inc., Tiger Capital Group, LLC, and Wilmington Savings Fund Society, FSB; What is the governing law for this contract?",
+        "category": "successful_retrieval",
+        "is_unanswerable": false,
+        "details": "Retrieved passage successfully and completely covers the annotated answer span."
+      },
+      {
+        "query": "Consider the Agency Agreement for Asset Sale between The Bon-Ton Stores, Inc., GA Retail, Inc., Tiger Capital Group, LLC, and Wilmington Savings Fund Society, FSB; Can this contract be terminated for convenience, and under what conditions?",
+        "category": "wrong_section",
+        "is_unanswerable": false,
+        "details": "Correct document retrieved, but 0 returned passages overlap the gold answer span."
+      },
+      {
+        "query": "Consider the Agency Agreement for Asset Sale between The Bon-Ton Stores, Inc., GA Retail, Inc., Tiger Capital Group, LLC, and Wilmington Savings Fund Society, FSB; Is there an anti-assignment clause in this contract?",
+        "category": "wrong_section",
+        "is_unanswerable": false,
+        "details": "Correct document retrieved, but 0 returned passages overlap the gold answer span."
+      },
+      {
+        "query": "Consider the Agency Agreement for Asset Sale between The Bon-Ton Stores, Inc., GA Retail, Inc., Tiger Capital Group, LLC, and Wilmington Savings Fund Society, FSB; What licenses are granted under this contract?",
+        "category": "wrong_section",
+        "is_unanswerable": false,
+        "details": "Correct document retrieved, but 0 returned passages overlap the gold answer span."
+      },
+      {
+        "query": "Consider the Agency Agreement for Asset Sale between The Bon-Ton Stores, Inc., GA Retail, Inc., Tiger Capital Group, LLC, and Wilmington Savings Fund Society, FSB; Are there any services to be provided after the termination of this contract?",
+        "category": "wrong_section",
+        "is_unanswerable": false,
+        "details": "Correct document retrieved, but 0 returned passages overlap the gold answer span."
+      },
+      {
+        "query": "Consider the Agency Agreement for Asset Sale between The Bon-Ton Stores, Inc., GA Retail, Inc., Tiger Capital Group, LLC, and Wilmington Savings Fund Society, FSB; What are the audit rights under this contract?",
+        "category": "partial_span",
+        "is_unanswerable": false,
+        "details": "Passage overlaps gold span (339/449 chars) but does not fully cover it."
+      },
+      {
+        "query": "Consider the Joint Venture Agreement between Tate & Lyle Fermentation Products Ltd. and Igene Biotechnology, Inc. for Astaxanthin Production; Is there a most favored nation clause in this contract?",
+        "category": "wrong_section",
+        "is_unanswerable": false,
+        "details": "Correct document retrieved, but 0 returned passages overlap the gold answer span."
+      },
+      {
+        "query": "Consider the Joint Venture Agreement between Tate & Lyle Fermentation Products Ltd. and Igene Biotechnology, Inc. for Astaxanthin Production; Are there any exceptions to competitive restrictions in this contract?",
+        "category": "wrong_section",
+        "is_unanswerable": false,
+        "details": "Correct document retrieved, but 0 returned passages overlap the gold answer span."
+      },
+      {
+        "query": "Consider the Joint Venture Agreement between Tate & Lyle Fermentation Products Ltd. and Igene Biotechnology, Inc. for Astaxanthin Production; Is there a non-compete clause in this contract?",
+        "category": "wrong_section",
+        "is_unanswerable": false,
+        "details": "Correct document retrieved, but 0 returned passages overlap the gold answer span."
+      },
+      {
+        "query": "Consider the Joint Venture Agreement between Tate & Lyle Fermentation Products Ltd. and Igene Biotechnology, Inc. for Astaxanthin Production; Does this contract include an exclusivity agreement?",
+        "category": "wrong_section",
+        "is_unanswerable": false,
+        "details": "Correct document retrieved, but 0 returned passages overlap the gold answer span."
+      },
+      {
+        "query": "Consider the Joint Venture Agreement between Tate & Lyle Fermentation Products Ltd. and Igene Biotechnology, Inc. for Astaxanthin Production; Is there an anti-assignment clause in this contract?",
+        "category": "wrong_section",
+        "is_unanswerable": false,
+        "details": "Correct document retrieved, but 0 returned passages overlap the gold answer span."
+      },
+      {
+        "query": "Consider the Joint Venture Agreement between Tate & Lyle Fermentation Products Ltd. and Igene Biotechnology, Inc. for Astaxanthin Production; Is there a minimum commitment required under this contract?",
+        "category": "partial_span",
+        "is_unanswerable": false,
+        "details": "Passage overlaps gold span (278/547 chars) but does not fully cover it."
+      },
+      {
+        "query": "Consider the Joint Venture Agreement between Tate & Lyle Fermentation Products Ltd. and Igene Biotechnology, Inc. for Astaxanthin Production; How is intellectual property ownership assigned in this contract?",
+        "category": "wrong_section",
+        "is_unanswerable": false,
+        "details": "Correct document retrieved, but 0 returned passages overlap the gold answer span."
+      },
+      {
+        "query": "Consider the Joint Venture Agreement between Tate & Lyle Fermentation Products Ltd. and Igene Biotechnology, Inc. for Astaxanthin Production; Are there any third-party beneficiaries designated in this contract?",
+        "category": "successful_retrieval",
+        "is_unanswerable": false,
+        "details": "Retrieved passage successfully and completely covers the annotated answer span."
+      },
+      {
+        "query": "Consider the Amendment and Termination of Joint Venture Agreement between Veoneer and Nissin Parties; What is the expiration date of this contract?",
+        "category": "wrong_document",
+        "is_unanswerable": false,
+        "details": "Retrieved docs {'cuad/IGENEBIOTECHNOLOGYINC_05_13_2003-EX-1-JOINT VENTURE AGREEMENT.txt', 'cuad/MJBIOTECH,INC_12_06_2018-EX-99.01-JOINT VENTURE AGREEMENT.txt'} did not intersect gold docs {'cuad/VEONEER,INC_02_21_2020-EX-10.11-JOINT VENTURE AGREEMENT.txt'}."
+      },
+      {
+        "query": "Consider the Amendment and Termination of Joint Venture Agreement between Veoneer and Nissin Parties; What is the governing law for this contract?",
+        "category": "successful_retrieval",
+        "is_unanswerable": false,
+        "details": "Retrieved passage successfully and completely covers the annotated answer span."
+      },
+      {
+        "query": "Consider the Strategic Alliance Agreement between Sucampo Pharmaceuticals, Inc., Sucampo Pharma, LLC, and R-Tech Ueno, Ltd.; What are the audit rights under this contract?",
+        "category": "wrong_section",
+        "is_unanswerable": false,
+        "details": "Correct document retrieved, but 0 returned passages overlap the gold answer span."
+      },
+      {
+        "query": "Consider the Strategic Alliance Agreement between Sucampo Pharmaceuticals, Inc., Sucampo Pharma, LLC, and R-Tech Ueno, Ltd.; Is there a cap on liability under this contract?",
+        "category": "wrong_section",
+        "is_unanswerable": false,
+        "details": "Correct document retrieved, but 0 returned passages overlap the gold answer span."
+      },
+      {
+        "query": "Consider the Marketing Agreement between Loop Industries, Inc. and Indorama Loop Technologies, LLC for Product Supply and Development; What is the expiration date of this contract?",
+        "category": "wrong_section",
+        "is_unanswerable": false,
+        "details": "Correct document retrieved, but 0 returned passages overlap the gold answer span."
+      },
+      {
+        "query": "Consider the Marketing Agreement between Loop Industries, Inc. and Indorama Loop Technologies, LLC for Product Supply and Development; What is the governing law for this contract?",
+        "category": "successful_retrieval",
+        "is_unanswerable": false,
+        "details": "Retrieved passage successfully and completely covers the annotated answer span."
+      },
+      {
+        "query": "Consider the Marketing Agreement between Loop Industries, Inc. and Indorama Loop Technologies, LLC for Product Supply and Development; Are there any exceptions to competitive restrictions in this contract?",
+        "category": "partial_span",
+        "is_unanswerable": false,
+        "details": "Passage overlaps gold span (1456/1206 chars) but does not fully cover it."
+      },
+      {
+        "query": "What are the broadcast syndication rights granted to JioStar for Indian Premier League cricket matches?",
+        "category": "failed_abstention",
+        "is_unanswerable": true,
+        "details": "Failed to abstain on unanswerable query; returned 10 passages."
+      },
+      {
+        "query": "Under Apple's supplier agreement, what is Foxconn's defect tolerance rate for iPhone assembly?",
+        "category": "failed_abstention",
+        "is_unanswerable": true,
+        "details": "Failed to abstain on unanswerable query; returned 10 passages."
+      },
+      {
+        "query": "What are Microsoft's service level agreement commitments for Azure OpenAI uptime guarantee?",
+        "category": "failed_abstention",
+        "is_unanswerable": true,
+        "details": "Failed to abstain on unanswerable query; returned 10 passages."
+      },
+      {
+        "query": "What are the exclusivity terms governing Spotify's podcast distribution agreement with Joe Rogan?",
+        "category": "failed_abstention",
+        "is_unanswerable": true,
+        "details": "Failed to abstain on unanswerable query; returned 10 passages."
+      },
+      {
+        "query": "What was the exact dollar amount of endorsement fees paid to Shaquille O'Neal by Papa John's in calendar year 2021?",
+        "category": "failed_abstention",
+        "is_unanswerable": true,
+        "details": "Failed to abstain on unanswerable query; returned 10 passages."
+      },
+      {
+        "query": "What was the total repair cost incurred by Holiday RV Superstores for vehicle maintenance in fiscal year 2003?",
+        "category": "failed_abstention",
+        "is_unanswerable": true,
+        "details": "Failed to abstain on unanswerable query; returned 10 passages."
+      },
+      {
+        "query": "Did any party to the Veoneer joint venture agreement file for Chapter 11 bankruptcy reorganization in 2023?",
+        "category": "failed_abstention",
+        "is_unanswerable": true,
+        "details": "Failed to abstain on unanswerable query; returned 10 passages."
+      },
+      {
+        "query": "Was the Bon-Ton Stores liquidation agency agreement terminated early due to court intervention in 2019?",
+        "category": "failed_abstention",
+        "is_unanswerable": true,
+        "details": "Failed to abstain on unanswerable query; returned 10 passages."
+      },
+      {
+        "query": "Did Cano Petroleum successfully renew its sponsorship agreement upon expiration of the primary term in 2012?",
+        "category": "failed_abstention",
+        "is_unanswerable": true,
+        "details": "Failed to abstain on unanswerable query; returned 10 passages."
+      },
+      {
+        "query": "Did Western Copper and Gold Corporation ever initiate formal arbitration against the covenantor under the non-competition agreement?",
+        "category": "failed_abstention",
+        "is_unanswerable": true,
+        "details": "Failed to abstain on unanswerable query; returned 10 passages."
+      },
+      {
+        "query": "Did Loop Industries achieve commercial PET recycling production milestones before December 2022 under its marketing agreement?",
+        "category": "failed_abstention",
+        "is_unanswerable": true,
+        "details": "Failed to abstain on unanswerable query; returned 10 passages."
+      },
+      {
+        "query": "What was the closing stock price of Dynamex Inc. on NASDAQ on June 6, 1996?",
+        "category": "failed_abstention",
+        "is_unanswerable": true,
+        "details": "Failed to abstain on unanswerable query; returned 10 passages."
+      },
+      {
+        "query": "What was the market share of Vitamin Shoppe in the online nutritional supplement retail sector in 1999?",
+        "category": "failed_abstention",
+        "is_unanswerable": true,
+        "details": "Failed to abstain on unanswerable query; returned 10 passages."
+      },
+      {
+        "query": "What are the liquidated damages specified if Bicycle Therapeutics breaches clinical trial participant privacy under HIPAA?",
+        "category": "failed_abstention",
+        "is_unanswerable": true,
+        "details": "Failed to abstain on unanswerable query; returned 10 passages."
+      },
+      {
+        "query": "What specific royalty rate is payable by Glu Mobile for exploiting licensed content in virtual reality metaverse applications?",
+        "category": "failed_abstention",
+        "is_unanswerable": true,
+        "details": "Failed to abstain on unanswerable query; returned 10 passages."
+      },
+      {
+        "query": "Under the Arc Group sponsorship agreement, what liquidated damages apply if a hurricane cancels the sponsored event?",
+        "category": "failed_abstention",
+        "is_unanswerable": true,
+        "details": "Failed to abstain on unanswerable query; returned 10 passages."
+      },
+      {
+        "query": "What is the required margin deposit if Rgc Resources experiences a credit downgrade below investment grade?",
+        "category": "failed_abstention",
+        "is_unanswerable": true,
+        "details": "Failed to abstain on unanswerable query; returned 10 passages."
+      },
+      {
+        "query": "What is the average annual rainfall in the Amazon rainforest basin?",
+        "category": "failed_abstention",
+        "is_unanswerable": true,
+        "details": "Failed to abstain on unanswerable query; returned 10 passages."
+      },
+      {
+        "query": "What is the recommended oven temperature and cooking time for traditional Neapolitan pizza?",
+        "category": "failed_abstention",
+        "is_unanswerable": true,
+        "details": "Failed to abstain on unanswerable query; returned 10 passages."
+      }
+    ]
+  }
+}

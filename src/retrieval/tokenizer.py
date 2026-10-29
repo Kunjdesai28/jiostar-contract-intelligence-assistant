@@ -14,8 +14,9 @@ class LegalTokenizer:
       - Robust to Unicode, punctuation sequences, and empty inputs.
     """
 
-    def __init__(self, lowercase: bool = True):
+    def __init__(self, lowercase: bool = True, enhancement_mode: str = "none"):
         self.lowercase = lowercase
+        self.enhancement_mode = enhancement_mode
         # Pattern captures Unicode alphanumeric words and compound identifiers like '10.1' or 'post-execution'
         # Matches Unicode word characters optionally connected by hyphens or internal dots
         self.token_pattern = re.compile(r"\w+(?:[-.]\w+)*", re.UNICODE)
@@ -41,6 +42,10 @@ class LegalTokenizer:
             stripped = t.strip(".-")
             if stripped:
                 cleaned.append(stripped)
+
+        if self.enhancement_mode == "legal_stem":
+            from src.retrieval.lexical_enhancement import normalize_legal_token
+            return [normalize_legal_token(tok) for tok in cleaned]
 
         return cleaned
 

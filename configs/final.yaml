@@ -1,0 +1,29 @@
+pipeline:
+  name: candidate_005
+  version: 1
+chunking:
+  strategy: clause_aware
+  chunk_size: 1000
+  overlap: 250
+tokenization:
+  lowercase: true
+  enhancement_mode: legal_stem
+retrieval:
+  method: bm25
+  top_k: 5
+bm25:
+  k1: 1.5
+  b: 0.75
+abstention:
+  enabled: true
+  strategy: top_score_threshold
+  threshold: 0.0
+evaluation:
+  k_values:
+  - 1
+  - 3
+  - 5
+  - 10
+  split: train
+query_processing:
+  mode: two_stage

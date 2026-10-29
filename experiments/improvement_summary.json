@@ -1,0 +1,704 @@
+{
+  "title": "JioStar Contract Retrieval Self-Improvement Loop Summary",
+  "generated_at_utc": "2026-10-29T17:25:55.094898+00:00",
+  "total_duration_seconds": 49.09,
+  "total_iterations_executed": 5,
+  "iterations_accepted": 4,
+  "iterations_rejected": 1,
+  "iterations_failed": 0,
+  "predeclared_objective": {
+    "primary_objective": {
+      "name": "character_recall_at_5",
+      "direction": "maximize",
+      "split": "train",
+      "evaluated_queries": 140,
+      "min_delta": 1e-06,
+      "description": "Macro-averaged character Recall@5 on 140 answerable training queries."
+    },
+    "secondary_metrics": [
+      "character_precision_at_5",
+      "character_recall_at_1",
+      "character_recall_at_3",
+      "character_recall_at_10",
+      "correct_abstention_rate",
+      "false_abstention_rate",
+      "mean_latency_ms",
+      "indexed_chunks_count"
+    ],
+    "guardrails": {
+      "max_precision_at_5_relative_drop": 0.2,
+      "max_correct_abstention_drop_pp": 0.1,
+      "max_false_abstention_increase_pp": 0.05,
+      "max_latency_multiplier": 3.0,
+      "require_valid_execution": true
+    }
+  },
+  "baseline_configuration": {
+    "pipeline": {
+      "name": "bm25_baseline",
+      "version": 1
+    },
+    "chunking": {
+      "strategy": "fixed_character",
+      "chunk_size": 800,
+      "overlap": 150
+    },
+    "tokenization": {
+      "lowercase": true
+    },
+    "retrieval": {
+      "method": "bm25",
+      "top_k": 5
+    },
+    "bm25": {
+      "k1": 1.5,
+      "b": 0.75
+    },
+    "abstention": {
+      "enabled": true,
+      "strategy": "top_score_threshold",
+      "threshold": 0.0
+    },
+    "evaluation": {
+      "k_values": [
+        1,
+        3,
+        5,
+        10
+      ],
+      "split": "train"
+    }
+  },
+  "final_selected_configuration": {
+    "pipeline": {
+      "name": "candidate_005",
+      "version": 1
+    },
+    "chunking": {
+      "strategy": "clause_aware",
+      "chunk_size": 1000,
+      "overlap": 250
+    },
+    "tokenization": {
+      "lowercase": true,
+      "enhancement_mode": "legal_stem"
+    },
+    "retrieval": {
+      "method": "bm25",
+      "top_k": 5
+    },
+    "bm25": {
+      "k1": 1.5,
+      "b": 0.75
+    },
+    "abstention": {
+      "enabled": true,
+      "strategy": "top_score_threshold",
+      "threshold": 0.0
+    },
+    "evaluation": {
+      "k_values": [
+        1,
+        3,
+        5,
+        10
+      ],
+      "split": "train"
+    },
+    "query_processing": {
+      "mode": "two_stage"
+    }
+  },
+  "performance_comparison_training": {
+    "character_precision_at_1": {
+      "baseline": 0.0018,
+      "final": 0.0741,
+      "delta": 0.0723
+    },
+    "character_recall_at_1": {
+      "baseline": 0.0037,
+      "final": 0.1456,
+      "delta": 0.1419
+    },
+    "character_precision_at_5": {
+      "baseline": 0.0141,
+      "final": 0.0374,
+      "delta": 0.0233
+    },
+    "character_recall_at_5": {
+      "baseline": 0.1169,
+      "final": 0.3191,
+      "delta": 0.2022,
+      "relative_gain_percent": 172.97
+    },
+    "character_recall_at_10": {
+      "baseline": 0.2318,
+      "final": 0.4303,
+      "delta": 0.1985
+    },
+    "correct_abstention_rate": {
+      "baseline": 0.0,
+      "final": 0.0
+    },
+    "false_abstention_rate": {
+      "baseline": 0.0,
+      "final": 0.0
+    }
+  },
+  "iterations": [
+    {
+      "iteration": 1,
+      "proposer": "rule_based",
+      "parent_config_id": "bm25_baseline",
+      "candidate_config_id": "candidate_001",
+      "proposed_change": {
+        "parameter": "query_processing.mode",
+        "old_value": "original",
+        "new_value": "two_stage"
+      },
+      "scientific_rationale": "Diagnosed dominant wrong_section error caused by preamble dominance. Use two-stage retrieval: document context filters candidate contracts, then substantive legal question ranks clauses within target contracts.",
+      "expected_direction": "Increase Recall@5 by focusing within-document BM25 ranking on substantive clause.",
+      "diagnosis": {
+        "dominant_failure": "wrong_section",
+        "reason": "Dominant failure mode measured on training split (159 total errors)"
+      },
+      "metrics_before": {
+        "recall_at_5": 0.1169,
+        "precision_at_5": 0.0141,
+        "recall_at_1": 0.0037,
+        "recall_at_10": 0.2318,
+        "correct_abstention_rate": 0.0,
+        "false_abstention_rate": 0.0
+      },
+      "metrics_after": {
+        "recall_at_5": 0.228,
+        "precision_at_5": 0.0306,
+        "recall_at_1": 0.0997,
+        "recall_at_10": 0.3132,
+        "correct_abstention_rate": 0.0,
+        "false_abstention_rate": 0.0
+      },
+      "guardrail_results": {
+        "primary_objective_improved": {
+          "passed": true,
+          "current_accepted": 0.1169,
+          "candidate": 0.228,
+          "delta": 0.1111,
+          "required_delta": 1e-06
+        },
+        "precision_guardrail": {
+          "passed": true,
+          "current_accepted": 0.0141,
+          "candidate": 0.0306,
+          "allowed_floor": 0.01128
+        },
+        "negative_abstention_guardrail": {
+          "passed": true,
+          "current_accepted": 0.0,
+          "candidate": 0.0,
+          "allowed_floor": -0.1
+        },
+        "false_abstention_guardrail": {
+          "passed": true,
+          "current_accepted": 0.0,
+          "candidate": 0.0,
+          "allowed_ceiling": 0.05
+        },
+        "latency_guardrail": {
+          "passed": true,
+          "baseline_latency": 3.18,
+          "candidate_latency": 6.49,
+          "allowed_max": 9.54
+        }
+      },
+      "decision": "accepted",
+      "decision_reason": "Accepted: Recall@5 improved from 0.1169 to 0.2280 (+95.04% relative) with all guardrails satisfied.",
+      "evaluation_split": "train",
+      "duration_seconds": 6.49,
+      "candidate_config": {
+        "pipeline": {
+          "name": "candidate_001",
+          "version": 1
+        },
+        "chunking": {
+          "strategy": "fixed_character",
+          "chunk_size": 800,
+          "overlap": 150
+        },
+        "tokenization": {
+          "lowercase": true
+        },
+        "retrieval": {
+          "method": "bm25",
+          "top_k": 5
+        },
+        "bm25": {
+          "k1": 1.5,
+          "b": 0.75
+        },
+        "abstention": {
+          "enabled": true,
+          "strategy": "top_score_threshold",
+          "threshold": 0.0
+        },
+        "evaluation": {
+          "k_values": [
+            1,
+            3,
+            5,
+            10
+          ],
+          "split": "train"
+        },
+        "query_processing": {
+          "mode": "two_stage"
+        }
+      },
+      "timestamp": "2026-10-29T17:25:15.699957+00:00"
+    },
+    {
+      "iteration": 2,
+      "proposer": "rule_based",
+      "parent_config_id": "candidate_001",
+      "candidate_config_id": "candidate_002",
+      "proposed_change": {
+        "parameter": "tokenization.enhancement_mode",
+        "old_value": "none",
+        "new_value": "legal_stem"
+      },
+      "scientific_rationale": "Diagnosed vocabulary mismatch for legal inflectional suffixes (-ing, -ation, -ed, -ment). Apply conservative legal stemming while strictly preserving legal modals.",
+      "expected_direction": "Increase Recall@5 by matching inflected legal terms.",
+      "diagnosis": {
+        "dominant_failure": "wrong_section",
+        "reason": "Dominant failure mode measured on training split (159 total errors)"
+      },
+      "metrics_before": {
+        "recall_at_5": 0.228,
+        "precision_at_5": 0.0306,
+        "recall_at_1": 0.0997,
+        "recall_at_10": 0.3132,
+        "correct_abstention_rate": 0.0,
+        "false_abstention_rate": 0.0
+      },
+      "metrics_after": {
+        "recall_at_5": 0.2913,
+        "precision_at_5": 0.0375,
+        "recall_at_1": 0.1385,
+        "recall_at_10": 0.3863,
+        "correct_abstention_rate": 0.0,
+        "false_abstention_rate": 0.0
+      },
+      "guardrail_results": {
+        "primary_objective_improved": {
+          "passed": true,
+          "current_accepted": 0.228,
+          "candidate": 0.2913,
+          "delta": 0.0633,
+          "required_delta": 1e-06
+        },
+        "precision_guardrail": {
+          "passed": true,
+          "current_accepted": 0.0306,
+          "candidate": 0.0375,
+          "allowed_floor": 0.02448
+        },
+        "negative_abstention_guardrail": {
+          "passed": true,
+          "current_accepted": 0.0,
+          "candidate": 0.0,
+          "allowed_floor": -0.1
+        },
+        "false_abstention_guardrail": {
+          "passed": true,
+          "current_accepted": 0.0,
+          "candidate": 0.0,
+          "allowed_ceiling": 0.05
+        },
+        "latency_guardrail": {
+          "passed": true,
+          "baseline_latency": 3.18,
+          "candidate_latency": 9.47,
+          "allowed_max": 9.54
+        }
+      },
+      "decision": "accepted",
+      "decision_reason": "Accepted: Recall@5 improved from 0.2280 to 0.2913 (+27.76% relative) with all guardrails satisfied.",
+      "evaluation_split": "train",
+      "duration_seconds": 9.48,
+      "candidate_config": {
+        "pipeline": {
+          "name": "candidate_002",
+          "version": 1
+        },
+        "chunking": {
+          "strategy": "fixed_character",
+          "chunk_size": 800,
+          "overlap": 150
+        },
+        "tokenization": {
+          "lowercase": true,
+          "enhancement_mode": "legal_stem"
+        },
+        "retrieval": {
+          "method": "bm25",
+          "top_k": 5
+        },
+        "bm25": {
+          "k1": 1.5,
+          "b": 0.75
+        },
+        "abstention": {
+          "enabled": true,
+          "strategy": "top_score_threshold",
+          "threshold": 0.0
+        },
+        "evaluation": {
+          "k_values": [
+            1,
+            3,
+            5,
+            10
+          ],
+          "split": "train"
+        },
+        "query_processing": {
+          "mode": "two_stage"
+        }
+      },
+      "timestamp": "2026-10-29T17:25:25.182003+00:00"
+    },
+    {
+      "iteration": 3,
+      "proposer": "rule_based",
+      "parent_config_id": "candidate_002",
+      "candidate_config_id": "candidate_003",
+      "proposed_change": {
+        "parameter": "chunking.overlap",
+        "old_value": 150,
+        "new_value": 250
+      },
+      "scientific_rationale": "Diagnosed partial_span failures where target clauses cross chunk boundaries. Increase sliding-window overlap from 150 to 250 chars to improve full clause retention.",
+      "expected_direction": "Increase Recall@5 and reduce boundary fragmentation.",
+      "diagnosis": {
+        "dominant_failure": "wrong_section",
+        "reason": "Dominant failure mode measured on training split (159 total errors)"
+      },
+      "metrics_before": {
+        "recall_at_5": 0.2913,
+        "precision_at_5": 0.0375,
+        "recall_at_1": 0.1385,
+        "recall_at_10": 0.3863,
+        "correct_abstention_rate": 0.0,
+        "false_abstention_rate": 0.0
+      },
+      "metrics_after": {
+        "recall_at_5": 0.3113,
+        "precision_at_5": 0.0424,
+        "recall_at_1": 0.161,
+        "recall_at_10": 0.4411,
+        "correct_abstention_rate": 0.0,
+        "false_abstention_rate": 0.0
+      },
+      "guardrail_results": {
+        "primary_objective_improved": {
+          "passed": true,
+          "current_accepted": 0.2913,
+          "candidate": 0.3113,
+          "delta": 0.02,
+          "required_delta": 1e-06
+        },
+        "precision_guardrail": {
+          "passed": true,
+          "current_accepted": 0.0375,
+          "candidate": 0.0424,
+          "allowed_floor": 0.03
+        },
+        "negative_abstention_guardrail": {
+          "passed": true,
+          "current_accepted": 0.0,
+          "candidate": 0.0,
+          "allowed_floor": -0.1
+        },
+        "false_abstention_guardrail": {
+          "passed": true,
+          "current_accepted": 0.0,
+          "candidate": 0.0,
+          "allowed_ceiling": 0.05
+        },
+        "latency_guardrail": {
+          "passed": true,
+          "baseline_latency": 3.18,
+          "candidate_latency": 10.17,
+          "allowed_max": 9.54
+        }
+      },
+      "decision": "accepted",
+      "decision_reason": "Accepted: Recall@5 improved from 0.2913 to 0.3113 (+6.87% relative) with all guardrails satisfied.",
+      "evaluation_split": "train",
+      "duration_seconds": 10.18,
+      "candidate_config": {
+        "pipeline": {
+          "name": "candidate_003",
+          "version": 1
+        },
+        "chunking": {
+          "strategy": "fixed_character",
+          "chunk_size": 800,
+          "overlap": 250
+        },
+        "tokenization": {
+          "lowercase": true,
+          "enhancement_mode": "legal_stem"
+        },
+        "retrieval": {
+          "method": "bm25",
+          "top_k": 5
+        },
+        "bm25": {
+          "k1": 1.5,
+          "b": 0.75
+        },
+        "abstention": {
+          "enabled": true,
+          "strategy": "top_score_threshold",
+          "threshold": 0.0
+        },
+        "evaluation": {
+          "k_values": [
+            1,
+            3,
+            5,
+            10
+          ],
+          "split": "train"
+        },
+        "query_processing": {
+          "mode": "two_stage"
+        }
+      },
+      "timestamp": "2026-10-29T17:25:35.372788+00:00"
+    },
+    {
+      "iteration": 4,
+      "proposer": "rule_based",
+      "parent_config_id": "candidate_003",
+      "candidate_config_id": "candidate_004",
+      "proposed_change": {
+        "parameter": "bm25.k1_and_b",
+        "old_value": "k1=1.5, b=0.75",
+        "new_value": "k1=1.2, b=0.65"
+      },
+      "scientific_rationale": "Fine-tune BM25 parameters on top of candidate_003: lower k1 (1.2) to reach faster term frequency saturation, and lower b (0.65) to reduce length penalization on dense contractual clauses.",
+      "expected_direction": "Test whether modified term saturation improves Recall@5.",
+      "diagnosis": {
+        "dominant_failure": "wrong_section",
+        "reason": "Dominant failure mode measured on training split (159 total errors)"
+      },
+      "metrics_before": {
+        "recall_at_5": 0.3113,
+        "precision_at_5": 0.0424,
+        "recall_at_1": 0.161,
+        "recall_at_10": 0.4411,
+        "correct_abstention_rate": 0.0,
+        "false_abstention_rate": 0.0
+      },
+      "metrics_after": {
+        "recall_at_5": 0.3061,
+        "precision_at_5": 0.042,
+        "recall_at_1": 0.1539,
+        "recall_at_10": 0.4511,
+        "correct_abstention_rate": 0.0,
+        "false_abstention_rate": 0.0
+      },
+      "guardrail_results": {
+        "primary_objective_improved": {
+          "passed": false,
+          "current_accepted": 0.3113,
+          "candidate": 0.3061,
+          "delta": -0.0052,
+          "required_delta": 1e-06
+        },
+        "precision_guardrail": {
+          "passed": true,
+          "current_accepted": 0.0424,
+          "candidate": 0.042,
+          "allowed_floor": 0.03392
+        },
+        "negative_abstention_guardrail": {
+          "passed": true,
+          "current_accepted": 0.0,
+          "candidate": 0.0,
+          "allowed_floor": -0.1
+        },
+        "false_abstention_guardrail": {
+          "passed": true,
+          "current_accepted": 0.0,
+          "candidate": 0.0,
+          "allowed_ceiling": 0.05
+        },
+        "latency_guardrail": {
+          "passed": true,
+          "baseline_latency": 3.18,
+          "candidate_latency": 10.04,
+          "allowed_max": 9.54
+        }
+      },
+      "decision": "rejected",
+      "decision_reason": "Rejected: Primary objective Recall@5 did not improve (candidate 0.3061 vs accepted 0.3113, delta: -0.005200).",
+      "evaluation_split": "train",
+      "duration_seconds": 10.05,
+      "candidate_config": {
+        "pipeline": {
+          "name": "candidate_004",
+          "version": 1
+        },
+        "chunking": {
+          "strategy": "fixed_character",
+          "chunk_size": 800,
+          "overlap": 250
+        },
+        "tokenization": {
+          "lowercase": true,
+          "enhancement_mode": "legal_stem"
+        },
+        "retrieval": {
+          "method": "bm25",
+          "top_k": 5
+        },
+        "bm25": {
+          "k1": 1.2,
+          "b": 0.65
+        },
+        "abstention": {
+          "enabled": true,
+          "strategy": "top_score_threshold",
+          "threshold": 0.0
+        },
+        "evaluation": {
+          "k_values": [
+            1,
+            3,
+            5,
+            10
+          ],
+          "split": "train"
+        },
+        "query_processing": {
+          "mode": "two_stage"
+        }
+      },
+      "timestamp": "2026-10-29T17:25:45.428607+00:00"
+    },
+    {
+      "iteration": 5,
+      "proposer": "rule_based",
+      "parent_config_id": "candidate_003",
+      "candidate_config_id": "candidate_005",
+      "proposed_change": {
+        "parameter": "chunking.strategy",
+        "old_value": "fixed_character",
+        "new_value": "clause_aware (size=1000)"
+      },
+      "scientific_rationale": "Test structure-aware chunking splitting along numbered sections and article headings to align passage boundaries with natural contractual clause units.",
+      "expected_direction": "Improve clause boundary alignment and character recall.",
+      "diagnosis": {
+        "dominant_failure": "wrong_section",
+        "reason": "Dominant failure mode measured on training split (159 total errors)"
+      },
+      "metrics_before": {
+        "recall_at_5": 0.3113,
+        "precision_at_5": 0.0424,
+        "recall_at_1": 0.161,
+        "recall_at_10": 0.4411,
+        "correct_abstention_rate": 0.0,
+        "false_abstention_rate": 0.0
+      },
+      "metrics_after": {
+        "recall_at_5": 0.3191,
+        "precision_at_5": 0.0374,
+        "recall_at_1": 0.1456,
+        "recall_at_10": 0.4303,
+        "correct_abstention_rate": 0.0,
+        "false_abstention_rate": 0.0
+      },
+      "guardrail_results": {
+        "primary_objective_improved": {
+          "passed": true,
+          "current_accepted": 0.3113,
+          "candidate": 0.3191,
+          "delta": 0.0078,
+          "required_delta": 1e-06
+        },
+        "precision_guardrail": {
+          "passed": true,
+          "current_accepted": 0.0424,
+          "candidate": 0.0374,
+          "allowed_floor": 0.03392
+        },
+        "negative_abstention_guardrail": {
+          "passed": true,
+          "current_accepted": 0.0,
+          "candidate": 0.0,
+          "allowed_floor": -0.1
+        },
+        "false_abstention_guardrail": {
+          "passed": true,
+          "current_accepted": 0.0,
+          "candidate": 0.0,
+          "allowed_ceiling": 0.05
+        },
+        "latency_guardrail": {
+          "passed": true,
+          "baseline_latency": 3.18,
+          "candidate_latency": 9.64,
+          "allowed_max": 9.54
+        }
+      },
+      "decision": "accepted",
+      "decision_reason": "Accepted: Recall@5 improved from 0.3113 to 0.3191 (+2.51% relative) with all guardrails satisfied.",
+      "evaluation_split": "train",
+      "duration_seconds": 9.65,
+      "candidate_config": {
+        "pipeline": {
+          "name": "candidate_005",
+          "version": 1
+        },
+        "chunking": {
+          "strategy": "clause_aware",
+          "chunk_size": 1000,
+          "overlap": 250
+        },
+        "tokenization": {
+          "lowercase": true,
+          "enhancement_mode": "legal_stem"
+        },
+        "retrieval": {
+          "method": "bm25",
+          "top_k": 5
+        },
+        "bm25": {
+          "k1": 1.5,
+          "b": 0.75
+        },
+        "abstention": {
+          "enabled": true,
+          "strategy": "top_score_threshold",
+          "threshold": 0.0
+        },
+        "evaluation": {
+          "k_values": [
+            1,
+            3,
+            5,
+            10
+          ],
+          "split": "train"
+        },
+        "query_processing": {
+          "mode": "two_stage"
+        }
+      },
+      "timestamp": "2026-10-29T17:25:55.081644+00:00"
+    }
+  ]
+}

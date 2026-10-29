@@ -82,7 +82,7 @@ def run_baseline_evaluation(
         gt_snippets = test_item.get("snippets", [])
 
         # Execute search without abstention filtering for raw retrieval recall/precision calculation
-        raw_candidates = pipeline.retriever.search(query=query, top_k=max_k)
+        raw_candidates = pipeline.search_candidates(query=query, top_k=max_k)
         eval_records.append({
             "query": query,
             "ground_truth_snippets": gt_snippets,
