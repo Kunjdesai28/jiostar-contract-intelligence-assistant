@@ -1,0 +1,290 @@
+[
+  {
+    "id": "NEG_001",
+    "query": "What are the broadcast syndication rights granted to JioStar for Indian Premier League cricket matches?",
+    "answerable": false,
+    "split": "train",
+    "category": "outside_indexed_corpus",
+    "rationale": "The indexed corpus contains SEC EDGAR filings for US entities; no JioStar or sports broadcasting agreements are included.",
+    "verification_status": "verified_unanswerable"
+  },
+  {
+    "id": "NEG_002",
+    "query": "What is the royalty percentage paid by Netflix to Warner Bros for digital streaming rights?",
+    "answerable": false,
+    "split": "test",
+    "category": "outside_indexed_corpus",
+    "rationale": "Neither Netflix nor Warner Bros streaming license agreements are present in the 29 indexed contracts.",
+    "verification_status": "verified_unanswerable"
+  },
+  {
+    "id": "NEG_003",
+    "query": "Under Apple's supplier agreement, what is Foxconn's defect tolerance rate for iPhone assembly?",
+    "answerable": false,
+    "split": "train",
+    "category": "outside_indexed_corpus",
+    "rationale": "Apple and Foxconn manufacturing agreements are entirely absent from the indexed contract collection.",
+    "verification_status": "verified_unanswerable"
+  },
+  {
+    "id": "NEG_004",
+    "query": "What are Microsoft's service level agreement commitments for Azure OpenAI uptime guarantee?",
+    "answerable": false,
+    "split": "train",
+    "category": "outside_indexed_corpus",
+    "rationale": "Microsoft Azure enterprise cloud agreements are not part of the indexed contract corpus.",
+    "verification_status": "verified_unanswerable"
+  },
+  {
+    "id": "NEG_005",
+    "query": "What are Pfizer's revenue-sharing obligations with BioNTech for COVID-19 vaccine distribution in Europe?",
+    "answerable": false,
+    "split": "test",
+    "category": "outside_indexed_corpus",
+    "rationale": "Pfizer/BioNTech vaccine commercialization contracts are outside the indexed corpus.",
+    "verification_status": "verified_unanswerable"
+  },
+  {
+    "id": "NEG_006",
+    "query": "What are the exclusivity terms governing Spotify's podcast distribution agreement with Joe Rogan?",
+    "answerable": false,
+    "split": "train",
+    "category": "outside_indexed_corpus",
+    "rationale": "Celebrity podcast distribution agreements for Spotify are not present in the indexed contracts.",
+    "verification_status": "verified_unanswerable"
+  },
+  {
+    "id": "NEG_007",
+    "query": "What was the exact dollar amount of endorsement fees paid to Shaquille O'Neal by Papa John's in calendar year 2021?",
+    "answerable": false,
+    "split": "train",
+    "category": "absent_from_contracts",
+    "rationale": "The Papa John's contract establishes endorsement fee terms and stock grant formulas, but actual realized post-signing 2021 payment totals are operational accounting records absent from the contract.",
+    "verification_status": "verified_unanswerable"
+  },
+  {
+    "id": "NEG_008",
+    "query": "How many tons of chemical proppant did Flotek Industries actually deliver to customers during the fourth quarter of 2020?",
+    "answerable": false,
+    "split": "test",
+    "category": "absent_from_contracts",
+    "rationale": "The Flotek supply agreement defines supply terms and pricing mechanisms, not historical post-execution delivery volume figures.",
+    "verification_status": "verified_unanswerable"
+  },
+  {
+    "id": "NEG_009",
+    "query": "What was the total repair cost incurred by Holiday RV Superstores for vehicle maintenance in fiscal year 2003?",
+    "answerable": false,
+    "split": "train",
+    "category": "absent_from_contracts",
+    "rationale": "Internal operational expenditures incurred post-signing are not contained within the endorsement contract text.",
+    "verification_status": "verified_unanswerable"
+  },
+  {
+    "id": "NEG_010",
+    "query": "What were the actual quarterly advertising impressions delivered by Deltathree under the co-branding agreement?",
+    "answerable": false,
+    "split": "test",
+    "category": "absent_from_contracts",
+    "rationale": "The Deltathree agreement outlines co-branding obligations and revenue shares, but does not record post-execution web traffic or ad impression statistics.",
+    "verification_status": "verified_unanswerable"
+  },
+  {
+    "id": "NEG_011",
+    "query": "How many dental clinics joined the Union Dental Holdings network following the execution of the affiliate agreement?",
+    "answerable": false,
+    "split": "test",
+    "category": "absent_from_contracts",
+    "rationale": "Subsequent affiliate enrollment numbers are operational business metrics not recorded in the static agreement.",
+    "verification_status": "verified_unanswerable"
+  },
+  {
+    "id": "NEG_012",
+    "query": "What was the total volume of natural gas transported by PennTex Midstream Partners through the Arcadia plant in 2017?",
+    "answerable": false,
+    "split": "test",
+    "category": "absent_from_contracts",
+    "rationale": "Operational pipeline throughput volumes post-signing are not established in the static transportation contract text.",
+    "verification_status": "verified_unanswerable"
+  },
+  {
+    "id": "NEG_013",
+    "query": "Did any party to the Veoneer joint venture agreement file for Chapter 11 bankruptcy reorganization in 2023?",
+    "answerable": false,
+    "split": "train",
+    "category": "future_events_not_established",
+    "rationale": "The contract defines bankruptcy as an event of default, but subsequent external filings in 2023 cannot be determined from the contract text.",
+    "verification_status": "verified_unanswerable"
+  },
+  {
+    "id": "NEG_014",
+    "query": "Was the Bon-Ton Stores liquidation agency agreement terminated early due to court intervention in 2019?",
+    "answerable": false,
+    "split": "train",
+    "category": "future_events_not_established",
+    "rationale": "Subsequent court proceedings and early termination events post-dating execution are not recorded in the agreement.",
+    "verification_status": "verified_unanswerable"
+  },
+  {
+    "id": "NEG_015",
+    "query": "Did Cano Petroleum successfully renew its sponsorship agreement upon expiration of the primary term in 2012?",
+    "answerable": false,
+    "split": "train",
+    "category": "future_events_not_established",
+    "rationale": "The agreement outlines renewal options, but whether the parties exercised those options in 2012 is external historical fact.",
+    "verification_status": "verified_unanswerable"
+  },
+  {
+    "id": "NEG_016",
+    "query": "Did Western Copper and Gold Corporation ever initiate formal arbitration against the covenantor under the non-competition agreement?",
+    "answerable": false,
+    "split": "train",
+    "category": "future_events_not_established",
+    "rationale": "Post-execution dispute filings and arbitration outcomes are external events not recorded in the document.",
+    "verification_status": "verified_unanswerable"
+  },
+  {
+    "id": "NEG_017",
+    "query": "Did Loop Industries achieve commercial PET recycling production milestones before December 2022 under its marketing agreement?",
+    "answerable": false,
+    "split": "train",
+    "category": "future_events_not_established",
+    "rationale": "Whether commercial targets were achieved years after execution is an external operational outcome absent from the contract.",
+    "verification_status": "verified_unanswerable"
+  },
+  {
+    "id": "NEG_018",
+    "query": "What was the closing stock price of Dynamex Inc. on NASDAQ on June 6, 1996?",
+    "answerable": false,
+    "split": "train",
+    "category": "external_business_data",
+    "rationale": "Public stock market closing prices are external market data not contained in commercial contract texts.",
+    "verification_status": "verified_unanswerable"
+  },
+  {
+    "id": "NEG_019",
+    "query": "What credit rating was assigned to King Pharmaceuticals by Moody's at the time the promotion agreement was signed?",
+    "answerable": false,
+    "split": "test",
+    "category": "external_business_data",
+    "rationale": "External rating agency credit opinions are not stated within the promotion agreement.",
+    "verification_status": "verified_unanswerable"
+  },
+  {
+    "id": "NEG_020",
+    "query": "What was the market share of Vitamin Shoppe in the online nutritional supplement retail sector in 1999?",
+    "answerable": false,
+    "split": "train",
+    "category": "external_business_data",
+    "rationale": "Macroeconomic and sector market share figures are external business data absent from the sponsorship contract.",
+    "verification_status": "verified_unanswerable"
+  },
+  {
+    "id": "NEG_021",
+    "query": "Who succeeded as Chief Executive Officer of Sucampo Pharmaceuticals when the strategic alliance agreement expired?",
+    "answerable": false,
+    "split": "test",
+    "category": "external_business_data",
+    "rationale": "Executive leadership succession history is corporate governance data not established in the agreement.",
+    "verification_status": "verified_unanswerable"
+  },
+  {
+    "id": "NEG_022",
+    "query": "What is the penalty interest rate if Duos Technologies fails to comply with European Union GDPR data erasure requests?",
+    "answerable": false,
+    "split": "test",
+    "category": "unsupported_legal_facts",
+    "rationale": "The 2009 Duos Technologies agreement predates the GDPR regulation and contains no GDPR compliance or penalty clauses.",
+    "verification_status": "verified_unanswerable"
+  },
+  {
+    "id": "NEG_023",
+    "query": "What are the liquidated damages specified if Bicycle Therapeutics breaches clinical trial participant privacy under HIPAA?",
+    "answerable": false,
+    "split": "train",
+    "category": "unsupported_legal_facts",
+    "rationale": "The Bicycle Therapeutics agreement is governed by English law and contains no liquidated damages clause for US HIPAA violations.",
+    "verification_status": "verified_unanswerable"
+  },
+  {
+    "id": "NEG_024",
+    "query": "What specific royalty rate is payable by Glu Mobile for exploiting licensed content in virtual reality metaverse applications?",
+    "answerable": false,
+    "split": "train",
+    "category": "unsupported_legal_facts",
+    "rationale": "The 2007 Glu Mobile content license agreement does not contemplate or define virtual reality metaverse rights.",
+    "verification_status": "verified_unanswerable"
+  },
+  {
+    "id": "NEG_025",
+    "query": "Under the Arc Group sponsorship agreement, what liquidated damages apply if a hurricane cancels the sponsored event?",
+    "answerable": false,
+    "split": "train",
+    "category": "unsupported_legal_facts",
+    "rationale": "The agreement includes standard force majeure excuse provisions but specifies no liquidated damages payable for weather cancellations.",
+    "verification_status": "verified_unanswerable"
+  },
+  {
+    "id": "NEG_026",
+    "query": "What is the required severance compensation if Theravance Biopharma terminates an executive director without cause?",
+    "answerable": false,
+    "split": "test",
+    "category": "unsupported_legal_facts",
+    "rationale": "The Theravance Biopharma contract in the corpus is a corporate service agreement, not an executive employment agreement.",
+    "verification_status": "verified_unanswerable"
+  },
+  {
+    "id": "NEG_027",
+    "query": "What is the required margin deposit if Rgc Resources experiences a credit downgrade below investment grade?",
+    "answerable": false,
+    "split": "train",
+    "category": "unsupported_legal_facts",
+    "rationale": "The franchise agreement with municipal authorities contains no collateral margin or trading credit downgrade terms.",
+    "verification_status": "verified_unanswerable"
+  },
+  {
+    "id": "NEG_028",
+    "query": "What is the average annual rainfall in the Amazon rainforest basin?",
+    "answerable": false,
+    "split": "train",
+    "category": "out_of_domain",
+    "rationale": "Geographical and meteorological data has no relation to commercial legal contracts.",
+    "verification_status": "verified_unanswerable"
+  },
+  {
+    "id": "NEG_029",
+    "query": "Which national team won the FIFA Men's World Cup football tournament in 2022?",
+    "answerable": false,
+    "split": "test",
+    "category": "out_of_domain",
+    "rationale": "International sports tournament records are unrelated to the indexed contract collection.",
+    "verification_status": "verified_unanswerable"
+  },
+  {
+    "id": "NEG_030",
+    "query": "What is the chemical formula and molecular weight of acetylsalicylic acid?",
+    "answerable": false,
+    "split": "test",
+    "category": "out_of_domain",
+    "rationale": "Chemical formula and molecular properties are outside the contract retrieval domain.",
+    "verification_status": "verified_unanswerable"
+  },
+  {
+    "id": "NEG_031",
+    "query": "What is the airspeed velocity of an unladen European swallow?",
+    "answerable": false,
+    "split": "test",
+    "category": "out_of_domain",
+    "rationale": "Pop-culture trivia and ornithological questions are completely outside the legal contract domain.",
+    "verification_status": "verified_unanswerable"
+  },
+  {
+    "id": "NEG_032",
+    "query": "What is the recommended oven temperature and cooking time for traditional Neapolitan pizza?",
+    "answerable": false,
+    "split": "train",
+    "category": "out_of_domain",
+    "rationale": "Culinary recipes and baking instructions are entirely unsupported by corporate agreements.",
+    "verification_status": "verified_unanswerable"
+  }
+]
