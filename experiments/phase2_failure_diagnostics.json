@@ -1,0 +1,989 @@
+{
+  "num_audited": 15,
+  "doc_hit_rate_at_1": "15/15 (100.0%)",
+  "doc_hit_rate_at_5": "15/15 (100.0%)",
+  "span_overlap_rate_at_5": "3/15 (20.0%)",
+  "diagnostic_breakdown": {
+    "SUCCESS_IN_TOP_5": 3,
+    "CHUNK_BOUNDARY_OR_WITHIN_DOC_RANKING": 12,
+    "RANKED_BETWEEN_6_AND_10": 0,
+    "WRONG_DOCUMENT_RETRIEVED": 0
+  },
+  "records": [
+    {
+      "query_index": 0,
+      "query": "Consider the Amendment No. 3 to Wireless Content License Agreement between Fox Mobile Entertainment, Inc. and Glu Mobile Inc.; What is the expiration date of this contract?",
+      "gold_document": "cuad/GluMobileInc_20070319_S-1A_EX-10.09_436630_EX-10.09_Content License Agreement4.txt",
+      "gold_span": [
+        598,
+        989
+      ],
+      "gold_text_preview": "The rights granted hereunder shall be effective as of the Effective Date and shall expire on Decembe...",
+      "doc_hit_at_1": true,
+      "doc_hit_at_5": true,
+      "doc_hit_at_10": true,
+      "overlap_chars_at_1": 202,
+      "overlap_chars_at_5": 202,
+      "recall_at_5": 0.5166240409207161,
+      "precision_at_5": 0.05312993161493951,
+      "failure_category": "SUCCESS_IN_TOP_5",
+      "top_5_passages": [
+        {
+          "rank": 1,
+          "document": "cuad/GluMobileInc_20070319_S-1A_EX-10.09_436630_EX-10.09_Content License Agreement4.txt",
+          "is_gold_doc": true,
+          "start_char": 0,
+          "end_char": 800,
+          "score": 88.2498,
+          "text_preview": "AMENDMENT NO. 3  Dated as of February 19, 2007  Reference is hereby made to that certain fully executed Wireless Content..."
+        },
+        {
+          "rank": 2,
+          "document": "cuad/GluMobileInc_20070319_S-1A_EX-10.09_436630_EX-10.09_Content License Agreement4.txt",
+          "is_gold_doc": true,
+          "start_char": 1300,
+          "end_char": 1902,
+          "score": 81.7355,
+          "text_preview": "ied by this Amendment, the Agreement in all other respects is hereby ratified and shall continue in full force and effec..."
+        },
+        {
+          "rank": 3,
+          "document": "cuad/PcquoteComInc_19990721_S-1A_EX-10.11_6377149_EX-10.11_Co-Branding Agreement1.txt",
+          "is_gold_doc": false,
+          "start_char": 18850,
+          "end_char": 19650,
+          "score": 37.1841,
+          "text_preview": "t be modified or terminated orally.  No amendment to this Agreement shall be effective unless it is in writing and signe..."
+        },
+        {
+          "rank": 4,
+          "document": "cuad/KINGPHARMACEUTICALSINC_08_09_2006-EX-10.1-PROMOTION AGREEMENT.txt",
+          "is_gold_doc": false,
+          "start_char": 0,
+          "end_char": 800,
+          "score": 34.1869,
+          "text_preview": "Exhibit 10.1    PROMOTION AGREEMENT  by and between  DEPOMED, INC.  and  KING PHARMACEUTICALS, INC.  Dated as of June 27..."
+        },
+        {
+          "rank": 5,
+          "document": "cuad/VEONEER,INC_02_21_2020-EX-10.11-JOINT VENTURE AGREEMENT.txt",
+          "is_gold_doc": false,
+          "start_char": 0,
+          "end_char": 800,
+          "score": 32.7976,
+          "text_preview": "Exhibit 10.11  AMENDMENT AND TERMINATION  OF  JOINT VENTURE AGREEMENT  This AMENDMENT AND TERMINATION OF JOINT VENTURE A..."
+        }
+      ]
+    },
+    {
+      "query_index": 1,
+      "query": "Consider the Service Agreement between BicycleTX Ltd and Nigel Crockett for Chief Business Officer Position; What is the governing law for this contract?",
+      "gold_document": "cuad/BICYCLETHERAPEUTICSPLC_03_10_2020-EX-10.11-SERVICE AGREEMENT.txt",
+      "gold_span": [
+        53956,
+        54252
+      ],
+      "gold_text_preview": "This Agreement shall be governed by and interpreted in accordance with the laws of England and Wales...",
+      "doc_hit_at_1": true,
+      "doc_hit_at_5": true,
+      "doc_hit_at_10": true,
+      "overlap_chars_at_1": 0,
+      "overlap_chars_at_5": 0,
+      "recall_at_5": 0.0,
+      "precision_at_5": 0.0,
+      "failure_category": "CHUNK_BOUNDARY_OR_WITHIN_DOC_RANKING",
+      "top_5_passages": [
+        {
+          "rank": 1,
+          "document": "cuad/BICYCLETHERAPEUTICSPLC_03_10_2020-EX-10.11-SERVICE AGREEMENT.txt",
+          "is_gold_doc": true,
+          "start_char": 0,
+          "end_char": 800,
+          "score": 53.7723,
+          "text_preview": "Exhibit 10.11  DATED 26 September 2019  BicycleTX Ltd  and  Nigel Crockett  ____________________________________________..."
+        },
+        {
+          "rank": 2,
+          "document": "cuad/BICYCLETHERAPEUTICSPLC_03_10_2020-EX-10.11-SERVICE AGREEMENT.txt",
+          "is_gold_doc": true,
+          "start_char": 56550,
+          "end_char": 57041,
+          "score": 42.9403,
+          "text_preview": "of a merger.  19      THIS AGREEMENT has been executed and delivered as a deed by or on behalf of the parties on the dat..."
+        },
+        {
+          "rank": 3,
+          "document": "cuad/HealthcareIntegratedTechnologiesInc_20190812_8-K_EX-10.1_11776966_EX-10.1_Reseller Agreement.txt",
+          "is_gold_doc": false,
+          "start_char": 20800,
+          "end_char": 21600,
+          "score": 31.9811,
+          "text_preview": "n, or shipment of the Products. Neither party to this Agreement will make any payment, directly or indirectly, of money ..."
+        },
+        {
+          "rank": 4,
+          "document": "cuad/KINGPHARMACEUTICALSINC_08_09_2006-EX-10.1-PROMOTION AGREEMENT.txt",
+          "is_gold_doc": false,
+          "start_char": 11700,
+          "end_char": 12500,
+          "score": 29.764,
+          "text_preview": "on materials.  Section 1.36 \"Effective Date\" has the meaning set forth in the preamble to this Agreement.  Section 1.37 ..."
+        },
+        {
+          "rank": 5,
+          "document": "cuad/FLOTEKINDUSTRIESINCCN_05_09_2019-EX-10.1-SUPPLY AGREEMENT.txt",
+          "is_gold_doc": false,
+          "start_char": 18850,
+          "end_char": 19355,
+          "score": 29.3781,
+          "text_preview": "ong or between any of the parties relating to the subject matter hereof and thereof.  [Signature page follows]  5      I..."
+        }
+      ]
+    },
+    {
+      "query_index": 2,
+      "query": "Consider the Service Agreement between BicycleTX Ltd and Nigel Crockett for Chief Business Officer Position; Are there any exceptions to competitive restrictions in this contract?",
+      "gold_document": "cuad/BICYCLETHERAPEUTICSPLC_03_10_2020-EX-10.11-SERVICE AGREEMENT.txt",
+      "gold_span": [
+        33572,
+        34034
+      ],
+      "gold_text_preview": "save that nothing in this paragraph 13.2 shall prevent you from holding (with the prior written cons...",
+      "doc_hit_at_1": true,
+      "doc_hit_at_5": true,
+      "doc_hit_at_10": true,
+      "overlap_chars_at_1": 0,
+      "overlap_chars_at_5": 0,
+      "recall_at_5": 0.0,
+      "precision_at_5": 0.0,
+      "failure_category": "CHUNK_BOUNDARY_OR_WITHIN_DOC_RANKING",
+      "top_5_passages": [
+        {
+          "rank": 1,
+          "document": "cuad/BICYCLETHERAPEUTICSPLC_03_10_2020-EX-10.11-SERVICE AGREEMENT.txt",
+          "is_gold_doc": true,
+          "start_char": 0,
+          "end_char": 800,
+          "score": 50.1859,
+          "text_preview": "Exhibit 10.11  DATED 26 September 2019  BicycleTX Ltd  and  Nigel Crockett  ____________________________________________..."
+        },
+        {
+          "rank": 2,
+          "document": "cuad/BICYCLETHERAPEUTICSPLC_03_10_2020-EX-10.11-SERVICE AGREEMENT.txt",
+          "is_gold_doc": true,
+          "start_char": 56550,
+          "end_char": 57041,
+          "score": 42.2528,
+          "text_preview": "of a merger.  19      THIS AGREEMENT has been executed and delivered as a deed by or on behalf of the parties on the dat..."
+        },
+        {
+          "rank": 3,
+          "document": "cuad/KINGPHARMACEUTICALSINC_08_09_2006-EX-10.1-PROMOTION AGREEMENT.txt",
+          "is_gold_doc": false,
+          "start_char": 11700,
+          "end_char": 12500,
+          "score": 37.1803,
+          "text_preview": "on materials.  Section 1.36 \"Effective Date\" has the meaning set forth in the preamble to this Agreement.  Section 1.37 ..."
+        },
+        {
+          "rank": 4,
+          "document": "cuad/SUCAMPOPHARMACEUTICALS,INC_11_04_2015-EX-10.2-STRATEGIC ALLIANCE AGREEMENT.txt",
+          "is_gold_doc": false,
+          "start_char": 7150,
+          "end_char": 7950,
+          "score": 33.7813,
+          "text_preview": "this Agreement from the Company to the Acquiror disclosing information constituting exceptions to the representations an..."
+        },
+        {
+          "rank": 5,
+          "document": "cuad/BICYCLETHERAPEUTICSPLC_03_10_2020-EX-10.11-SERVICE AGREEMENT.txt",
+          "is_gold_doc": true,
+          "start_char": 40950,
+          "end_char": 41750,
+          "score": 32.8784,
+          "text_preview": "graph 14.2 above shall apply with such deletions or restrictions or limitations as the case may be.  14.4 For the avoida..."
+        }
+      ]
+    },
+    {
+      "query_index": 3,
+      "query": "Consider the Service Agreement between BicycleTX Ltd and Nigel Crockett for Chief Business Officer Position; Does this contract include any right of first refusal, right of first offer, or right of first negotiation?",
+      "gold_document": "cuad/BICYCLETHERAPEUTICSPLC_03_10_2020-EX-10.11-SERVICE AGREEMENT.txt",
+      "gold_span": [
+        6235,
+        6531
+      ],
+      "gold_text_preview": "On or as soon as practicable following the Effective Date, it is intended that you will be granted a...",
+      "doc_hit_at_1": true,
+      "doc_hit_at_5": true,
+      "doc_hit_at_10": true,
+      "overlap_chars_at_1": 0,
+      "overlap_chars_at_5": 0,
+      "recall_at_5": 0.0,
+      "precision_at_5": 0.0,
+      "failure_category": "CHUNK_BOUNDARY_OR_WITHIN_DOC_RANKING",
+      "top_5_passages": [
+        {
+          "rank": 1,
+          "document": "cuad/BICYCLETHERAPEUTICSPLC_03_10_2020-EX-10.11-SERVICE AGREEMENT.txt",
+          "is_gold_doc": true,
+          "start_char": 0,
+          "end_char": 800,
+          "score": 58.1372,
+          "text_preview": "Exhibit 10.11  DATED 26 September 2019  BicycleTX Ltd  and  Nigel Crockett  ____________________________________________..."
+        },
+        {
+          "rank": 2,
+          "document": "cuad/IGENEBIOTECHNOLOGYINC_05_13_2003-EX-1-JOINT VENTURE AGREEMENT.txt",
+          "is_gold_doc": false,
+          "start_char": 39650,
+          "end_char": 40450,
+          "score": 51.4005,
+          "text_preview": "the terms of the Support Services Agreement shall govern.  12. RIGHT OF FIRST REFUSAL; TERMINATION OF THE JOINT VENTURE ..."
+        },
+        {
+          "rank": 3,
+          "document": "cuad/BICYCLETHERAPEUTICSPLC_03_10_2020-EX-10.11-SERVICE AGREEMENT.txt",
+          "is_gold_doc": true,
+          "start_char": 56550,
+          "end_char": 57041,
+          "score": 50.9151,
+          "text_preview": "of a merger.  19      THIS AGREEMENT has been executed and delivered as a deed by or on behalf of the parties on the dat..."
+        },
+        {
+          "rank": 4,
+          "document": "cuad/SUCAMPOPHARMACEUTICALS,INC_11_04_2015-EX-10.2-STRATEGIC ALLIANCE AGREEMENT.txt",
+          "is_gold_doc": false,
+          "start_char": 61750,
+          "end_char": 62272,
+          "score": 50.6632,
+          "text_preview": "a third party beneficiary of this Agreement or have a right to enforce any provisions hereof. [remainder of page intenti..."
+        },
+        {
+          "rank": 5,
+          "document": "cuad/FLOTEKINDUSTRIESINCCN_05_09_2019-EX-10.1-SUPPLY AGREEMENT.txt",
+          "is_gold_doc": false,
+          "start_char": 18850,
+          "end_char": 19355,
+          "score": 47.0786,
+          "text_preview": "ong or between any of the parties relating to the subject matter hereof and thereof.  [Signature page follows]  5      I..."
+        }
+      ]
+    },
+    {
+      "query_index": 4,
+      "query": "Consider the Service Agreement between BicycleTX Ltd and Nigel Crockett for Chief Business Officer Position; How is intellectual property ownership assigned in this contract?",
+      "gold_document": "cuad/BICYCLETHERAPEUTICSPLC_03_10_2020-EX-10.11-SERVICE AGREEMENT.txt",
+      "gold_span": [
+        44840,
+        45359
+      ],
+      "gold_text_preview": "To the extent that such IPRs do not vest automatically in the Company by operation of law, you hereb...",
+      "doc_hit_at_1": true,
+      "doc_hit_at_5": true,
+      "doc_hit_at_10": true,
+      "overlap_chars_at_1": 0,
+      "overlap_chars_at_5": 0,
+      "recall_at_5": 0.0,
+      "precision_at_5": 0.0,
+      "failure_category": "CHUNK_BOUNDARY_OR_WITHIN_DOC_RANKING",
+      "top_5_passages": [
+        {
+          "rank": 1,
+          "document": "cuad/BICYCLETHERAPEUTICSPLC_03_10_2020-EX-10.11-SERVICE AGREEMENT.txt",
+          "is_gold_doc": true,
+          "start_char": 0,
+          "end_char": 800,
+          "score": 50.9006,
+          "text_preview": "Exhibit 10.11  DATED 26 September 2019  BicycleTX Ltd  and  Nigel Crockett  ____________________________________________..."
+        },
+        {
+          "rank": 2,
+          "document": "cuad/BICYCLETHERAPEUTICSPLC_03_10_2020-EX-10.11-SERVICE AGREEMENT.txt",
+          "is_gold_doc": true,
+          "start_char": 56550,
+          "end_char": 57041,
+          "score": 42.2528,
+          "text_preview": "of a merger.  19      THIS AGREEMENT has been executed and delivered as a deed by or on behalf of the parties on the dat..."
+        },
+        {
+          "rank": 3,
+          "document": "cuad/DUOSTECHNOLOGIESGROUP,INC_04_21_2009-EX-10.1-STRATEGIC ALLIANCE AGREEMENT.txt",
+          "is_gold_doc": false,
+          "start_char": 13000,
+          "end_char": 13800,
+          "score": 32.12,
+          "text_preview": "etween ISA and Rubicon, all right, title and interest in and to Intellectual Property which is created  by or provided b..."
+        },
+        {
+          "rank": 4,
+          "document": "cuad/DUOSTECHNOLOGIESGROUP,INC_04_21_2009-EX-10.1-STRATEGIC ALLIANCE AGREEMENT.txt",
+          "is_gold_doc": false,
+          "start_char": 17550,
+          "end_char": 18350,
+          "score": 28.9972,
+          "text_preview": "ISA hereunder, all  goodwill associated therewith and the copyright and all other Intellectual Property rights inherent ..."
+        },
+        {
+          "rank": 5,
+          "document": "cuad/KINGPHARMACEUTICALSINC_08_09_2006-EX-10.1-PROMOTION AGREEMENT.txt",
+          "is_gold_doc": false,
+          "start_char": 11700,
+          "end_char": 12500,
+          "score": 28.9834,
+          "text_preview": "on materials.  Section 1.36 \"Effective Date\" has the meaning set forth in the preamble to this Agreement.  Section 1.37 ..."
+        }
+      ]
+    },
+    {
+      "query_index": 5,
+      "query": "Consider the Cooperation Agreement between HPIL ENERGYTECH Inc. and GINARES GROUP AG for Renewable Energy Projects; What is the expiration date of this contract?",
+      "gold_document": "cuad/HPILHOLDING_01_07_2015-EX-99.1-COOPERATION AGREEMENT.txt",
+      "gold_span": [
+        5604,
+        5739
+      ],
+      "gold_text_preview": "The term of this Agreement shall be one (1) year unless terminated earlier in accordance with the te...",
+      "doc_hit_at_1": true,
+      "doc_hit_at_5": true,
+      "doc_hit_at_10": true,
+      "overlap_chars_at_1": 0,
+      "overlap_chars_at_5": 135,
+      "recall_at_5": 1.0,
+      "precision_at_5": 0.03794266441821248,
+      "failure_category": "SUCCESS_IN_TOP_5",
+      "top_5_passages": [
+        {
+          "rank": 1,
+          "document": "cuad/HPILHOLDING_01_07_2015-EX-99.1-COOPERATION AGREEMENT.txt",
+          "is_gold_doc": true,
+          "start_char": 3250,
+          "end_char": 4050,
+          "score": 67.8085,
+          "text_preview": ".................................................................. 8 23. Entire Agreement.................................."
+        },
+        {
+          "rank": 2,
+          "document": "cuad/HPILHOLDING_01_07_2015-EX-99.1-COOPERATION AGREEMENT.txt",
+          "is_gold_doc": true,
+          "start_char": 0,
+          "end_char": 800,
+          "score": 60.3161,
+          "text_preview": "COOPERATION AGREEMENT     made by and between     HPIL ENERGYTECH Inc.   and   GINARES GROUP AG     January 5, 2015     ..."
+        },
+        {
+          "rank": 3,
+          "document": "cuad/HPILHOLDING_01_07_2015-EX-99.1-COOPERATION AGREEMENT.txt",
+          "is_gold_doc": true,
+          "start_char": 19500,
+          "end_char": 20008,
+          "score": 54.4733,
+          "text_preview": "similar), nor shall such waiver constitute a continuing waiver unless otherwise expressly therein provided.   THIS COOPE..."
+        },
+        {
+          "rank": 4,
+          "document": "cuad/HPILHOLDING_01_07_2015-EX-99.1-COOPERATION AGREEMENT.txt",
+          "is_gold_doc": true,
+          "start_char": 5200,
+          "end_char": 6000,
+          "score": 44.772,
+          "text_preview": "ances and certificates.    NOW, THEREFORE, HPIL ET and GINARES (hereafter the \"Party\" or collectively the \"Parties\")  in..."
+        },
+        {
+          "rank": 5,
+          "document": "cuad/HPILHOLDING_01_07_2015-EX-99.1-COOPERATION AGREEMENT.txt",
+          "is_gold_doc": true,
+          "start_char": 5850,
+          "end_char": 6650,
+          "score": 43.9826,
+          "text_preview": "ES projects. The Parties agree to develop a list of target cooperation projects and common goals, and consequent agreeme..."
+        }
+      ]
+    },
+    {
+      "query_index": 6,
+      "query": "Consider the Cooperation Agreement between HPIL ENERGYTECH Inc. and GINARES GROUP AG for Renewable Energy Projects; What is the governing law for this contract?",
+      "gold_document": "cuad/HPILHOLDING_01_07_2015-EX-99.1-COOPERATION AGREEMENT.txt",
+      "gold_span": [
+        16867,
+        17117
+      ],
+      "gold_text_preview": "This Agreement and its application and interpretation will be governed exclusively by its terms and ...",
+      "doc_hit_at_1": true,
+      "doc_hit_at_5": true,
+      "doc_hit_at_10": true,
+      "overlap_chars_at_1": 0,
+      "overlap_chars_at_5": 0,
+      "recall_at_5": 0.0,
+      "precision_at_5": 0.0,
+      "failure_category": "CHUNK_BOUNDARY_OR_WITHIN_DOC_RANKING",
+      "top_5_passages": [
+        {
+          "rank": 1,
+          "document": "cuad/HPILHOLDING_01_07_2015-EX-99.1-COOPERATION AGREEMENT.txt",
+          "is_gold_doc": true,
+          "start_char": 3250,
+          "end_char": 4050,
+          "score": 64.0216,
+          "text_preview": ".................................................................. 8 23. Entire Agreement.................................."
+        },
+        {
+          "rank": 2,
+          "document": "cuad/HPILHOLDING_01_07_2015-EX-99.1-COOPERATION AGREEMENT.txt",
+          "is_gold_doc": true,
+          "start_char": 0,
+          "end_char": 800,
+          "score": 57.2545,
+          "text_preview": "COOPERATION AGREEMENT     made by and between     HPIL ENERGYTECH Inc.   and   GINARES GROUP AG     January 5, 2015     ..."
+        },
+        {
+          "rank": 3,
+          "document": "cuad/HPILHOLDING_01_07_2015-EX-99.1-COOPERATION AGREEMENT.txt",
+          "is_gold_doc": true,
+          "start_char": 19500,
+          "end_char": 20008,
+          "score": 50.9873,
+          "text_preview": "similar), nor shall such waiver constitute a continuing waiver unless otherwise expressly therein provided.   THIS COOPE..."
+        },
+        {
+          "rank": 4,
+          "document": "cuad/HPILHOLDING_01_07_2015-EX-99.1-COOPERATION AGREEMENT.txt",
+          "is_gold_doc": true,
+          "start_char": 13650,
+          "end_char": 14450,
+          "score": 42.3004,
+          "text_preview": "overnight courier service, in each case to the appropriate Party at the address or facsimile number specified below:   I..."
+        },
+        {
+          "rank": 5,
+          "document": "cuad/HPILHOLDING_01_07_2015-EX-99.1-COOPERATION AGREEMENT.txt",
+          "is_gold_doc": true,
+          "start_char": 5200,
+          "end_char": 6000,
+          "score": 41.973,
+          "text_preview": "ances and certificates.    NOW, THEREFORE, HPIL ET and GINARES (hereafter the \"Party\" or collectively the \"Parties\")  in..."
+        }
+      ]
+    },
+    {
+      "query_index": 7,
+      "query": "Consider the Cooperation Agreement between HPIL ENERGYTECH Inc. and GINARES GROUP AG for Renewable Energy Projects; Is there an anti-assignment clause in this contract?",
+      "gold_document": "cuad/HPILHOLDING_01_07_2015-EX-99.1-COOPERATION AGREEMENT.txt",
+      "gold_span": [
+        17341,
+        17432
+      ],
+      "gold_text_preview": "The rights and obligations provided by this Agreement shall not be assignable by any Party.",
+      "doc_hit_at_1": true,
+      "doc_hit_at_5": true,
+      "doc_hit_at_10": true,
+      "overlap_chars_at_1": 0,
+      "overlap_chars_at_5": 0,
+      "recall_at_5": 0.0,
+      "precision_at_5": 0.0,
+      "failure_category": "CHUNK_BOUNDARY_OR_WITHIN_DOC_RANKING",
+      "top_5_passages": [
+        {
+          "rank": 1,
+          "document": "cuad/HPILHOLDING_01_07_2015-EX-99.1-COOPERATION AGREEMENT.txt",
+          "is_gold_doc": true,
+          "start_char": 3250,
+          "end_char": 4050,
+          "score": 64.0216,
+          "text_preview": ".................................................................. 8 23. Entire Agreement.................................."
+        },
+        {
+          "rank": 2,
+          "document": "cuad/HPILHOLDING_01_07_2015-EX-99.1-COOPERATION AGREEMENT.txt",
+          "is_gold_doc": true,
+          "start_char": 0,
+          "end_char": 800,
+          "score": 54.4723,
+          "text_preview": "COOPERATION AGREEMENT     made by and between     HPIL ENERGYTECH Inc.   and   GINARES GROUP AG     January 5, 2015     ..."
+        },
+        {
+          "rank": 3,
+          "document": "cuad/HPILHOLDING_01_07_2015-EX-99.1-COOPERATION AGREEMENT.txt",
+          "is_gold_doc": true,
+          "start_char": 19500,
+          "end_char": 20008,
+          "score": 50.9873,
+          "text_preview": "similar), nor shall such waiver constitute a continuing waiver unless otherwise expressly therein provided.   THIS COOPE..."
+        },
+        {
+          "rank": 4,
+          "document": "cuad/HPILHOLDING_01_07_2015-EX-99.1-COOPERATION AGREEMENT.txt",
+          "is_gold_doc": true,
+          "start_char": 5200,
+          "end_char": 6000,
+          "score": 41.1632,
+          "text_preview": "ances and certificates.    NOW, THEREFORE, HPIL ET and GINARES (hereafter the \"Party\" or collectively the \"Parties\")  in..."
+        },
+        {
+          "rank": 5,
+          "document": "cuad/HPILHOLDING_01_07_2015-EX-99.1-COOPERATION AGREEMENT.txt",
+          "is_gold_doc": true,
+          "start_char": 3900,
+          "end_char": 4700,
+          "score": 40.8986,
+          "text_preview": "ng in both private and public companies in the energy business sector. HPIL ET does not restrict its potential candidate..."
+        }
+      ]
+    },
+    {
+      "query_index": 8,
+      "query": "Consider the Cooperation Agreement between HPIL ENERGYTECH Inc. and GINARES GROUP AG for Renewable Energy Projects; Is there a cap on liability under this contract?",
+      "gold_document": "cuad/HPILHOLDING_01_07_2015-EX-99.1-COOPERATION AGREEMENT.txt",
+      "gold_span": [
+        11380,
+        11583
+      ],
+      "gold_text_preview": "GINARES  agrees that the sole and exclusive remedy for money damages related to this Agreement and t...",
+      "doc_hit_at_1": true,
+      "doc_hit_at_5": true,
+      "doc_hit_at_10": true,
+      "overlap_chars_at_1": 0,
+      "overlap_chars_at_5": 0,
+      "recall_at_5": 0.0,
+      "precision_at_5": 0.0,
+      "failure_category": "CHUNK_BOUNDARY_OR_WITHIN_DOC_RANKING",
+      "top_5_passages": [
+        {
+          "rank": 1,
+          "document": "cuad/HPILHOLDING_01_07_2015-EX-99.1-COOPERATION AGREEMENT.txt",
+          "is_gold_doc": true,
+          "start_char": 3250,
+          "end_char": 4050,
+          "score": 65.0197,
+          "text_preview": ".................................................................. 8 23. Entire Agreement.................................."
+        },
+        {
+          "rank": 2,
+          "document": "cuad/HPILHOLDING_01_07_2015-EX-99.1-COOPERATION AGREEMENT.txt",
+          "is_gold_doc": true,
+          "start_char": 0,
+          "end_char": 800,
+          "score": 54.4723,
+          "text_preview": "COOPERATION AGREEMENT     made by and between     HPIL ENERGYTECH Inc.   and   GINARES GROUP AG     January 5, 2015     ..."
+        },
+        {
+          "rank": 3,
+          "document": "cuad/HPILHOLDING_01_07_2015-EX-99.1-COOPERATION AGREEMENT.txt",
+          "is_gold_doc": true,
+          "start_char": 19500,
+          "end_char": 20008,
+          "score": 51.9543,
+          "text_preview": "similar), nor shall such waiver constitute a continuing waiver unless otherwise expressly therein provided.   THIS COOPE..."
+        },
+        {
+          "rank": 4,
+          "document": "cuad/HPILHOLDING_01_07_2015-EX-99.1-COOPERATION AGREEMENT.txt",
+          "is_gold_doc": true,
+          "start_char": 5850,
+          "end_char": 6650,
+          "score": 42.9986,
+          "text_preview": "ES projects. The Parties agree to develop a list of target cooperation projects and common goals, and consequent agreeme..."
+        },
+        {
+          "rank": 5,
+          "document": "cuad/HPILHOLDING_01_07_2015-EX-99.1-COOPERATION AGREEMENT.txt",
+          "is_gold_doc": true,
+          "start_char": 5200,
+          "end_char": 6000,
+          "score": 41.1224,
+          "text_preview": "ances and certificates.    NOW, THEREFORE, HPIL ET and GINARES (hereafter the \"Party\" or collectively the \"Parties\")  in..."
+        }
+      ]
+    },
+    {
+      "query_index": 9,
+      "query": "Consider the Sponsorship Agreement between Jacksonville Jaguars, LLC and The ARC Group, Inc.; What is the expiration date of this contract?",
+      "gold_document": "cuad/ArcGroupInc_20171211_8-K_EX-10.1_10976103_EX-10.1_Sponsorship Agreement.txt",
+      "gold_span": [
+        1322,
+        1662
+      ],
+      "gold_text_preview": "The term of this Agreement (the \"Term\") shall commence as of April 1, 2018 (the \"Effective Date\") an...",
+      "doc_hit_at_1": true,
+      "doc_hit_at_5": true,
+      "doc_hit_at_10": true,
+      "overlap_chars_at_1": 0,
+      "overlap_chars_at_5": 128,
+      "recall_at_5": 0.3764705882352941,
+      "precision_at_5": 0.03324675324675325,
+      "failure_category": "SUCCESS_IN_TOP_5",
+      "top_5_passages": [
+        {
+          "rank": 1,
+          "document": "cuad/ArcGroupInc_20171211_8-K_EX-10.1_10976103_EX-10.1_Sponsorship Agreement.txt",
+          "is_gold_doc": true,
+          "start_char": 0,
+          "end_char": 800,
+          "score": 65.2266,
+          "text_preview": "Exhibit 10.1   JACKSONVILLE JAGUARS SPONSORSHIP AGREEMENT   This Sponsorship Agreement (this \"Agreement\") is entered int..."
+        },
+        {
+          "rank": 2,
+          "document": "cuad/ArcGroupInc_20171211_8-K_EX-10.1_10976103_EX-10.1_Sponsorship Agreement.txt",
+          "is_gold_doc": true,
+          "start_char": 9100,
+          "end_char": 9900,
+          "score": 55.8145,
+          "text_preview": "nk counterpart.   IN WITNESS WHEREOF, each party has caused this Agreement to be executed in Jacksonville, Florida, by i..."
+        },
+        {
+          "rank": 3,
+          "document": "cuad/ArcGroupInc_20171211_8-K_EX-10.1_10976103_EX-10.1_Sponsorship Agreement.txt",
+          "is_gold_doc": true,
+          "start_char": 7150,
+          "end_char": 7950,
+          "score": 45.0688,
+          "text_preview": "r, or three business days after being mailed by registered or certified mail, postage prepaid and return receipt request..."
+        },
+        {
+          "rank": 4,
+          "document": "cuad/ArcGroupInc_20171211_8-K_EX-10.1_10976103_EX-10.1_Sponsorship Agreement.txt",
+          "is_gold_doc": true,
+          "start_char": 13650,
+          "end_char": 14450,
+          "score": 35.5449,
+          "text_preview": "reseason and regular season Jaguars Home Game.     Page 3 of 4  Source: ARC GROUP, INC., 8-K, 12/11/2017          5. CON..."
+        },
+        {
+          "rank": 5,
+          "document": "cuad/ArcGroupInc_20171211_8-K_EX-10.1_10976103_EX-10.1_Sponsorship Agreement.txt",
+          "is_gold_doc": true,
+          "start_char": 650,
+          "end_char": 1450,
+          "score": 34.3948,
+          "text_preview": "s (the \"Team\") and has the right to grant sponsorship rights and to exploit certain commercial, advertising and related ..."
+        }
+      ]
+    },
+    {
+      "query_index": 10,
+      "query": "Consider the Sponsorship Agreement between Jacksonville Jaguars, LLC and The ARC Group, Inc.; What licenses are granted under this contract?",
+      "gold_document": "cuad/ArcGroupInc_20171211_8-K_EX-10.1_10976103_EX-10.1_Sponsorship Agreement.txt",
+      "gold_span": [
+        1697,
+        2488
+      ],
+      "gold_text_preview": "Subject to the terms and conditions of this Agreement, as part of the consideration of the full and ...",
+      "doc_hit_at_1": true,
+      "doc_hit_at_5": true,
+      "doc_hit_at_10": true,
+      "overlap_chars_at_1": 0,
+      "overlap_chars_at_5": 0,
+      "recall_at_5": 0.0,
+      "precision_at_5": 0.0,
+      "failure_category": "CHUNK_BOUNDARY_OR_WITHIN_DOC_RANKING",
+      "top_5_passages": [
+        {
+          "rank": 1,
+          "document": "cuad/ArcGroupInc_20171211_8-K_EX-10.1_10976103_EX-10.1_Sponsorship Agreement.txt",
+          "is_gold_doc": true,
+          "start_char": 0,
+          "end_char": 800,
+          "score": 57.2868,
+          "text_preview": "Exhibit 10.1   JACKSONVILLE JAGUARS SPONSORSHIP AGREEMENT   This Sponsorship Agreement (this \"Agreement\") is entered int..."
+        },
+        {
+          "rank": 2,
+          "document": "cuad/ArcGroupInc_20171211_8-K_EX-10.1_10976103_EX-10.1_Sponsorship Agreement.txt",
+          "is_gold_doc": true,
+          "start_char": 9100,
+          "end_char": 9900,
+          "score": 50.7139,
+          "text_preview": "nk counterpart.   IN WITNESS WHEREOF, each party has caused this Agreement to be executed in Jacksonville, Florida, by i..."
+        },
+        {
+          "rank": 3,
+          "document": "cuad/ArcGroupInc_20171211_8-K_EX-10.1_10976103_EX-10.1_Sponsorship Agreement.txt",
+          "is_gold_doc": true,
+          "start_char": 7150,
+          "end_char": 7950,
+          "score": 42.212,
+          "text_preview": "r, or three business days after being mailed by registered or certified mail, postage prepaid and return receipt request..."
+        },
+        {
+          "rank": 4,
+          "document": "cuad/ArcGroupInc_20171211_8-K_EX-10.1_10976103_EX-10.1_Sponsorship Agreement.txt",
+          "is_gold_doc": true,
+          "start_char": 13650,
+          "end_char": 14450,
+          "score": 29.6677,
+          "text_preview": "reseason and regular season Jaguars Home Game.     Page 3 of 4  Source: ARC GROUP, INC., 8-K, 12/11/2017          5. CON..."
+        },
+        {
+          "rank": 5,
+          "document": "cuad/DUOSTECHNOLOGIESGROUP,INC_04_21_2009-EX-10.1-STRATEGIC ALLIANCE AGREEMENT.txt",
+          "is_gold_doc": false,
+          "start_char": 13650,
+          "end_char": 14450,
+          "score": 28.984,
+          "text_preview": "perty rights inherent in or appurtenant to  any of the foregoing, or any associated goodwill and that its rights thereun..."
+        }
+      ]
+    },
+    {
+      "query_index": 11,
+      "query": "Consider the Service Agreement between Theravance Biopharma UK Limited and Brett Haumann; What is the expiration date of this contract?",
+      "gold_document": "cuad/THERAVANCEBIOPHARMA,INC_05_08_2020-EX-10.2-SERVICE AGREEMENT.txt",
+      "gold_span": [
+        4382,
+        4705
+      ],
+      "gold_text_preview": "The Executive's employment with the Company will commence on the Commencement Date and shall continu...",
+      "doc_hit_at_1": true,
+      "doc_hit_at_5": true,
+      "doc_hit_at_10": true,
+      "overlap_chars_at_1": 0,
+      "overlap_chars_at_5": 0,
+      "recall_at_5": 0.0,
+      "precision_at_5": 0.0,
+      "failure_category": "CHUNK_BOUNDARY_OR_WITHIN_DOC_RANKING",
+      "top_5_passages": [
+        {
+          "rank": 1,
+          "document": "cuad/THERAVANCEBIOPHARMA,INC_05_08_2020-EX-10.2-SERVICE AGREEMENT.txt",
+          "is_gold_doc": true,
+          "start_char": 0,
+          "end_char": 800,
+          "score": 71.296,
+          "text_preview": "Exhibit 10.2  STRICTLY PRIVATE AND CONFIDENTIAL  1 April, 2020  THERAVANCE BIOPHARMA UK LIMITED and BRETT HAUMANN  SERVI..."
+        },
+        {
+          "rank": 2,
+          "document": "cuad/THERAVANCEBIOPHARMA,INC_05_08_2020-EX-10.2-SERVICE AGREEMENT.txt",
+          "is_gold_doc": true,
+          "start_char": 32500,
+          "end_char": 32861,
+          "score": 60.8584,
+          "text_preview": "s or claims).  13      Signed by Rick E Winningham for and on behalf of Theravance Biopharma UK Limited  /s/ Rick E Winn..."
+        },
+        {
+          "rank": 3,
+          "document": "cuad/THERAVANCEBIOPHARMA,INC_05_08_2020-EX-10.2-SERVICE AGREEMENT.txt",
+          "is_gold_doc": true,
+          "start_char": 31850,
+          "end_char": 32650,
+          "score": 35.6854,
+          "text_preview": "than the parties to this Agreement and any Group Company shall have any rights under it and it will not be enforceable b..."
+        },
+        {
+          "rank": 4,
+          "document": "cuad/PapaJohnsInternationalInc_20190617_8-K_EX-10.1_11707365_EX-10.1_Endorsement Agreement.txt",
+          "is_gold_doc": false,
+          "start_char": 48750,
+          "end_char": 49550,
+          "score": 27.2371,
+          "text_preview": "Personality Rights must cease by no later than nine (9) months following the effective date of expiration or termination..."
+        },
+        {
+          "rank": 5,
+          "document": "cuad/PenntexMidstreamPartnersLp_20150416_S-1A_EX-10.4_9042833_EX-10.4_Transportation Agreement.txt",
+          "is_gold_doc": false,
+          "start_char": 49400,
+          "end_char": 50200,
+          "score": 26.4905,
+          "text_preview": "(15th) Contract Year, and shall continue in full force and effect thereafter until terminated by either Party by providi..."
+        }
+      ]
+    },
+    {
+      "query_index": 12,
+      "query": "Consider the Service Agreement between Theravance Biopharma UK Limited and Brett Haumann; Is there a clause preventing the solicitation of employees in this contract?",
+      "gold_document": "cuad/THERAVANCEBIOPHARMA,INC_05_08_2020-EX-10.2-SERVICE AGREEMENT.txt",
+      "gold_span": [
+        25311,
+        25713
+      ],
+      "gold_text_preview": "During the term of employment and for one (1) year thereafter, the Executive will not directly or in...",
+      "doc_hit_at_1": true,
+      "doc_hit_at_5": true,
+      "doc_hit_at_10": true,
+      "overlap_chars_at_1": 0,
+      "overlap_chars_at_5": 0,
+      "recall_at_5": 0.0,
+      "precision_at_5": 0.0,
+      "failure_category": "CHUNK_BOUNDARY_OR_WITHIN_DOC_RANKING",
+      "top_5_passages": [
+        {
+          "rank": 1,
+          "document": "cuad/THERAVANCEBIOPHARMA,INC_05_08_2020-EX-10.2-SERVICE AGREEMENT.txt",
+          "is_gold_doc": true,
+          "start_char": 0,
+          "end_char": 800,
+          "score": 73.0993,
+          "text_preview": "Exhibit 10.2  STRICTLY PRIVATE AND CONFIDENTIAL  1 April, 2020  THERAVANCE BIOPHARMA UK LIMITED and BRETT HAUMANN  SERVI..."
+        },
+        {
+          "rank": 2,
+          "document": "cuad/THERAVANCEBIOPHARMA,INC_05_08_2020-EX-10.2-SERVICE AGREEMENT.txt",
+          "is_gold_doc": true,
+          "start_char": 32500,
+          "end_char": 32861,
+          "score": 64.8484,
+          "text_preview": "s or claims).  13      Signed by Rick E Winningham for and on behalf of Theravance Biopharma UK Limited  /s/ Rick E Winn..."
+        },
+        {
+          "rank": 3,
+          "document": "cuad/THERAVANCEBIOPHARMA,INC_05_08_2020-EX-10.2-SERVICE AGREEMENT.txt",
+          "is_gold_doc": true,
+          "start_char": 31850,
+          "end_char": 32650,
+          "score": 39.6629,
+          "text_preview": "than the parties to this Agreement and any Group Company shall have any rights under it and it will not be enforceable b..."
+        },
+        {
+          "rank": 4,
+          "document": "cuad/HPILHOLDING_01_07_2015-EX-99.1-COOPERATION AGREEMENT.txt",
+          "is_gold_doc": false,
+          "start_char": 8450,
+          "end_char": 9250,
+          "score": 30.9793,
+          "text_preview": "ery and performance of this Agreement contemplated hereby will not result in a violation of, or default under, any instr..."
+        },
+        {
+          "rank": 5,
+          "document": "cuad/Loop Industries, Inc. - Marketing Agreement.txt",
+          "is_gold_doc": false,
+          "start_char": 31200,
+          "end_char": 32000,
+          "score": 30.1987,
+          "text_preview": "is in full force and effect and is enforceable in accordance with its terms; [***] Confidential treatment has been reque..."
+        }
+      ]
+    },
+    {
+      "query_index": 13,
+      "query": "Consider the Service Agreement between Theravance Biopharma UK Limited and Brett Haumann; Can this contract be terminated for convenience, and under what conditions?",
+      "gold_document": "cuad/THERAVANCEBIOPHARMA,INC_05_08_2020-EX-10.2-SERVICE AGREEMENT.txt",
+      "gold_span": [
+        18678,
+        18997
+      ],
+      "gold_text_preview": "The Company may, in its sole and absolute discretion, terminate the Executive's employment under thi...",
+      "doc_hit_at_1": true,
+      "doc_hit_at_5": true,
+      "doc_hit_at_10": true,
+      "overlap_chars_at_1": 0,
+      "overlap_chars_at_5": 0,
+      "recall_at_5": 0.0,
+      "precision_at_5": 0.0,
+      "failure_category": "CHUNK_BOUNDARY_OR_WITHIN_DOC_RANKING",
+      "top_5_passages": [
+        {
+          "rank": 1,
+          "document": "cuad/THERAVANCEBIOPHARMA,INC_05_08_2020-EX-10.2-SERVICE AGREEMENT.txt",
+          "is_gold_doc": true,
+          "start_char": 0,
+          "end_char": 800,
+          "score": 67.4653,
+          "text_preview": "Exhibit 10.2  STRICTLY PRIVATE AND CONFIDENTIAL  1 April, 2020  THERAVANCE BIOPHARMA UK LIMITED and BRETT HAUMANN  SERVI..."
+        },
+        {
+          "rank": 2,
+          "document": "cuad/THERAVANCEBIOPHARMA,INC_05_08_2020-EX-10.2-SERVICE AGREEMENT.txt",
+          "is_gold_doc": true,
+          "start_char": 32500,
+          "end_char": 32861,
+          "score": 59.6179,
+          "text_preview": "s or claims).  13      Signed by Rick E Winningham for and on behalf of Theravance Biopharma UK Limited  /s/ Rick E Winn..."
+        },
+        {
+          "rank": 3,
+          "document": "cuad/THERAVANCEBIOPHARMA,INC_05_08_2020-EX-10.2-SERVICE AGREEMENT.txt",
+          "is_gold_doc": true,
+          "start_char": 31850,
+          "end_char": 32650,
+          "score": 37.726,
+          "text_preview": "than the parties to this Agreement and any Group Company shall have any rights under it and it will not be enforceable b..."
+        },
+        {
+          "rank": 4,
+          "document": "cuad/IGENEBIOTECHNOLOGYINC_05_13_2003-EX-1-JOINT VENTURE AGREEMENT.txt",
+          "is_gold_doc": false,
+          "start_char": 62400,
+          "end_char": 63200,
+          "score": 27.308,
+          "text_preview": ", term, or condition of this Agreement shall be of any force or effect unless in writing and executed by each of the Par..."
+        },
+        {
+          "rank": 5,
+          "document": "cuad/KINGPHARMACEUTICALSINC_08_09_2006-EX-10.1-PROMOTION AGREEMENT.txt",
+          "is_gold_doc": false,
+          "start_char": 152750,
+          "end_char": 153550,
+          "score": 26.8825,
+          "text_preview": "bility. Depomed will share such analysis with King  (b) Upon request, each party shall provide certificates of insurance..."
+        }
+      ]
+    },
+    {
+      "query_index": 14,
+      "query": "Consider the Service Agreement between Theravance Biopharma UK Limited and Brett Haumann; How is intellectual property ownership assigned in this contract?",
+      "gold_document": "cuad/THERAVANCEBIOPHARMA,INC_05_08_2020-EX-10.2-SERVICE AGREEMENT.txt",
+      "gold_span": [
+        16945,
+        17247
+      ],
+      "gold_text_preview": "To the extent that the Company IP does not vest automatically in the Company the Executive hereby as...",
+      "doc_hit_at_1": true,
+      "doc_hit_at_5": true,
+      "doc_hit_at_10": true,
+      "overlap_chars_at_1": 0,
+      "overlap_chars_at_5": 0,
+      "recall_at_5": 0.0,
+      "precision_at_5": 0.0,
+      "failure_category": "CHUNK_BOUNDARY_OR_WITHIN_DOC_RANKING",
+      "top_5_passages": [
+        {
+          "rank": 1,
+          "document": "cuad/THERAVANCEBIOPHARMA,INC_05_08_2020-EX-10.2-SERVICE AGREEMENT.txt",
+          "is_gold_doc": true,
+          "start_char": 0,
+          "end_char": 800,
+          "score": 66.7629,
+          "text_preview": "Exhibit 10.2  STRICTLY PRIVATE AND CONFIDENTIAL  1 April, 2020  THERAVANCE BIOPHARMA UK LIMITED and BRETT HAUMANN  SERVI..."
+        },
+        {
+          "rank": 2,
+          "document": "cuad/THERAVANCEBIOPHARMA,INC_05_08_2020-EX-10.2-SERVICE AGREEMENT.txt",
+          "is_gold_doc": true,
+          "start_char": 32500,
+          "end_char": 32861,
+          "score": 57.6229,
+          "text_preview": "s or claims).  13      Signed by Rick E Winningham for and on behalf of Theravance Biopharma UK Limited  /s/ Rick E Winn..."
+        },
+        {
+          "rank": 3,
+          "document": "cuad/DUOSTECHNOLOGIESGROUP,INC_04_21_2009-EX-10.1-STRATEGIC ALLIANCE AGREEMENT.txt",
+          "is_gold_doc": false,
+          "start_char": 13000,
+          "end_char": 13800,
+          "score": 34.4601,
+          "text_preview": "etween ISA and Rubicon, all right, title and interest in and to Intellectual Property which is created  by or provided b..."
+        },
+        {
+          "rank": 4,
+          "document": "cuad/THERAVANCEBIOPHARMA,INC_05_08_2020-EX-10.2-SERVICE AGREEMENT.txt",
+          "is_gold_doc": true,
+          "start_char": 31850,
+          "end_char": 32650,
+          "score": 32.7809,
+          "text_preview": "than the parties to this Agreement and any Group Company shall have any rights under it and it will not be enforceable b..."
+        },
+        {
+          "rank": 5,
+          "document": "cuad/DUOSTECHNOLOGIESGROUP,INC_04_21_2009-EX-10.1-STRATEGIC ALLIANCE AGREEMENT.txt",
+          "is_gold_doc": false,
+          "start_char": 17550,
+          "end_char": 18350,
+          "score": 31.3629,
+          "text_preview": "ISA hereunder, all  goodwill associated therewith and the copyright and all other Intellectual Property rights inherent ..."
+        }
+      ]
+    }
+  ]
+}
