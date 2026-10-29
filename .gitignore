@@ -1,0 +1,44 @@
+# Python virtual environment
+.venv/
+venv/
+ENV/
+
+# Python cache and bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Local environment & secrets
+.env
+.env.local
+*.secret
+*.pem
+*.key
+
+# Confidential assignment materials (NEVER COMMIT)
+*.pdf
+*Assignment*
+*assignment*
+
+# Raw and processed datasets (large / derived corpus data)
+data/raw/*
+!data/raw/.gitkeep
+data/processed/*
+!data/processed/.gitkeep
+
+# Cache directories
+.cache/
+.mypy_cache/
+.ruff_cache/
+
+# IDE and OS files
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db

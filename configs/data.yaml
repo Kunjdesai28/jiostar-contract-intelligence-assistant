@@ -1,0 +1,24 @@
+# JioStar Contract Intelligence Assistant - Dataset Configuration
+# LegalBench-RAG-mini CUAD Benchmark Settings
+
+dataset:
+  source: "https://huggingface.co/datasets/awinml/legalbench-rag"
+  repo_id: "awinml/legalbench-rag"
+  revision: "2b9c248bc8179ef0908fd6ba01d50b156facd48b"
+  paper_url: "https://arxiv.org/abs/2408.10343"
+
+paths:
+  raw_dir: "data/raw"
+  processed_dir: "data/processed"
+  benchmark_file: "benchmarks/cuad.json"
+  corpus_dir: "corpus/cuad"
+  mini_benchmark_output: "data/processed/cuad_mini.json"
+  train_queries_output: "data/processed/train_queries.json"
+  test_queries_output: "data/processed/test_queries.json"
+  contract_manifest_output: "data/processed/contract_manifest.json"
+  validation_summary_output: "data/processed/span_validation_summary.json"
+  preparation_summary_output: "data/processed/preparation_summary.json"
+  unanswerable_queries_file: "data/unanswerable_queries.json"
+
+benchmark:
+  mini_size: 194  # MANDATORY: Exactly 194 queries for official LegalBench-RAG mini
