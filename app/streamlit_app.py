@@ -100,8 +100,10 @@ st.markdown(
 def get_cached_pipeline(config_path: str = "configs/final.yaml") -> ContractRetrievalPipeline:
     """Load and cache the ContractRetrievalPipeline per configuration."""
     cfg_p = Path(config_path)
+    if not cfg_p.is_absolute():
+        cfg_p = project_root / cfg_p
     if not cfg_p.exists():
-        cfg_p = Path("configs/final.yaml")
+        cfg_p = project_root / "configs" / "final.yaml"
     pipeline = ContractRetrievalPipeline(config_path=cfg_p)
     pipeline.build_index()
     return pipeline
@@ -124,14 +126,35 @@ def main():
     )
 
     # Configuration Selection
+    final_cfg_rel = "configs/final.yaml"
+    baseline_cfg_rel = "configs/baseline.yaml"
+    final_cfg_path = project_root / final_cfg_rel
+    baseline_cfg_path = project_root / baseline_cfg_rel
+
+    final_label = "Final Selected Pipeline (configs/final.yaml)"
+    baseline_label = "Baseline BM25 Pipeline (configs/baseline.yaml)"
+
     available_configs = {}
-    if Path("configs/final.yaml").exists():
-        available_configs["Final Selected Pipeline (configs/final.yaml)"] = "configs/final.yaml"
-    available_configs["Baseline BM25 Pipeline (configs/baseline.yaml)"] = "configs/baseline.yaml"
+    if final_cfg_path.exists():
+        available_configs[final_label] = final_cfg_rel
+    available_configs[baseline_label] = baseline_cfg_rel
+
+    config_options = list(available_configs.keys())
+
+    # Ensure default session state points to Final Selected Pipeline
+    default_config_label = final_label if final_label in available_configs else config_options[0]
+
+    if "active_config_label" not in st.session_state or st.session_state["active_config_label"] not in available_configs:
+        st.session_state["active_config_label"] = default_config_label
 
     with st.sidebar:
         st.header("Pipeline Configuration")
-        selected_config_label = st.selectbox("Active Configuration", list(available_configs.keys()))
+        selected_config_label = st.selectbox(
+            "Active Configuration",
+            options=config_options,
+            key="active_config_label",
+            help="Select retrieval pipeline configuration. Defaults to the frozen final evaluated pipeline.",
+        )
         config_path = available_configs[selected_config_label]
 
     # Initialize Pipeline
@@ -148,22 +171,56 @@ def main():
         top_k = st.slider("Top-K Passages", min_value=1, max_value=10, value=pipeline.default_top_k)
 
         st.subheader("Abstention Controls")
-        abstention_enabled = st.checkbox("Enable Abstention", value=pipeline.abstention_engine.enabled)
-        threshold = st.number_input(
-            "Minimum Score Threshold",
-            min_value=0.0,
-            max_value=50.0,
-            value=float(pipeline.abstention_engine.threshold),
-            step=0.5,
-            help="If top-1 candidate score is <= threshold, system returns no passages.",
+        if pipeline.abstention_engine.strategy in ("normalized_score_coverage", "combined_norm_coverage"):
+            st.markdown("• **Status**: `Active (Frozen Setting)`")
+            st.markdown("• **Strategy**: Normalized Score + Evidence Coverage")
+            st.markdown(f"• **Normalized Score Threshold**: `{pipeline.abstention_engine.min_norm_score:.2f}`")
+            st.markdown(
+                f"• **Coverage Guardrail**: Enabled (≥{pipeline.abstention_engine.min_words_for_guard} query words "
+                f"and ≤{pipeline.abstention_engine.max_matched_for_guard} matched in passage)"
+            )
+            st.caption(
+                "Normalized relevance is calculated as the top BM25 score divided by the number of query content words "
+                f"(Score / |W_q| ≥ {pipeline.abstention_engine.min_norm_score:.2f}). Evidence coverage checks whether "
+                "sufficient query terms appear in the retrieved passage."
+            )
+        else:
+            st.markdown("• **Status**: `Active (Frozen Setting)`")
+            st.markdown("• **Strategy**: Raw BM25 Score Threshold")
+            st.markdown(f"• **Minimum BM25 Score**: `{pipeline.abstention_engine.threshold:.2f}`")
+            st.caption(
+                "Baseline abstention compares the top retrieved raw BM25 score against the configured minimum score "
+                f"threshold (Score > {pipeline.abstention_engine.threshold:.2f})."
+            )
+        st.markdown(
+            "<small style='color: #6B7280;'>🔒 Parameters are locked to the frozen evaluated specification.</small>",
+            unsafe_allow_html=True,
         )
 
         st.markdown("---")
         st.subheader("Indexed Corpus Info")
         st.write(f"• **Contracts**: {pipeline.contracts_count} SEC EDGAR agreements")
-        st.write(f"• **Indexed Chunks**: {len(pipeline.chunks)} passages")
+        st.write(f"• **Indexed Chunks**: {len(pipeline.chunks):,} passages")
+        chunking_label = (
+            "Clause-aware boundary detection"
+            if pipeline.chunk_strategy == "clause_aware"
+            else "Fixed-character window"
+        )
+        st.write(f"• **Chunking Method**: {chunking_label}")
         st.write(f"• **Chunk Size**: {pipeline.chunk_size} chars (overlap: {pipeline.overlap})")
         st.write(f"• **BM25 Parameters**: k1={pipeline.k1}, b={pipeline.b}")
+        norm_label = (
+            "Legal morphological stemming"
+            if pipeline.tokenizer.enhancement_mode == "legal_stem"
+            else "Standard lowercase"
+        )
+        st.write(f"• **Token Normalization**: {norm_label}")
+        qp_label = (
+            "Two-stage preamble filter"
+            if pipeline.query_mode == "two_stage"
+            else "Direct query"
+        )
+        st.write(f"• **Query Processing**: {qp_label}")
 
         st.markdown("---")
         st.subheader("Example Queries")
@@ -193,10 +250,6 @@ def main():
             st.warning("Please enter a non-empty query string.")
             return
 
-        # Configure temporary overrides from sidebar
-        pipeline.abstention_engine.enabled = abstention_enabled
-        pipeline.abstention_engine.threshold = threshold
-
         with st.spinner("Searching indexed contractual clauses..."):
             result = pipeline.search(query=query.strip(), top_k=top_k)
 
@@ -213,7 +266,7 @@ def main():
             st.info(
                 f"**No Relevant Clause Found (Abstained)**\n\n"
                 f"{result['abstention_rationale']}\n\n"
-                f"*The system abstained from returning unverified evidence because no candidate clause exceeded the relevance threshold ({threshold:.2f}).*"
+                f"*The system abstained from returning unverified evidence because no candidate clause met the calibrated relevance and evidence criteria.*"
             )
             return
 
