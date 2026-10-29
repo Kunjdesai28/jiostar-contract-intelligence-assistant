@@ -45,7 +45,7 @@ def main():
     search_parser.add_argument(
         "--config",
         type=str,
-        default="configs/baseline.yaml",
+        default="configs/final.yaml",
         help="Path to pipeline configuration YAML",
     )
 

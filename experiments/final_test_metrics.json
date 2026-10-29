@@ -1,0 +1,175 @@
+{
+  "evaluation_name": "official_held_out_test_evaluation",
+  "timestamp_utc": "2026-10-29T17:57:44.832172+00:00",
+  "split": "test",
+  "configuration_path": "configs\\final.yaml",
+  "configuration_sha256": "6448998c99d0c236dd0644dd3abd6c62b679a0749187b3ce8f14ff210caa7718",
+  "negative_query_checksum": "7eaf304f4a22a4567100fb283a53f1bfc7b458eaa2f7feb7d78ba66db3d539d3",
+  "sample_counts": {
+    "answerable_test_queries": 54,
+    "unanswerable_test_queries": 13,
+    "total_test_queries": 67
+  },
+  "character_level_retrieval_metrics": {
+    "precision@1": 0.0325,
+    "precision@3": 0.0514,
+    "precision@5": 0.0429,
+    "precision@10": 0.0274,
+    "recall@1": 0.0822,
+    "recall@3": 0.2491,
+    "recall@5": 0.2961,
+    "recall@10": 0.38
+  },
+  "document_hit_metrics": {
+    "document_hit_at_1": 0.3889,
+    "document_hit_at_5": 0.7778,
+    "document_hit_at_1_count": "21/54",
+    "document_hit_at_5_count": "42/54"
+  },
+  "abstention_metrics": {
+    "correct_negative_abstentions": "6/13",
+    "correct_negative_abstention_rate": 0.4615,
+    "incorrect_negative_responses": "7/13",
+    "incorrect_negative_response_rate": 0.5385,
+    "false_positive_abstentions": "0/54",
+    "false_positive_abstention_rate": 0.0,
+    "answerable_query_coverage": 1.0
+  },
+  "latency_metrics_ms": {
+    "mean": 27.4,
+    "median": 28.11,
+    "p95": 52.42
+  },
+  "negative_query_breakdown": [
+    {
+      "id": "NEG_002",
+      "category": "outside_indexed_corpus",
+      "query": "What is the royalty percentage paid by Netflix to Warner Bros for digital streaming rights?",
+      "abstained": true,
+      "abstention_rationale": "Normalized relevance score 2.35 did not meet minimum threshold 2.40.",
+      "returned_count": 0,
+      "top1_score": 0.0,
+      "latency_ms": 9.27
+    },
+    {
+      "id": "NEG_005",
+      "category": "outside_indexed_corpus",
+      "query": "What are Pfizer's revenue-sharing obligations with BioNTech for COVID-19 vaccine distribution in Europe?",
+      "abstained": true,
+      "abstention_rationale": "Normalized relevance score 2.25 did not meet minimum threshold 2.40.",
+      "returned_count": 0,
+      "top1_score": 0.0,
+      "latency_ms": 6.72
+    },
+    {
+      "id": "NEG_008",
+      "category": "absent_from_contracts",
+      "query": "How many tons of chemical proppant did Flotek Industries actually deliver to customers during the fourth quarter of 2020?",
+      "abstained": false,
+      "abstention_rationale": "Candidate passed normalized relevance (2.40 >= 2.40) and evidence coverage checks.",
+      "returned_count": 5,
+      "top1_score": 28.8384,
+      "latency_ms": 11.15
+    },
+    {
+      "id": "NEG_010",
+      "category": "absent_from_contracts",
+      "query": "What were the actual quarterly advertising impressions delivered by Deltathree under the co-branding agreement?",
+      "abstained": false,
+      "abstention_rationale": "Candidate passed normalized relevance (3.64 >= 2.40) and evidence coverage checks.",
+      "returned_count": 5,
+      "top1_score": 25.4841,
+      "latency_ms": 7.56
+    },
+    {
+      "id": "NEG_011",
+      "category": "absent_from_contracts",
+      "query": "How many dental clinics joined the Union Dental Holdings network following the execution of the affiliate agreement?",
+      "abstained": false,
+      "abstention_rationale": "Candidate passed normalized relevance (3.55 >= 2.40) and evidence coverage checks.",
+      "returned_count": 5,
+      "top1_score": 39.0148,
+      "latency_ms": 7.86
+    },
+    {
+      "id": "NEG_012",
+      "category": "absent_from_contracts",
+      "query": "What was the total volume of natural gas transported by PennTex Midstream Partners through the Arcadia plant in 2017?",
+      "abstained": false,
+      "abstention_rationale": "Candidate passed normalized relevance (3.86 >= 2.40) and evidence coverage checks.",
+      "returned_count": 5,
+      "top1_score": 42.4836,
+      "latency_ms": 7.2
+    },
+    {
+      "id": "NEG_019",
+      "category": "external_business_data",
+      "query": "What credit rating was assigned to King Pharmaceuticals by Moody's at the time the promotion agreement was signed?",
+      "abstained": true,
+      "abstention_rationale": "Insufficient evidence coverage: only 1 of 9 key terms found in top candidate passage.",
+      "returned_count": 0,
+      "top1_score": 0.0,
+      "latency_ms": 9.84
+    },
+    {
+      "id": "NEG_021",
+      "category": "external_business_data",
+      "query": "Who succeeded as Chief Executive Officer of Sucampo Pharmaceuticals when the strategic alliance agreement expired?",
+      "abstained": false,
+      "abstention_rationale": "Candidate passed normalized relevance (4.22 >= 2.40) and evidence coverage checks.",
+      "returned_count": 5,
+      "top1_score": 37.9481,
+      "latency_ms": 6.08
+    },
+    {
+      "id": "NEG_022",
+      "category": "unsupported_legal_facts",
+      "query": "What is the penalty interest rate if Duos Technologies fails to comply with European Union GDPR data erasure requests?",
+      "abstained": true,
+      "abstention_rationale": "Normalized relevance score 2.07 did not meet minimum threshold 2.40.",
+      "returned_count": 0,
+      "top1_score": 0.0,
+      "latency_ms": 9.0
+    },
+    {
+      "id": "NEG_026",
+      "category": "unsupported_legal_facts",
+      "query": "What is the required severance compensation if Theravance Biopharma terminates an executive director without cause?",
+      "abstained": false,
+      "abstention_rationale": "Candidate passed normalized relevance (2.59 >= 2.40) and evidence coverage checks.",
+      "returned_count": 5,
+      "top1_score": 25.8761,
+      "latency_ms": 6.02
+    },
+    {
+      "id": "NEG_029",
+      "category": "out_of_domain",
+      "query": "Which national team won the FIFA Men's World Cup football tournament in 2022?",
+      "abstained": false,
+      "abstention_rationale": "Candidate passed normalized relevance (2.86 >= 2.40) and evidence coverage checks.",
+      "returned_count": 5,
+      "top1_score": 25.7172,
+      "latency_ms": 6.87
+    },
+    {
+      "id": "NEG_030",
+      "category": "out_of_domain",
+      "query": "What is the chemical formula and molecular weight of acetylsalicylic acid?",
+      "abstained": true,
+      "abstention_rationale": "Insufficient evidence coverage: only 1 of 6 key terms found in top candidate passage.",
+      "returned_count": 0,
+      "top1_score": 0.0,
+      "latency_ms": 5.69
+    },
+    {
+      "id": "NEG_031",
+      "category": "out_of_domain",
+      "query": "What is the airspeed velocity of an unladen European swallow?",
+      "abstained": true,
+      "abstention_rationale": "Insufficient evidence coverage: only 1 of 5 key terms found in top candidate passage.",
+      "returned_count": 0,
+      "top1_score": 0.0,
+      "latency_ms": 4.67
+    }
+  ]
+}

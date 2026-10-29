@@ -44,7 +44,12 @@ class ContractRetrievalPipeline:
         if config is not None:
             self.config = config
         else:
-            c_path = Path(config_path) if config_path else root / "configs" / "baseline.yaml"
+            if config_path:
+                c_path = Path(config_path)
+            elif (root / "configs" / "final.yaml").exists():
+                c_path = root / "configs" / "final.yaml"
+            else:
+                c_path = root / "configs" / "baseline.yaml"
             self.config = load_yaml_config(c_path)
 
         # Merge data paths configuration
@@ -80,6 +85,9 @@ class ContractRetrievalPipeline:
             enabled=abs_cfg.get("enabled", True),
             threshold=float(abs_cfg.get("threshold", 0.0)),
             strategy=abs_cfg.get("strategy", "top_score_threshold"),
+            min_norm_score=float(abs_cfg.get("min_norm_score", 2.4)),
+            min_words_for_guard=int(abs_cfg.get("min_words_for_guard", 5)),
+            max_matched_for_guard=int(abs_cfg.get("max_matched_for_guard", 1)),
         )
 
         self.chunks: List[Dict[str, Any]] = []
@@ -237,8 +245,13 @@ class ContractRetrievalPipeline:
             # 1. Retrieve candidates
             raw_candidates = self.search_candidates(query=query, top_k=k)
 
-            # 2. Evaluate abstention
-            should_abstain, final_passages, rationale = self.abstention_engine.evaluate(raw_candidates)
+            # 2. Extract query info for context-aware abstention
+            q_info = self.query_processor.process(query)
+
+            # 3. Evaluate abstention
+            should_abstain, final_passages, rationale = self.abstention_engine.evaluate(
+                raw_candidates, query=query, query_info=q_info
+            )
 
             status = "no_relevant_clause" if should_abstain else "results_found"
 

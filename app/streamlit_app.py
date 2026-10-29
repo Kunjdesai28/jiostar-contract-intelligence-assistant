@@ -97,11 +97,11 @@ st.markdown(
 
 
 @st.cache_resource(show_spinner="Loading contract corpus and building retrieval index...")
-def get_cached_pipeline(config_path: str = "configs/baseline.yaml") -> ContractRetrievalPipeline:
+def get_cached_pipeline(config_path: str = "configs/final.yaml") -> ContractRetrievalPipeline:
     """Load and cache the ContractRetrievalPipeline per configuration."""
     cfg_p = Path(config_path)
     if not cfg_p.exists():
-        cfg_p = Path("configs/baseline.yaml")
+        cfg_p = Path("configs/final.yaml")
     pipeline = ContractRetrievalPipeline(config_path=cfg_p)
     pipeline.build_index()
     return pipeline

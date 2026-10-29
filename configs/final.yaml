@@ -1,6 +1,6 @@
 pipeline:
-  name: candidate_005
-  version: 1
+  name: candidate_final_phase4
+  version: 2
 chunking:
   strategy: clause_aware
   chunk_size: 1000
@@ -16,8 +16,11 @@ bm25:
   b: 0.75
 abstention:
   enabled: true
-  strategy: top_score_threshold
+  strategy: normalized_score_coverage
   threshold: 0.0
+  min_norm_score: 2.4
+  min_words_for_guard: 5
+  max_matched_for_guard: 1
 evaluation:
   k_values:
   - 1

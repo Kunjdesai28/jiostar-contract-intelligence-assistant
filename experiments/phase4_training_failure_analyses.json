@@ -1,0 +1,126 @@
+{
+  "negative_training_failure_analyses": [
+    {
+      "id": "NEG_001",
+      "category": "outside_indexed_corpus",
+      "query": "What are the broadcast syndication rights granted to JioStar for Indian Premier League cricket matches?",
+      "retrieved_document": "cuad/PREMIERBIOMEDICALINC_05_14_2020-EX-10.2-INTELLECTUAL PROPERTY AGREEMENT.txt",
+      "retrieved_passage_sample": "rv and Premier expanded Premier's Exclusive License to include all the Applications listed in Appendix A via a Third Addendum to the 2010 Agreement executed by Marv and Premier on the Effective Date (\"2020 Agreement\").   WHEREAS, Marv has filed US pr...",
+      "retrieval_score": 20.2779,
+      "normalized_score": 1.4484,
+      "why_passage_fails_support": "Passage contains spurious lexical overlaps on common legal boilerplate terms but completely lacks the critical entity, subject matter, and factual premise of the unanswerable question.",
+      "baseline_decision": "Returned passage (Failed to abstain)",
+      "new_strategy_decision": "Abstained (Correct abstention)",
+      "rationale": "Normalized relevance score below calibrated threshold or triggered coverage guardrail."
+    },
+    {
+      "id": "NEG_003",
+      "category": "outside_indexed_corpus",
+      "query": "Under Apple's supplier agreement, what is Foxconn's defect tolerance rate for iPhone assembly?",
+      "retrieved_document": "cuad/ALCOSTORESINC_12_14_2005-EX-10.26-AGENCY AGREEMENT.txt",
+      "retrieved_passage_sample": "\n\nARTICLE I  GENERAL UNDERTAKING\n\nSection 1.01 Appointment. Lessor hereby appoints the Company, and the Company hereby agrees to accept such appointment, as the agent of Lessor, without any fee for acting as such agent, pursuant to the terms and cond...",
+      "retrieval_score": 13.334,
+      "normalized_score": 1.1112,
+      "why_passage_fails_support": "Passage contains spurious lexical overlaps on common legal boilerplate terms but completely lacks the critical entity, subject matter, and factual premise of the unanswerable question.",
+      "baseline_decision": "Returned passage (Failed to abstain)",
+      "new_strategy_decision": "Abstained (Correct abstention)",
+      "rationale": "Normalized relevance score below calibrated threshold or triggered coverage guardrail."
+    },
+    {
+      "id": "NEG_023",
+      "category": "unsupported_legal_facts",
+      "query": "What are the liquidated damages specified if Bicycle Therapeutics breaches clinical trial participant privacy under HIPAA?",
+      "retrieved_document": "cuad/SUCAMPOPHARMACEUTICALS,INC_11_04_2015-EX-10.2-STRATEGIC ALLIANCE AGREEMENT.txt",
+      "retrieved_passage_sample": "\n\n\n\n\n\nSection 4.11 Development Programs and Clinical Trials. Following the Closing Date, SPI hereby agrees to engage in a program review in consultation with the management of the Company with respect to the development programs and clinical trials l...",
+      "retrieval_score": 18.1278,
+      "normalized_score": 1.2085,
+      "why_passage_fails_support": "Passage contains spurious lexical overlaps on common legal boilerplate terms but completely lacks the critical entity, subject matter, and factual premise of the unanswerable question.",
+      "baseline_decision": "Returned passage (Failed to abstain)",
+      "new_strategy_decision": "Abstained (Correct abstention)",
+      "rationale": "Normalized relevance score below calibrated threshold or triggered coverage guardrail."
+    },
+    {
+      "id": "NEG_028",
+      "category": "out_of_domain",
+      "query": "What is the average annual rainfall in the Amazon rainforest basin?",
+      "retrieved_document": "cuad/THERAVANCEBIOPHARMA,INC_05_08_2020-EX-10.2-SERVICE AGREEMENT.txt",
+      "retrieved_passage_sample": "he Executive providing receipts or other evidence of payment as the Company may require. 9. Annual Bonus 9.1 The Executive shall be entitled to participate in an annual bonus plan on such terms and with such individual, team or corporate targets as t...",
+      "retrieval_score": 18.0046,
+      "normalized_score": 2.0005,
+      "why_passage_fails_support": "Passage contains spurious lexical overlaps on common legal boilerplate terms but completely lacks the critical entity, subject matter, and factual premise of the unanswerable question.",
+      "baseline_decision": "Returned passage (Failed to abstain)",
+      "new_strategy_decision": "Abstained (Correct abstention)",
+      "rationale": "Normalized relevance score below calibrated threshold or triggered coverage guardrail."
+    },
+    {
+      "id": "NEG_032",
+      "category": "out_of_domain",
+      "query": "What is the recommended oven temperature and cooking time for traditional Neapolitan pizza?",
+      "retrieved_document": "cuad/PapaJohnsInternationalInc_20190617_8-K_EX-10.1_11707365_EX-10.1_Endorsement Agreement.txt",
+      "retrieved_passage_sample": "\n\n\n\n\n\nC. \"Competitive Products\" shall mean pizza intended primarily for carry-out or home delivery and prepared on the premises of a pizza carry-out/delivery restaurant, including but not limited to, pizza \"take and bake\" outlets, dine-in restaurants...",
+      "retrieval_score": 19.2587,
+      "normalized_score": 1.6049,
+      "why_passage_fails_support": "Passage contains spurious lexical overlaps on common legal boilerplate terms but completely lacks the critical entity, subject matter, and factual premise of the unanswerable question.",
+      "baseline_decision": "Returned passage (Failed to abstain)",
+      "new_strategy_decision": "Abstained (Correct abstention)",
+      "rationale": "Normalized relevance score below calibrated threshold or triggered coverage guardrail."
+    }
+  ],
+  "positive_training_retention_analyses": [
+    {
+      "query_id": "TRAIN_POS_001",
+      "query": "Consider the Amendment No. 3 to Wireless Content License Agreement between Fox Mobile Entertainment, Inc. and Glu Mobile Inc.; What is the expiration date of this contract?",
+      "gold_document": "cuad/GluMobileInc_20070319_S-1A_EX-10.09_436630_EX-10.09_Content License Agreement4.txt",
+      "retrieved_document": "cuad/ON2TECHNOLOGIES,INC_11_17_2006-EX-10.3-SUPPORT AND MAINTENANCE AGREEMENT.txt",
+      "top_score": 8.8655,
+      "gold_answer_sample": "The rights granted hereunder shall be effective as of the Effective Date and shall expire on December 31, 2006 (the \"Term\"); provided, however, that with respect to each Property, including Robots, Ki...",
+      "baseline_decision": "Returned evidence",
+      "new_strategy_decision": "Returned evidence (No false abstention)",
+      "status": "PASS"
+    },
+    {
+      "query_id": "TRAIN_POS_002",
+      "query": "Consider the Service Agreement between BicycleTX Ltd and Nigel Crockett for Chief Business Officer Position; What is the governing law for this contract?",
+      "gold_document": "cuad/BICYCLETHERAPEUTICSPLC_03_10_2020-EX-10.11-SERVICE AGREEMENT.txt",
+      "retrieved_document": "cuad/KINGPHARMACEUTICALSINC_08_09_2006-EX-10.1-PROMOTION AGREEMENT.txt",
+      "top_score": 15.2116,
+      "gold_answer_sample": "This Agreement shall be governed by and interpreted in accordance with the laws of England and Wales and the parties to this Agreement submit to the exclusive jurisdiction of the Courts of England and...",
+      "baseline_decision": "Returned evidence",
+      "new_strategy_decision": "Returned evidence (No false abstention)",
+      "status": "PASS"
+    },
+    {
+      "query_id": "TRAIN_POS_003",
+      "query": "Consider the Service Agreement between BicycleTX Ltd and Nigel Crockett for Chief Business Officer Position; Are there any exceptions to competitive restrictions in this contract?",
+      "gold_document": "cuad/BICYCLETHERAPEUTICSPLC_03_10_2020-EX-10.11-SERVICE AGREEMENT.txt",
+      "retrieved_document": "cuad/BICYCLETHERAPEUTICSPLC_03_10_2020-EX-10.11-SERVICE AGREEMENT.txt",
+      "top_score": 18.762,
+      "gold_answer_sample": "save that nothing in this paragraph 13.2 shall prevent you from holding (with the prior written consent of the Company, which shall not be unreasonably delayed or withheld) up to three percent (3%) of...",
+      "baseline_decision": "Returned evidence",
+      "new_strategy_decision": "Returned evidence (No false abstention)",
+      "status": "PASS"
+    },
+    {
+      "query_id": "TRAIN_POS_004",
+      "query": "Consider the Service Agreement between BicycleTX Ltd and Nigel Crockett for Chief Business Officer Position; Does this contract include any right of first refusal, right of first offer, or right of first negotiation?",
+      "gold_document": "cuad/BICYCLETHERAPEUTICSPLC_03_10_2020-EX-10.11-SERVICE AGREEMENT.txt",
+      "retrieved_document": "cuad/KINGPHARMACEUTICALSINC_08_09_2006-EX-10.1-PROMOTION AGREEMENT.txt",
+      "top_score": 32.6253,
+      "gold_answer_sample": "On or as soon as practicable following the Effective Date, it is intended that you will be granted an option under the Option Plan to acquire 107,417 ordinary shares in the capital of BTL (\"Shares\") (...",
+      "baseline_decision": "Returned evidence",
+      "new_strategy_decision": "Returned evidence (No false abstention)",
+      "status": "PASS"
+    },
+    {
+      "query_id": "TRAIN_POS_005",
+      "query": "Consider the Service Agreement between BicycleTX Ltd and Nigel Crockett for Chief Business Officer Position; How is intellectual property ownership assigned in this contract?",
+      "gold_document": "cuad/BICYCLETHERAPEUTICSPLC_03_10_2020-EX-10.11-SERVICE AGREEMENT.txt",
+      "retrieved_document": "cuad/HealthcareIntegratedTechnologiesInc_20190812_8-K_EX-10.1_11776966_EX-10.1_Reseller Agreement.txt",
+      "top_score": 17.7642,
+      "gold_answer_sample": "To the extent that such IPRs do not vest automatically in the Company by operation of law, you hereby assign and agree to assign to the Company all of your right, title and interest in any existing an...",
+      "baseline_decision": "Returned evidence",
+      "new_strategy_decision": "Returned evidence (No false abstention)",
+      "status": "PASS"
+    }
+  ]
+}

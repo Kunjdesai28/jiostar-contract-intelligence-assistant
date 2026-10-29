@@ -1,0 +1,2942 @@
+[
+  {
+    "name": "content_overlap_th_0.15",
+    "type": "content_word_overlap",
+    "params": {
+      "min_overlap": 0.15
+    },
+    "results": {
+      "correct_neg_abstentions": 6,
+      "total_neg": 19,
+      "neg_abstention_rate": 0.3157894736842105,
+      "false_pos_abstentions": 34,
+      "total_pos": 140,
+      "false_pos_rate": 0.24285714285714285,
+      "mean_recall_at_5": 0.2912635973641544,
+      "mean_precision_at_5": 0.032833757816372135,
+      "neg_details": [
+        {
+          "id": "NEG_001",
+          "category": "outside_indexed_corpus",
+          "abstained": false,
+          "reason": "Sufficient overlap"
+        },
+        {
+          "id": "NEG_003",
+          "category": "outside_indexed_corpus",
+          "abstained": true,
+          "reason": "Content overlap 0.12 < 0.15"
+        },
+        {
+          "id": "NEG_004",
+          "category": "outside_indexed_corpus",
+          "abstained": true,
+          "reason": "Content overlap 0.12 < 0.15"
+        },
+        {
+          "id": "NEG_006",
+          "category": "outside_indexed_corpus",
+          "abstained": true,
+          "reason": "Content overlap 0.12 < 0.15"
+        },
+        {
+          "id": "NEG_007",
+          "category": "absent_from_contracts",
+          "abstained": false,
+          "reason": "Sufficient overlap"
+        },
+        {
+          "id": "NEG_009",
+          "category": "absent_from_contracts",
+          "abstained": false,
+          "reason": "Sufficient overlap"
+        },
+        {
+          "id": "NEG_013",
+          "category": "future_events_not_established",
+          "abstained": false,
+          "reason": "Sufficient overlap"
+        },
+        {
+          "id": "NEG_014",
+          "category": "future_events_not_established",
+          "abstained": false,
+          "reason": "Sufficient overlap"
+        },
+        {
+          "id": "NEG_015",
+          "category": "future_events_not_established",
+          "abstained": false,
+          "reason": "Sufficient overlap"
+        },
+        {
+          "id": "NEG_016",
+          "category": "future_events_not_established",
+          "abstained": false,
+          "reason": "Sufficient overlap"
+        },
+        {
+          "id": "NEG_017",
+          "category": "future_events_not_established",
+          "abstained": false,
+          "reason": "Sufficient overlap"
+        },
+        {
+          "id": "NEG_018",
+          "category": "external_business_data",
+          "abstained": false,
+          "reason": "Sufficient overlap"
+        },
+        {
+          "id": "NEG_020",
+          "category": "external_business_data",
+          "abstained": false,
+          "reason": "Sufficient overlap"
+        },
+        {
+          "id": "NEG_023",
+          "category": "unsupported_legal_facts",
+          "abstained": true,
+          "reason": "Content overlap 0.09 < 0.15"
+        },
+        {
+          "id": "NEG_024",
+          "category": "unsupported_legal_facts",
+          "abstained": false,
+          "reason": "Sufficient overlap"
+        },
+        {
+          "id": "NEG_025",
+          "category": "unsupported_legal_facts",
+          "abstained": false,
+          "reason": "Sufficient overlap"
+        },
+        {
+          "id": "NEG_027",
+          "category": "unsupported_legal_facts",
+          "abstained": true,
+          "reason": "Content overlap 0.09 < 0.15"
+        },
+        {
+          "id": "NEG_028",
+          "category": "out_of_domain",
+          "abstained": false,
+          "reason": "Sufficient overlap"
+        },
+        {
+          "id": "NEG_032",
+          "category": "out_of_domain",
+          "abstained": true,
+          "reason": "Content overlap 0.12 < 0.15"
+        }
+      ]
+    }
+  },
+  {
+    "name": "content_overlap_th_0.2",
+    "type": "content_word_overlap",
+    "params": {
+      "min_overlap": 0.2
+    },
+    "results": {
+      "correct_neg_abstentions": 7,
+      "total_neg": 19,
+      "neg_abstention_rate": 0.3684210526315789,
+      "false_pos_abstentions": 34,
+      "total_pos": 140,
+      "false_pos_rate": 0.24285714285714285,
+      "mean_recall_at_5": 0.2912635973641544,
+      "mean_precision_at_5": 0.032833757816372135,
+      "neg_details": [
+        {
+          "id": "NEG_001",
+          "category": "outside_indexed_corpus",
+          "abstained": false,
+          "reason": "Sufficient overlap"
+        },
+        {
+          "id": "NEG_003",
+          "category": "outside_indexed_corpus",
+          "abstained": true,
+          "reason": "Content overlap 0.12 < 0.20"
+        },
+        {
+          "id": "NEG_004",
+          "category": "outside_indexed_corpus",
+          "abstained": true,
+          "reason": "Content overlap 0.12 < 0.20"
+        },
+        {
+          "id": "NEG_006",
+          "category": "outside_indexed_corpus",
+          "abstained": true,
+          "reason": "Content overlap 0.12 < 0.20"
+        },
+        {
+          "id": "NEG_007",
+          "category": "absent_from_contracts",
+          "abstained": false,
+          "reason": "Sufficient overlap"
+        },
+        {
+          "id": "NEG_009",
+          "category": "absent_from_contracts",
+          "abstained": false,
+          "reason": "Sufficient overlap"
+        },
+        {
+          "id": "NEG_013",
+          "category": "future_events_not_established",
+          "abstained": false,
+          "reason": "Sufficient overlap"
+        },
+        {
+          "id": "NEG_014",
+          "category": "future_events_not_established",
+          "abstained": false,
+          "reason": "Sufficient overlap"
+        },
+        {
+          "id": "NEG_015",
+          "category": "future_events_not_established",
+          "abstained": false,
+          "reason": "Sufficient overlap"
+        },
+        {
+          "id": "NEG_016",
+          "category": "future_events_not_established",
+          "abstained": false,
+          "reason": "Sufficient overlap"
+        },
+        {
+          "id": "NEG_017",
+          "category": "future_events_not_established",
+          "abstained": false,
+          "reason": "Sufficient overlap"
+        },
+        {
+          "id": "NEG_018",
+          "category": "external_business_data",
+          "abstained": false,
+          "reason": "Sufficient overlap"
+        },
+        {
+          "id": "NEG_020",
+          "category": "external_business_data",
+          "abstained": false,
+          "reason": "Sufficient overlap"
+        },
+        {
+          "id": "NEG_023",
+          "category": "unsupported_legal_facts",
+          "abstained": true,
+          "reason": "Content overlap 0.09 < 0.20"
+        },
+        {
+          "id": "NEG_024",
+          "category": "unsupported_legal_facts",
+          "abstained": false,
+          "reason": "Sufficient overlap"
+        },
+        {
+          "id": "NEG_025",
+          "category": "unsupported_legal_facts",
+          "abstained": false,
+          "reason": "Sufficient overlap"
+        },
+        {
+          "id": "NEG_027",
+          "category": "unsupported_legal_facts",
+          "abstained": true,
+          "reason": "Content overlap 0.09 < 0.20"
+        },
+        {
+          "id": "NEG_028",
+          "category": "out_of_domain",
+          "abstained": true,
+          "reason": "Content overlap 0.17 < 0.20"
+        },
+        {
+          "id": "NEG_032",
+          "category": "out_of_domain",
+          "abstained": true,
+          "reason": "Content overlap 0.12 < 0.20"
+        }
+      ]
+    }
+  },
+  {
+    "name": "content_overlap_th_0.25",
+    "type": "content_word_overlap",
+    "params": {
+      "min_overlap": 0.25
+    },
+    "results": {
+      "correct_neg_abstentions": 8,
+      "total_neg": 19,
+      "neg_abstention_rate": 0.42105263157894735,
+      "false_pos_abstentions": 37,
+      "total_pos": 140,
+      "false_pos_rate": 0.2642857142857143,
+      "mean_recall_at_5": 0.2888765711250873,
+      "mean_precision_at_5": 0.03241788480049912,
+      "neg_details": [
+        {
+          "id": "NEG_001",
+          "category": "outside_indexed_corpus",
+          "abstained": true,
+          "reason": "Content overlap 0.20 < 0.25"
+        },
+        {
+          "id": "NEG_003",
+          "category": "outside_indexed_corpus",
+          "abstained": true,
+          "reason": "Content overlap 0.12 < 0.25"
+        },
+        {
+          "id": "NEG_004",
+          "category": "outside_indexed_corpus",
+          "abstained": true,
+          "reason": "Content overlap 0.12 < 0.25"
+        },
+        {
+          "id": "NEG_006",
+          "category": "outside_indexed_corpus",
+          "abstained": true,
+          "reason": "Content overlap 0.12 < 0.25"
+        },
+        {
+          "id": "NEG_007",
+          "category": "absent_from_contracts",
+          "abstained": false,
+          "reason": "Sufficient overlap"
+        },
+        {
+          "id": "NEG_009",
+          "category": "absent_from_contracts",
+          "abstained": false,
+          "reason": "Sufficient overlap"
+        },
+        {
+          "id": "NEG_013",
+          "category": "future_events_not_established",
+          "abstained": false,
+          "reason": "Sufficient overlap"
+        },
+        {
+          "id": "NEG_014",
+          "category": "future_events_not_established",
+          "abstained": false,
+          "reason": "Sufficient overlap"
+        },
+        {
+          "id": "NEG_015",
+          "category": "future_events_not_established",
+          "abstained": false,
+          "reason": "Sufficient overlap"
+        },
+        {
+          "id": "NEG_016",
+          "category": "future_events_not_established",
+          "abstained": false,
+          "reason": "Sufficient overlap"
+        },
+        {
+          "id": "NEG_017",
+          "category": "future_events_not_established",
+          "abstained": false,
+          "reason": "Sufficient overlap"
+        },
+        {
+          "id": "NEG_018",
+          "category": "external_business_data",
+          "abstained": false,
+          "reason": "Sufficient overlap"
+        },
+        {
+          "id": "NEG_020",
+          "category": "external_business_data",
+          "abstained": false,
+          "reason": "Sufficient overlap"
+        },
+        {
+          "id": "NEG_023",
+          "category": "unsupported_legal_facts",
+          "abstained": true,
+          "reason": "Content overlap 0.09 < 0.25"
+        },
+        {
+          "id": "NEG_024",
+          "category": "unsupported_legal_facts",
+          "abstained": false,
+          "reason": "Sufficient overlap"
+        },
+        {
+          "id": "NEG_025",
+          "category": "unsupported_legal_facts",
+          "abstained": false,
+          "reason": "Sufficient overlap"
+        },
+        {
+          "id": "NEG_027",
+          "category": "unsupported_legal_facts",
+          "abstained": true,
+          "reason": "Content overlap 0.09 < 0.25"
+        },
+        {
+          "id": "NEG_028",
+          "category": "out_of_domain",
+          "abstained": true,
+          "reason": "Content overlap 0.17 < 0.25"
+        },
+        {
+          "id": "NEG_032",
+          "category": "out_of_domain",
+          "abstained": true,
+          "reason": "Content overlap 0.12 < 0.25"
+        }
+      ]
+    }
+  },
+  {
+    "name": "content_overlap_th_0.3",
+    "type": "content_word_overlap",
+    "params": {
+      "min_overlap": 0.3
+    },
+    "results": {
+      "correct_neg_abstentions": 10,
+      "total_neg": 19,
+      "neg_abstention_rate": 0.5263157894736842,
+      "false_pos_abstentions": 42,
+      "total_pos": 140,
+      "false_pos_rate": 0.3,
+      "mean_recall_at_5": 0.2817337139822302,
+      "mean_precision_at_5": 0.03166044035220293,
+      "neg_details": [
+        {
+          "id": "NEG_001",
+          "category": "outside_indexed_corpus",
+          "abstained": true,
+          "reason": "Content overlap 0.20 < 0.30"
+        },
+        {
+          "id": "NEG_003",
+          "category": "outside_indexed_corpus",
+          "abstained": true,
+          "reason": "Content overlap 0.12 < 0.30"
+        },
+        {
+          "id": "NEG_004",
+          "category": "outside_indexed_corpus",
+          "abstained": true,
+          "reason": "Content overlap 0.12 < 0.30"
+        },
+        {
+          "id": "NEG_006",
+          "category": "outside_indexed_corpus",
+          "abstained": true,
+          "reason": "Content overlap 0.12 < 0.30"
+        },
+        {
+          "id": "NEG_007",
+          "category": "absent_from_contracts",
+          "abstained": false,
+          "reason": "Sufficient overlap"
+        },
+        {
+          "id": "NEG_009",
+          "category": "absent_from_contracts",
+          "abstained": false,
+          "reason": "Sufficient overlap"
+        },
+        {
+          "id": "NEG_013",
+          "category": "future_events_not_established",
+          "abstained": true,
+          "reason": "Content overlap 0.29 < 0.30"
+        },
+        {
+          "id": "NEG_014",
+          "category": "future_events_not_established",
+          "abstained": false,
+          "reason": "Sufficient overlap"
+        },
+        {
+          "id": "NEG_015",
+          "category": "future_events_not_established",
+          "abstained": false,
+          "reason": "Sufficient overlap"
+        },
+        {
+          "id": "NEG_016",
+          "category": "future_events_not_established",
+          "abstained": false,
+          "reason": "Sufficient overlap"
+        },
+        {
+          "id": "NEG_017",
+          "category": "future_events_not_established",
+          "abstained": false,
+          "reason": "Sufficient overlap"
+        },
+        {
+          "id": "NEG_018",
+          "category": "external_business_data",
+          "abstained": true,
+          "reason": "Content overlap 0.29 < 0.30"
+        },
+        {
+          "id": "NEG_020",
+          "category": "external_business_data",
+          "abstained": false,
+          "reason": "Sufficient overlap"
+        },
+        {
+          "id": "NEG_023",
+          "category": "unsupported_legal_facts",
+          "abstained": true,
+          "reason": "Content overlap 0.09 < 0.30"
+        },
+        {
+          "id": "NEG_024",
+          "category": "unsupported_legal_facts",
+          "abstained": false,
+          "reason": "Sufficient overlap"
+        },
+        {
+          "id": "NEG_025",
+          "category": "unsupported_legal_facts",
+          "abstained": false,
+          "reason": "Sufficient overlap"
+        },
+        {
+          "id": "NEG_027",
+          "category": "unsupported_legal_facts",
+          "abstained": true,
+          "reason": "Content overlap 0.09 < 0.30"
+        },
+        {
+          "id": "NEG_028",
+          "category": "out_of_domain",
+          "abstained": true,
+          "reason": "Content overlap 0.17 < 0.30"
+        },
+        {
+          "id": "NEG_032",
+          "category": "out_of_domain",
+          "abstained": true,
+          "reason": "Content overlap 0.12 < 0.30"
+        }
+      ]
+    }
+  },
+  {
+    "name": "content_overlap_th_0.35",
+    "type": "content_word_overlap",
+    "params": {
+      "min_overlap": 0.35
+    },
+    "results": {
+      "correct_neg_abstentions": 15,
+      "total_neg": 19,
+      "neg_abstention_rate": 0.7894736842105263,
+      "false_pos_abstentions": 51,
+      "total_pos": 140,
+      "false_pos_rate": 0.36428571428571427,
+      "mean_recall_at_5": 0.2718872520329645,
+      "mean_precision_at_5": 0.03097774222447788,
+      "neg_details": [
+        {
+          "id": "NEG_001",
+          "category": "outside_indexed_corpus",
+          "abstained": true,
+          "reason": "Content overlap 0.20 < 0.35"
+        },
+        {
+          "id": "NEG_003",
+          "category": "outside_indexed_corpus",
+          "abstained": true,
+          "reason": "Content overlap 0.12 < 0.35"
+        },
+        {
+          "id": "NEG_004",
+          "category": "outside_indexed_corpus",
+          "abstained": true,
+          "reason": "Content overlap 0.12 < 0.35"
+        },
+        {
+          "id": "NEG_006",
+          "category": "outside_indexed_corpus",
+          "abstained": true,
+          "reason": "Content overlap 0.12 < 0.35"
+        },
+        {
+          "id": "NEG_007",
+          "category": "absent_from_contracts",
+          "abstained": false,
+          "reason": "Sufficient overlap"
+        },
+        {
+          "id": "NEG_009",
+          "category": "absent_from_contracts",
+          "abstained": true,
+          "reason": "Content overlap 0.30 < 0.35"
+        },
+        {
+          "id": "NEG_013",
+          "category": "future_events_not_established",
+          "abstained": true,
+          "reason": "Content overlap 0.29 < 0.35"
+        },
+        {
+          "id": "NEG_014",
+          "category": "future_events_not_established",
+          "abstained": false,
+          "reason": "Sufficient overlap"
+        },
+        {
+          "id": "NEG_015",
+          "category": "future_events_not_established",
+          "abstained": true,
+          "reason": "Content overlap 0.33 < 0.35"
+        },
+        {
+          "id": "NEG_016",
+          "category": "future_events_not_established",
+          "abstained": false,
+          "reason": "Sufficient overlap"
+        },
+        {
+          "id": "NEG_017",
+          "category": "future_events_not_established",
+          "abstained": false,
+          "reason": "Sufficient overlap"
+        },
+        {
+          "id": "NEG_018",
+          "category": "external_business_data",
+          "abstained": true,
+          "reason": "Content overlap 0.29 < 0.35"
+        },
+        {
+          "id": "NEG_020",
+          "category": "external_business_data",
+          "abstained": true,
+          "reason": "Content overlap 0.33 < 0.35"
+        },
+        {
+          "id": "NEG_023",
+          "category": "unsupported_legal_facts",
+          "abstained": true,
+          "reason": "Content overlap 0.09 < 0.35"
+        },
+        {
+          "id": "NEG_024",
+          "category": "unsupported_legal_facts",
+          "abstained": true,
+          "reason": "Content overlap 0.31 < 0.35"
+        },
+        {
+          "id": "NEG_025",
+          "category": "unsupported_legal_facts",
+          "abstained": true,
+          "reason": "Content overlap 0.30 < 0.35"
+        },
+        {
+          "id": "NEG_027",
+          "category": "unsupported_legal_facts",
+          "abstained": true,
+          "reason": "Content overlap 0.09 < 0.35"
+        },
+        {
+          "id": "NEG_028",
+          "category": "out_of_domain",
+          "abstained": true,
+          "reason": "Content overlap 0.17 < 0.35"
+        },
+        {
+          "id": "NEG_032",
+          "category": "out_of_domain",
+          "abstained": true,
+          "reason": "Content overlap 0.12 < 0.35"
+        }
+      ]
+    }
+  },
+  {
+    "name": "content_overlap_th_0.4",
+    "type": "content_word_overlap",
+    "params": {
+      "min_overlap": 0.4
+    },
+    "results": {
+      "correct_neg_abstentions": 15,
+      "total_neg": 19,
+      "neg_abstention_rate": 0.7894736842105263,
+      "false_pos_abstentions": 51,
+      "total_pos": 140,
+      "false_pos_rate": 0.36428571428571427,
+      "mean_recall_at_5": 0.2718872520329645,
+      "mean_precision_at_5": 0.03097774222447788,
+      "neg_details": [
+        {
+          "id": "NEG_001",
+          "category": "outside_indexed_corpus",
+          "abstained": true,
+          "reason": "Content overlap 0.20 < 0.40"
+        },
+        {
+          "id": "NEG_003",
+          "category": "outside_indexed_corpus",
+          "abstained": true,
+          "reason": "Content overlap 0.12 < 0.40"
+        },
+        {
+          "id": "NEG_004",
+          "category": "outside_indexed_corpus",
+          "abstained": true,
+          "reason": "Content overlap 0.12 < 0.40"
+        },
+        {
+          "id": "NEG_006",
+          "category": "outside_indexed_corpus",
+          "abstained": true,
+          "reason": "Content overlap 0.12 < 0.40"
+        },
+        {
+          "id": "NEG_007",
+          "category": "absent_from_contracts",
+          "abstained": false,
+          "reason": "Sufficient overlap"
+        },
+        {
+          "id": "NEG_009",
+          "category": "absent_from_contracts",
+          "abstained": true,
+          "reason": "Content overlap 0.30 < 0.40"
+        },
+        {
+          "id": "NEG_013",
+          "category": "future_events_not_established",
+          "abstained": true,
+          "reason": "Content overlap 0.29 < 0.40"
+        },
+        {
+          "id": "NEG_014",
+          "category": "future_events_not_established",
+          "abstained": false,
+          "reason": "Sufficient overlap"
+        },
+        {
+          "id": "NEG_015",
+          "category": "future_events_not_established",
+          "abstained": true,
+          "reason": "Content overlap 0.33 < 0.40"
+        },
+        {
+          "id": "NEG_016",
+          "category": "future_events_not_established",
+          "abstained": false,
+          "reason": "Sufficient overlap"
+        },
+        {
+          "id": "NEG_017",
+          "category": "future_events_not_established",
+          "abstained": false,
+          "reason": "Sufficient overlap"
+        },
+        {
+          "id": "NEG_018",
+          "category": "external_business_data",
+          "abstained": true,
+          "reason": "Content overlap 0.29 < 0.40"
+        },
+        {
+          "id": "NEG_020",
+          "category": "external_business_data",
+          "abstained": true,
+          "reason": "Content overlap 0.33 < 0.40"
+        },
+        {
+          "id": "NEG_023",
+          "category": "unsupported_legal_facts",
+          "abstained": true,
+          "reason": "Content overlap 0.09 < 0.40"
+        },
+        {
+          "id": "NEG_024",
+          "category": "unsupported_legal_facts",
+          "abstained": true,
+          "reason": "Content overlap 0.31 < 0.40"
+        },
+        {
+          "id": "NEG_025",
+          "category": "unsupported_legal_facts",
+          "abstained": true,
+          "reason": "Content overlap 0.30 < 0.40"
+        },
+        {
+          "id": "NEG_027",
+          "category": "unsupported_legal_facts",
+          "abstained": true,
+          "reason": "Content overlap 0.09 < 0.40"
+        },
+        {
+          "id": "NEG_028",
+          "category": "out_of_domain",
+          "abstained": true,
+          "reason": "Content overlap 0.17 < 0.40"
+        },
+        {
+          "id": "NEG_032",
+          "category": "out_of_domain",
+          "abstained": true,
+          "reason": "Content overlap 0.12 < 0.40"
+        }
+      ]
+    }
+  },
+  {
+    "name": "min_matched_content_1",
+    "type": "min_matched_content",
+    "params": {
+      "min_matched": 1
+    },
+    "results": {
+      "correct_neg_abstentions": 0,
+      "total_neg": 19,
+      "neg_abstention_rate": 0.0,
+      "false_pos_abstentions": 12,
+      "total_pos": 140,
+      "false_pos_rate": 0.08571428571428572,
+      "mean_recall_at_5": 0.3047358170055376,
+      "mean_precision_at_5": 0.03497355473715977,
+      "neg_details": [
+        {
+          "id": "NEG_001",
+          "category": "outside_indexed_corpus",
+          "abstained": false,
+          "reason": "Sufficient matched content words"
+        },
+        {
+          "id": "NEG_003",
+          "category": "outside_indexed_corpus",
+          "abstained": false,
+          "reason": "Sufficient matched content words"
+        },
+        {
+          "id": "NEG_004",
+          "category": "outside_indexed_corpus",
+          "abstained": false,
+          "reason": "Sufficient matched content words"
+        },
+        {
+          "id": "NEG_006",
+          "category": "outside_indexed_corpus",
+          "abstained": false,
+          "reason": "Sufficient matched content words"
+        },
+        {
+          "id": "NEG_007",
+          "category": "absent_from_contracts",
+          "abstained": false,
+          "reason": "Sufficient matched content words"
+        },
+        {
+          "id": "NEG_009",
+          "category": "absent_from_contracts",
+          "abstained": false,
+          "reason": "Sufficient matched content words"
+        },
+        {
+          "id": "NEG_013",
+          "category": "future_events_not_established",
+          "abstained": false,
+          "reason": "Sufficient matched content words"
+        },
+        {
+          "id": "NEG_014",
+          "category": "future_events_not_established",
+          "abstained": false,
+          "reason": "Sufficient matched content words"
+        },
+        {
+          "id": "NEG_015",
+          "category": "future_events_not_established",
+          "abstained": false,
+          "reason": "Sufficient matched content words"
+        },
+        {
+          "id": "NEG_016",
+          "category": "future_events_not_established",
+          "abstained": false,
+          "reason": "Sufficient matched content words"
+        },
+        {
+          "id": "NEG_017",
+          "category": "future_events_not_established",
+          "abstained": false,
+          "reason": "Sufficient matched content words"
+        },
+        {
+          "id": "NEG_018",
+          "category": "external_business_data",
+          "abstained": false,
+          "reason": "Sufficient matched content words"
+        },
+        {
+          "id": "NEG_020",
+          "category": "external_business_data",
+          "abstained": false,
+          "reason": "Sufficient matched content words"
+        },
+        {
+          "id": "NEG_023",
+          "category": "unsupported_legal_facts",
+          "abstained": false,
+          "reason": "Sufficient matched content words"
+        },
+        {
+          "id": "NEG_024",
+          "category": "unsupported_legal_facts",
+          "abstained": false,
+          "reason": "Sufficient matched content words"
+        },
+        {
+          "id": "NEG_025",
+          "category": "unsupported_legal_facts",
+          "abstained": false,
+          "reason": "Sufficient matched content words"
+        },
+        {
+          "id": "NEG_027",
+          "category": "unsupported_legal_facts",
+          "abstained": false,
+          "reason": "Sufficient matched content words"
+        },
+        {
+          "id": "NEG_028",
+          "category": "out_of_domain",
+          "abstained": false,
+          "reason": "Sufficient matched content words"
+        },
+        {
+          "id": "NEG_032",
+          "category": "out_of_domain",
+          "abstained": false,
+          "reason": "Sufficient matched content words"
+        }
+      ]
+    }
+  },
+  {
+    "name": "min_matched_content_2",
+    "type": "min_matched_content",
+    "params": {
+      "min_matched": 2
+    },
+    "results": {
+      "correct_neg_abstentions": 7,
+      "total_neg": 19,
+      "neg_abstention_rate": 0.3684210526315789,
+      "false_pos_abstentions": 29,
+      "total_pos": 140,
+      "false_pos_rate": 0.20714285714285716,
+      "mean_recall_at_5": 0.28535947167434766,
+      "mean_precision_at_5": 0.0331175391452655,
+      "neg_details": [
+        {
+          "id": "NEG_001",
+          "category": "outside_indexed_corpus",
+          "abstained": false,
+          "reason": "Sufficient matched content words"
+        },
+        {
+          "id": "NEG_003",
+          "category": "outside_indexed_corpus",
+          "abstained": true,
+          "reason": "Matched content words 1 < 2"
+        },
+        {
+          "id": "NEG_004",
+          "category": "outside_indexed_corpus",
+          "abstained": true,
+          "reason": "Matched content words 1 < 2"
+        },
+        {
+          "id": "NEG_006",
+          "category": "outside_indexed_corpus",
+          "abstained": true,
+          "reason": "Matched content words 1 < 2"
+        },
+        {
+          "id": "NEG_007",
+          "category": "absent_from_contracts",
+          "abstained": false,
+          "reason": "Sufficient matched content words"
+        },
+        {
+          "id": "NEG_009",
+          "category": "absent_from_contracts",
+          "abstained": false,
+          "reason": "Sufficient matched content words"
+        },
+        {
+          "id": "NEG_013",
+          "category": "future_events_not_established",
+          "abstained": false,
+          "reason": "Sufficient matched content words"
+        },
+        {
+          "id": "NEG_014",
+          "category": "future_events_not_established",
+          "abstained": false,
+          "reason": "Sufficient matched content words"
+        },
+        {
+          "id": "NEG_015",
+          "category": "future_events_not_established",
+          "abstained": false,
+          "reason": "Sufficient matched content words"
+        },
+        {
+          "id": "NEG_016",
+          "category": "future_events_not_established",
+          "abstained": false,
+          "reason": "Sufficient matched content words"
+        },
+        {
+          "id": "NEG_017",
+          "category": "future_events_not_established",
+          "abstained": false,
+          "reason": "Sufficient matched content words"
+        },
+        {
+          "id": "NEG_018",
+          "category": "external_business_data",
+          "abstained": false,
+          "reason": "Sufficient matched content words"
+        },
+        {
+          "id": "NEG_020",
+          "category": "external_business_data",
+          "abstained": false,
+          "reason": "Sufficient matched content words"
+        },
+        {
+          "id": "NEG_023",
+          "category": "unsupported_legal_facts",
+          "abstained": true,
+          "reason": "Matched content words 1 < 2"
+        },
+        {
+          "id": "NEG_024",
+          "category": "unsupported_legal_facts",
+          "abstained": false,
+          "reason": "Sufficient matched content words"
+        },
+        {
+          "id": "NEG_025",
+          "category": "unsupported_legal_facts",
+          "abstained": false,
+          "reason": "Sufficient matched content words"
+        },
+        {
+          "id": "NEG_027",
+          "category": "unsupported_legal_facts",
+          "abstained": true,
+          "reason": "Matched content words 1 < 2"
+        },
+        {
+          "id": "NEG_028",
+          "category": "out_of_domain",
+          "abstained": true,
+          "reason": "Matched content words 1 < 2"
+        },
+        {
+          "id": "NEG_032",
+          "category": "out_of_domain",
+          "abstained": true,
+          "reason": "Matched content words 1 < 2"
+        }
+      ]
+    }
+  },
+  {
+    "name": "norm_bm25_score_th_1.5",
+    "type": "norm_score",
+    "params": {
+      "min_norm_score": 1.5
+    },
+    "results": {
+      "correct_neg_abstentions": 0,
+      "total_neg": 19,
+      "neg_abstention_rate": 0.0,
+      "false_pos_abstentions": 1,
+      "total_pos": 140,
+      "false_pos_rate": 0.007142857142857143,
+      "mean_recall_at_5": 0.3190802933701236,
+      "mean_precision_at_5": 0.03743882633705184,
+      "neg_details": [
+        {
+          "id": "NEG_001",
+          "category": "outside_indexed_corpus",
+          "abstained": false,
+          "reason": "Sufficient normalized score"
+        },
+        {
+          "id": "NEG_003",
+          "category": "outside_indexed_corpus",
+          "abstained": false,
+          "reason": "Sufficient normalized score"
+        },
+        {
+          "id": "NEG_004",
+          "category": "outside_indexed_corpus",
+          "abstained": false,
+          "reason": "Sufficient normalized score"
+        },
+        {
+          "id": "NEG_006",
+          "category": "outside_indexed_corpus",
+          "abstained": false,
+          "reason": "Sufficient normalized score"
+        },
+        {
+          "id": "NEG_007",
+          "category": "absent_from_contracts",
+          "abstained": false,
+          "reason": "Sufficient normalized score"
+        },
+        {
+          "id": "NEG_009",
+          "category": "absent_from_contracts",
+          "abstained": false,
+          "reason": "Sufficient normalized score"
+        },
+        {
+          "id": "NEG_013",
+          "category": "future_events_not_established",
+          "abstained": false,
+          "reason": "Sufficient normalized score"
+        },
+        {
+          "id": "NEG_014",
+          "category": "future_events_not_established",
+          "abstained": false,
+          "reason": "Sufficient normalized score"
+        },
+        {
+          "id": "NEG_015",
+          "category": "future_events_not_established",
+          "abstained": false,
+          "reason": "Sufficient normalized score"
+        },
+        {
+          "id": "NEG_016",
+          "category": "future_events_not_established",
+          "abstained": false,
+          "reason": "Sufficient normalized score"
+        },
+        {
+          "id": "NEG_017",
+          "category": "future_events_not_established",
+          "abstained": false,
+          "reason": "Sufficient normalized score"
+        },
+        {
+          "id": "NEG_018",
+          "category": "external_business_data",
+          "abstained": false,
+          "reason": "Sufficient normalized score"
+        },
+        {
+          "id": "NEG_020",
+          "category": "external_business_data",
+          "abstained": false,
+          "reason": "Sufficient normalized score"
+        },
+        {
+          "id": "NEG_023",
+          "category": "unsupported_legal_facts",
+          "abstained": false,
+          "reason": "Sufficient normalized score"
+        },
+        {
+          "id": "NEG_024",
+          "category": "unsupported_legal_facts",
+          "abstained": false,
+          "reason": "Sufficient normalized score"
+        },
+        {
+          "id": "NEG_025",
+          "category": "unsupported_legal_facts",
+          "abstained": false,
+          "reason": "Sufficient normalized score"
+        },
+        {
+          "id": "NEG_027",
+          "category": "unsupported_legal_facts",
+          "abstained": false,
+          "reason": "Sufficient normalized score"
+        },
+        {
+          "id": "NEG_028",
+          "category": "out_of_domain",
+          "abstained": false,
+          "reason": "Sufficient normalized score"
+        },
+        {
+          "id": "NEG_032",
+          "category": "out_of_domain",
+          "abstained": false,
+          "reason": "Sufficient normalized score"
+        }
+      ]
+    }
+  },
+  {
+    "name": "norm_bm25_score_th_2.0",
+    "type": "norm_score",
+    "params": {
+      "min_norm_score": 2.0
+    },
+    "results": {
+      "correct_neg_abstentions": 4,
+      "total_neg": 19,
+      "neg_abstention_rate": 0.21052631578947367,
+      "false_pos_abstentions": 2,
+      "total_pos": 140,
+      "false_pos_rate": 0.014285714285714285,
+      "mean_recall_at_5": 0.3166932671310566,
+      "mean_precision_at_5": 0.03702295332117882,
+      "neg_details": [
+        {
+          "id": "NEG_001",
+          "category": "outside_indexed_corpus",
+          "abstained": false,
+          "reason": "Sufficient normalized score"
+        },
+        {
+          "id": "NEG_003",
+          "category": "outside_indexed_corpus",
+          "abstained": true,
+          "reason": "Normalized BM25 score 1.67 < 2.00"
+        },
+        {
+          "id": "NEG_004",
+          "category": "outside_indexed_corpus",
+          "abstained": false,
+          "reason": "Sufficient normalized score"
+        },
+        {
+          "id": "NEG_006",
+          "category": "outside_indexed_corpus",
+          "abstained": true,
+          "reason": "Normalized BM25 score 1.82 < 2.00"
+        },
+        {
+          "id": "NEG_007",
+          "category": "absent_from_contracts",
+          "abstained": false,
+          "reason": "Sufficient normalized score"
+        },
+        {
+          "id": "NEG_009",
+          "category": "absent_from_contracts",
+          "abstained": false,
+          "reason": "Sufficient normalized score"
+        },
+        {
+          "id": "NEG_013",
+          "category": "future_events_not_established",
+          "abstained": false,
+          "reason": "Sufficient normalized score"
+        },
+        {
+          "id": "NEG_014",
+          "category": "future_events_not_established",
+          "abstained": false,
+          "reason": "Sufficient normalized score"
+        },
+        {
+          "id": "NEG_015",
+          "category": "future_events_not_established",
+          "abstained": false,
+          "reason": "Sufficient normalized score"
+        },
+        {
+          "id": "NEG_016",
+          "category": "future_events_not_established",
+          "abstained": false,
+          "reason": "Sufficient normalized score"
+        },
+        {
+          "id": "NEG_017",
+          "category": "future_events_not_established",
+          "abstained": false,
+          "reason": "Sufficient normalized score"
+        },
+        {
+          "id": "NEG_018",
+          "category": "external_business_data",
+          "abstained": false,
+          "reason": "Sufficient normalized score"
+        },
+        {
+          "id": "NEG_020",
+          "category": "external_business_data",
+          "abstained": false,
+          "reason": "Sufficient normalized score"
+        },
+        {
+          "id": "NEG_023",
+          "category": "unsupported_legal_facts",
+          "abstained": true,
+          "reason": "Normalized BM25 score 1.65 < 2.00"
+        },
+        {
+          "id": "NEG_024",
+          "category": "unsupported_legal_facts",
+          "abstained": false,
+          "reason": "Sufficient normalized score"
+        },
+        {
+          "id": "NEG_025",
+          "category": "unsupported_legal_facts",
+          "abstained": false,
+          "reason": "Sufficient normalized score"
+        },
+        {
+          "id": "NEG_027",
+          "category": "unsupported_legal_facts",
+          "abstained": true,
+          "reason": "Normalized BM25 score 1.91 < 2.00"
+        },
+        {
+          "id": "NEG_028",
+          "category": "out_of_domain",
+          "abstained": false,
+          "reason": "Sufficient normalized score"
+        },
+        {
+          "id": "NEG_032",
+          "category": "out_of_domain",
+          "abstained": false,
+          "reason": "Sufficient normalized score"
+        }
+      ]
+    }
+  },
+  {
+    "name": "norm_bm25_score_th_2.5",
+    "type": "norm_score",
+    "params": {
+      "min_norm_score": 2.5
+    },
+    "results": {
+      "correct_neg_abstentions": 9,
+      "total_neg": 19,
+      "neg_abstention_rate": 0.47368421052631576,
+      "false_pos_abstentions": 5,
+      "total_pos": 140,
+      "false_pos_rate": 0.03571428571428571,
+      "mean_recall_at_5": 0.30955040998819944,
+      "mean_precision_at_5": 0.03651977871800422,
+      "neg_details": [
+        {
+          "id": "NEG_001",
+          "category": "outside_indexed_corpus",
+          "abstained": true,
+          "reason": "Normalized BM25 score 2.03 < 2.50"
+        },
+        {
+          "id": "NEG_003",
+          "category": "outside_indexed_corpus",
+          "abstained": true,
+          "reason": "Normalized BM25 score 1.67 < 2.50"
+        },
+        {
+          "id": "NEG_004",
+          "category": "outside_indexed_corpus",
+          "abstained": true,
+          "reason": "Normalized BM25 score 2.25 < 2.50"
+        },
+        {
+          "id": "NEG_006",
+          "category": "outside_indexed_corpus",
+          "abstained": true,
+          "reason": "Normalized BM25 score 1.82 < 2.50"
+        },
+        {
+          "id": "NEG_007",
+          "category": "absent_from_contracts",
+          "abstained": false,
+          "reason": "Sufficient normalized score"
+        },
+        {
+          "id": "NEG_009",
+          "category": "absent_from_contracts",
+          "abstained": false,
+          "reason": "Sufficient normalized score"
+        },
+        {
+          "id": "NEG_013",
+          "category": "future_events_not_established",
+          "abstained": false,
+          "reason": "Sufficient normalized score"
+        },
+        {
+          "id": "NEG_014",
+          "category": "future_events_not_established",
+          "abstained": true,
+          "reason": "Normalized BM25 score 2.21 < 2.50"
+        },
+        {
+          "id": "NEG_015",
+          "category": "future_events_not_established",
+          "abstained": false,
+          "reason": "Sufficient normalized score"
+        },
+        {
+          "id": "NEG_016",
+          "category": "future_events_not_established",
+          "abstained": false,
+          "reason": "Sufficient normalized score"
+        },
+        {
+          "id": "NEG_017",
+          "category": "future_events_not_established",
+          "abstained": false,
+          "reason": "Sufficient normalized score"
+        },
+        {
+          "id": "NEG_018",
+          "category": "external_business_data",
+          "abstained": false,
+          "reason": "Sufficient normalized score"
+        },
+        {
+          "id": "NEG_020",
+          "category": "external_business_data",
+          "abstained": false,
+          "reason": "Sufficient normalized score"
+        },
+        {
+          "id": "NEG_023",
+          "category": "unsupported_legal_facts",
+          "abstained": true,
+          "reason": "Normalized BM25 score 1.65 < 2.50"
+        },
+        {
+          "id": "NEG_024",
+          "category": "unsupported_legal_facts",
+          "abstained": true,
+          "reason": "Normalized BM25 score 2.09 < 2.50"
+        },
+        {
+          "id": "NEG_025",
+          "category": "unsupported_legal_facts",
+          "abstained": false,
+          "reason": "Sufficient normalized score"
+        },
+        {
+          "id": "NEG_027",
+          "category": "unsupported_legal_facts",
+          "abstained": true,
+          "reason": "Normalized BM25 score 1.91 < 2.50"
+        },
+        {
+          "id": "NEG_028",
+          "category": "out_of_domain",
+          "abstained": false,
+          "reason": "Sufficient normalized score"
+        },
+        {
+          "id": "NEG_032",
+          "category": "out_of_domain",
+          "abstained": true,
+          "reason": "Normalized BM25 score 2.41 < 2.50"
+        }
+      ]
+    }
+  },
+  {
+    "name": "norm_bm25_score_th_3.0",
+    "type": "norm_score",
+    "params": {
+      "min_norm_score": 3.0
+    },
+    "results": {
+      "correct_neg_abstentions": 10,
+      "total_neg": 19,
+      "neg_abstention_rate": 0.5263157894736842,
+      "false_pos_abstentions": 10,
+      "total_pos": 140,
+      "false_pos_rate": 0.07142857142857142,
+      "mean_recall_at_5": 0.3003312691577629,
+      "mean_precision_at_5": 0.03539496668792902,
+      "neg_details": [
+        {
+          "id": "NEG_001",
+          "category": "outside_indexed_corpus",
+          "abstained": true,
+          "reason": "Normalized BM25 score 2.03 < 3.00"
+        },
+        {
+          "id": "NEG_003",
+          "category": "outside_indexed_corpus",
+          "abstained": true,
+          "reason": "Normalized BM25 score 1.67 < 3.00"
+        },
+        {
+          "id": "NEG_004",
+          "category": "outside_indexed_corpus",
+          "abstained": true,
+          "reason": "Normalized BM25 score 2.25 < 3.00"
+        },
+        {
+          "id": "NEG_006",
+          "category": "outside_indexed_corpus",
+          "abstained": true,
+          "reason": "Normalized BM25 score 1.82 < 3.00"
+        },
+        {
+          "id": "NEG_007",
+          "category": "absent_from_contracts",
+          "abstained": false,
+          "reason": "Sufficient normalized score"
+        },
+        {
+          "id": "NEG_009",
+          "category": "absent_from_contracts",
+          "abstained": false,
+          "reason": "Sufficient normalized score"
+        },
+        {
+          "id": "NEG_013",
+          "category": "future_events_not_established",
+          "abstained": false,
+          "reason": "Sufficient normalized score"
+        },
+        {
+          "id": "NEG_014",
+          "category": "future_events_not_established",
+          "abstained": true,
+          "reason": "Normalized BM25 score 2.21 < 3.00"
+        },
+        {
+          "id": "NEG_015",
+          "category": "future_events_not_established",
+          "abstained": false,
+          "reason": "Sufficient normalized score"
+        },
+        {
+          "id": "NEG_016",
+          "category": "future_events_not_established",
+          "abstained": false,
+          "reason": "Sufficient normalized score"
+        },
+        {
+          "id": "NEG_017",
+          "category": "future_events_not_established",
+          "abstained": true,
+          "reason": "Normalized BM25 score 2.59 < 3.00"
+        },
+        {
+          "id": "NEG_018",
+          "category": "external_business_data",
+          "abstained": false,
+          "reason": "Sufficient normalized score"
+        },
+        {
+          "id": "NEG_020",
+          "category": "external_business_data",
+          "abstained": false,
+          "reason": "Sufficient normalized score"
+        },
+        {
+          "id": "NEG_023",
+          "category": "unsupported_legal_facts",
+          "abstained": true,
+          "reason": "Normalized BM25 score 1.65 < 3.00"
+        },
+        {
+          "id": "NEG_024",
+          "category": "unsupported_legal_facts",
+          "abstained": true,
+          "reason": "Normalized BM25 score 2.09 < 3.00"
+        },
+        {
+          "id": "NEG_025",
+          "category": "unsupported_legal_facts",
+          "abstained": false,
+          "reason": "Sufficient normalized score"
+        },
+        {
+          "id": "NEG_027",
+          "category": "unsupported_legal_facts",
+          "abstained": true,
+          "reason": "Normalized BM25 score 1.91 < 3.00"
+        },
+        {
+          "id": "NEG_028",
+          "category": "out_of_domain",
+          "abstained": false,
+          "reason": "Sufficient normalized score"
+        },
+        {
+          "id": "NEG_032",
+          "category": "out_of_domain",
+          "abstained": true,
+          "reason": "Normalized BM25 score 2.41 < 3.00"
+        }
+      ]
+    }
+  },
+  {
+    "name": "hybrid_overlap_0.2_score_8.0",
+    "type": "hybrid_overlap_score",
+    "params": {
+      "min_overlap": 0.2,
+      "min_top1": 8.0
+    },
+    "results": {
+      "correct_neg_abstentions": 7,
+      "total_neg": 19,
+      "neg_abstention_rate": 0.3684210526315789,
+      "false_pos_abstentions": 39,
+      "total_pos": 140,
+      "false_pos_rate": 0.2785714285714286,
+      "mean_recall_at_5": 0.2912635973641544,
+      "mean_precision_at_5": 0.032833757816372135,
+      "neg_details": [
+        {
+          "id": "NEG_001",
+          "category": "outside_indexed_corpus",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_003",
+          "category": "outside_indexed_corpus",
+          "abstained": true,
+          "reason": "Content overlap 0.12 < 0.20"
+        },
+        {
+          "id": "NEG_004",
+          "category": "outside_indexed_corpus",
+          "abstained": true,
+          "reason": "Content overlap 0.12 < 0.20"
+        },
+        {
+          "id": "NEG_006",
+          "category": "outside_indexed_corpus",
+          "abstained": true,
+          "reason": "Content overlap 0.12 < 0.20"
+        },
+        {
+          "id": "NEG_007",
+          "category": "absent_from_contracts",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_009",
+          "category": "absent_from_contracts",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_013",
+          "category": "future_events_not_established",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_014",
+          "category": "future_events_not_established",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_015",
+          "category": "future_events_not_established",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_016",
+          "category": "future_events_not_established",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_017",
+          "category": "future_events_not_established",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_018",
+          "category": "external_business_data",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_020",
+          "category": "external_business_data",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_023",
+          "category": "unsupported_legal_facts",
+          "abstained": true,
+          "reason": "Content overlap 0.09 < 0.20"
+        },
+        {
+          "id": "NEG_024",
+          "category": "unsupported_legal_facts",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_025",
+          "category": "unsupported_legal_facts",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_027",
+          "category": "unsupported_legal_facts",
+          "abstained": true,
+          "reason": "Content overlap 0.09 < 0.20"
+        },
+        {
+          "id": "NEG_028",
+          "category": "out_of_domain",
+          "abstained": true,
+          "reason": "Content overlap 0.17 < 0.20"
+        },
+        {
+          "id": "NEG_032",
+          "category": "out_of_domain",
+          "abstained": true,
+          "reason": "Content overlap 0.12 < 0.20"
+        }
+      ]
+    }
+  },
+  {
+    "name": "hybrid_overlap_0.2_score_10.0",
+    "type": "hybrid_overlap_score",
+    "params": {
+      "min_overlap": 0.2,
+      "min_top1": 10.0
+    },
+    "results": {
+      "correct_neg_abstentions": 7,
+      "total_neg": 19,
+      "neg_abstention_rate": 0.3684210526315789,
+      "false_pos_abstentions": 63,
+      "total_pos": 140,
+      "false_pos_rate": 0.45,
+      "mean_recall_at_5": 0.23173371398223028,
+      "mean_precision_at_5": 0.026686781626220006,
+      "neg_details": [
+        {
+          "id": "NEG_001",
+          "category": "outside_indexed_corpus",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_003",
+          "category": "outside_indexed_corpus",
+          "abstained": true,
+          "reason": "Content overlap 0.12 < 0.20"
+        },
+        {
+          "id": "NEG_004",
+          "category": "outside_indexed_corpus",
+          "abstained": true,
+          "reason": "Content overlap 0.12 < 0.20"
+        },
+        {
+          "id": "NEG_006",
+          "category": "outside_indexed_corpus",
+          "abstained": true,
+          "reason": "Content overlap 0.12 < 0.20"
+        },
+        {
+          "id": "NEG_007",
+          "category": "absent_from_contracts",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_009",
+          "category": "absent_from_contracts",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_013",
+          "category": "future_events_not_established",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_014",
+          "category": "future_events_not_established",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_015",
+          "category": "future_events_not_established",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_016",
+          "category": "future_events_not_established",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_017",
+          "category": "future_events_not_established",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_018",
+          "category": "external_business_data",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_020",
+          "category": "external_business_data",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_023",
+          "category": "unsupported_legal_facts",
+          "abstained": true,
+          "reason": "Content overlap 0.09 < 0.20"
+        },
+        {
+          "id": "NEG_024",
+          "category": "unsupported_legal_facts",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_025",
+          "category": "unsupported_legal_facts",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_027",
+          "category": "unsupported_legal_facts",
+          "abstained": true,
+          "reason": "Content overlap 0.09 < 0.20"
+        },
+        {
+          "id": "NEG_028",
+          "category": "out_of_domain",
+          "abstained": true,
+          "reason": "Content overlap 0.17 < 0.20"
+        },
+        {
+          "id": "NEG_032",
+          "category": "out_of_domain",
+          "abstained": true,
+          "reason": "Content overlap 0.12 < 0.20"
+        }
+      ]
+    }
+  },
+  {
+    "name": "hybrid_overlap_0.2_score_12.0",
+    "type": "hybrid_overlap_score",
+    "params": {
+      "min_overlap": 0.2,
+      "min_top1": 12.0
+    },
+    "results": {
+      "correct_neg_abstentions": 7,
+      "total_neg": 19,
+      "neg_abstention_rate": 0.3684210526315789,
+      "false_pos_abstentions": 89,
+      "total_pos": 140,
+      "false_pos_rate": 0.6357142857142857,
+      "mean_recall_at_5": 0.15805759453592572,
+      "mean_precision_at_5": 0.02007649282680022,
+      "neg_details": [
+        {
+          "id": "NEG_001",
+          "category": "outside_indexed_corpus",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_003",
+          "category": "outside_indexed_corpus",
+          "abstained": true,
+          "reason": "Content overlap 0.12 < 0.20"
+        },
+        {
+          "id": "NEG_004",
+          "category": "outside_indexed_corpus",
+          "abstained": true,
+          "reason": "Content overlap 0.12 < 0.20"
+        },
+        {
+          "id": "NEG_006",
+          "category": "outside_indexed_corpus",
+          "abstained": true,
+          "reason": "Content overlap 0.12 < 0.20"
+        },
+        {
+          "id": "NEG_007",
+          "category": "absent_from_contracts",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_009",
+          "category": "absent_from_contracts",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_013",
+          "category": "future_events_not_established",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_014",
+          "category": "future_events_not_established",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_015",
+          "category": "future_events_not_established",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_016",
+          "category": "future_events_not_established",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_017",
+          "category": "future_events_not_established",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_018",
+          "category": "external_business_data",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_020",
+          "category": "external_business_data",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_023",
+          "category": "unsupported_legal_facts",
+          "abstained": true,
+          "reason": "Content overlap 0.09 < 0.20"
+        },
+        {
+          "id": "NEG_024",
+          "category": "unsupported_legal_facts",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_025",
+          "category": "unsupported_legal_facts",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_027",
+          "category": "unsupported_legal_facts",
+          "abstained": true,
+          "reason": "Content overlap 0.09 < 0.20"
+        },
+        {
+          "id": "NEG_028",
+          "category": "out_of_domain",
+          "abstained": true,
+          "reason": "Content overlap 0.17 < 0.20"
+        },
+        {
+          "id": "NEG_032",
+          "category": "out_of_domain",
+          "abstained": true,
+          "reason": "Content overlap 0.12 < 0.20"
+        }
+      ]
+    }
+  },
+  {
+    "name": "hybrid_overlap_0.25_score_8.0",
+    "type": "hybrid_overlap_score",
+    "params": {
+      "min_overlap": 0.25,
+      "min_top1": 8.0
+    },
+    "results": {
+      "correct_neg_abstentions": 8,
+      "total_neg": 19,
+      "neg_abstention_rate": 0.42105263157894735,
+      "false_pos_abstentions": 41,
+      "total_pos": 140,
+      "false_pos_rate": 0.29285714285714287,
+      "mean_recall_at_5": 0.2888765711250873,
+      "mean_precision_at_5": 0.03241788480049912,
+      "neg_details": [
+        {
+          "id": "NEG_001",
+          "category": "outside_indexed_corpus",
+          "abstained": true,
+          "reason": "Content overlap 0.20 < 0.25"
+        },
+        {
+          "id": "NEG_003",
+          "category": "outside_indexed_corpus",
+          "abstained": true,
+          "reason": "Content overlap 0.12 < 0.25"
+        },
+        {
+          "id": "NEG_004",
+          "category": "outside_indexed_corpus",
+          "abstained": true,
+          "reason": "Content overlap 0.12 < 0.25"
+        },
+        {
+          "id": "NEG_006",
+          "category": "outside_indexed_corpus",
+          "abstained": true,
+          "reason": "Content overlap 0.12 < 0.25"
+        },
+        {
+          "id": "NEG_007",
+          "category": "absent_from_contracts",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_009",
+          "category": "absent_from_contracts",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_013",
+          "category": "future_events_not_established",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_014",
+          "category": "future_events_not_established",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_015",
+          "category": "future_events_not_established",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_016",
+          "category": "future_events_not_established",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_017",
+          "category": "future_events_not_established",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_018",
+          "category": "external_business_data",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_020",
+          "category": "external_business_data",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_023",
+          "category": "unsupported_legal_facts",
+          "abstained": true,
+          "reason": "Content overlap 0.09 < 0.25"
+        },
+        {
+          "id": "NEG_024",
+          "category": "unsupported_legal_facts",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_025",
+          "category": "unsupported_legal_facts",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_027",
+          "category": "unsupported_legal_facts",
+          "abstained": true,
+          "reason": "Content overlap 0.09 < 0.25"
+        },
+        {
+          "id": "NEG_028",
+          "category": "out_of_domain",
+          "abstained": true,
+          "reason": "Content overlap 0.17 < 0.25"
+        },
+        {
+          "id": "NEG_032",
+          "category": "out_of_domain",
+          "abstained": true,
+          "reason": "Content overlap 0.12 < 0.25"
+        }
+      ]
+    }
+  },
+  {
+    "name": "hybrid_overlap_0.25_score_10.0",
+    "type": "hybrid_overlap_score",
+    "params": {
+      "min_overlap": 0.25,
+      "min_top1": 10.0
+    },
+    "results": {
+      "correct_neg_abstentions": 8,
+      "total_neg": 19,
+      "neg_abstention_rate": 0.42105263157894735,
+      "false_pos_abstentions": 64,
+      "total_pos": 140,
+      "false_pos_rate": 0.45714285714285713,
+      "mean_recall_at_5": 0.23173371398223028,
+      "mean_precision_at_5": 0.026686781626220006,
+      "neg_details": [
+        {
+          "id": "NEG_001",
+          "category": "outside_indexed_corpus",
+          "abstained": true,
+          "reason": "Content overlap 0.20 < 0.25"
+        },
+        {
+          "id": "NEG_003",
+          "category": "outside_indexed_corpus",
+          "abstained": true,
+          "reason": "Content overlap 0.12 < 0.25"
+        },
+        {
+          "id": "NEG_004",
+          "category": "outside_indexed_corpus",
+          "abstained": true,
+          "reason": "Content overlap 0.12 < 0.25"
+        },
+        {
+          "id": "NEG_006",
+          "category": "outside_indexed_corpus",
+          "abstained": true,
+          "reason": "Content overlap 0.12 < 0.25"
+        },
+        {
+          "id": "NEG_007",
+          "category": "absent_from_contracts",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_009",
+          "category": "absent_from_contracts",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_013",
+          "category": "future_events_not_established",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_014",
+          "category": "future_events_not_established",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_015",
+          "category": "future_events_not_established",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_016",
+          "category": "future_events_not_established",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_017",
+          "category": "future_events_not_established",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_018",
+          "category": "external_business_data",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_020",
+          "category": "external_business_data",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_023",
+          "category": "unsupported_legal_facts",
+          "abstained": true,
+          "reason": "Content overlap 0.09 < 0.25"
+        },
+        {
+          "id": "NEG_024",
+          "category": "unsupported_legal_facts",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_025",
+          "category": "unsupported_legal_facts",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_027",
+          "category": "unsupported_legal_facts",
+          "abstained": true,
+          "reason": "Content overlap 0.09 < 0.25"
+        },
+        {
+          "id": "NEG_028",
+          "category": "out_of_domain",
+          "abstained": true,
+          "reason": "Content overlap 0.17 < 0.25"
+        },
+        {
+          "id": "NEG_032",
+          "category": "out_of_domain",
+          "abstained": true,
+          "reason": "Content overlap 0.12 < 0.25"
+        }
+      ]
+    }
+  },
+  {
+    "name": "hybrid_overlap_0.25_score_12.0",
+    "type": "hybrid_overlap_score",
+    "params": {
+      "min_overlap": 0.25,
+      "min_top1": 12.0
+    },
+    "results": {
+      "correct_neg_abstentions": 8,
+      "total_neg": 19,
+      "neg_abstention_rate": 0.42105263157894735,
+      "false_pos_abstentions": 90,
+      "total_pos": 140,
+      "false_pos_rate": 0.6428571428571429,
+      "mean_recall_at_5": 0.15805759453592572,
+      "mean_precision_at_5": 0.02007649282680022,
+      "neg_details": [
+        {
+          "id": "NEG_001",
+          "category": "outside_indexed_corpus",
+          "abstained": true,
+          "reason": "Content overlap 0.20 < 0.25"
+        },
+        {
+          "id": "NEG_003",
+          "category": "outside_indexed_corpus",
+          "abstained": true,
+          "reason": "Content overlap 0.12 < 0.25"
+        },
+        {
+          "id": "NEG_004",
+          "category": "outside_indexed_corpus",
+          "abstained": true,
+          "reason": "Content overlap 0.12 < 0.25"
+        },
+        {
+          "id": "NEG_006",
+          "category": "outside_indexed_corpus",
+          "abstained": true,
+          "reason": "Content overlap 0.12 < 0.25"
+        },
+        {
+          "id": "NEG_007",
+          "category": "absent_from_contracts",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_009",
+          "category": "absent_from_contracts",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_013",
+          "category": "future_events_not_established",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_014",
+          "category": "future_events_not_established",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_015",
+          "category": "future_events_not_established",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_016",
+          "category": "future_events_not_established",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_017",
+          "category": "future_events_not_established",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_018",
+          "category": "external_business_data",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_020",
+          "category": "external_business_data",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_023",
+          "category": "unsupported_legal_facts",
+          "abstained": true,
+          "reason": "Content overlap 0.09 < 0.25"
+        },
+        {
+          "id": "NEG_024",
+          "category": "unsupported_legal_facts",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_025",
+          "category": "unsupported_legal_facts",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_027",
+          "category": "unsupported_legal_facts",
+          "abstained": true,
+          "reason": "Content overlap 0.09 < 0.25"
+        },
+        {
+          "id": "NEG_028",
+          "category": "out_of_domain",
+          "abstained": true,
+          "reason": "Content overlap 0.17 < 0.25"
+        },
+        {
+          "id": "NEG_032",
+          "category": "out_of_domain",
+          "abstained": true,
+          "reason": "Content overlap 0.12 < 0.25"
+        }
+      ]
+    }
+  },
+  {
+    "name": "combined_norm_2.0_coverage_guard",
+    "type": "combined_norm_coverage",
+    "params": {
+      "min_norm_score": 2.0,
+      "min_words_for_guard": 5,
+      "max_matched_for_guard": 1
+    },
+    "results": {
+      "correct_neg_abstentions": 7,
+      "total_neg": 19,
+      "neg_abstention_rate": 0.3684210526315789,
+      "false_pos_abstentions": 3,
+      "total_pos": 140,
+      "false_pos_rate": 0.02142857142857143,
+      "mean_recall_at_5": 0.3166932671310566,
+      "mean_precision_at_5": 0.03702295332117882,
+      "neg_details": [
+        {
+          "id": "NEG_001",
+          "category": "outside_indexed_corpus",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_003",
+          "category": "outside_indexed_corpus",
+          "abstained": true,
+          "reason": "Normalized BM25 score 1.67 < 2.00"
+        },
+        {
+          "id": "NEG_004",
+          "category": "outside_indexed_corpus",
+          "abstained": true,
+          "reason": "Only 1 content words matched out of 8"
+        },
+        {
+          "id": "NEG_006",
+          "category": "outside_indexed_corpus",
+          "abstained": true,
+          "reason": "Normalized BM25 score 1.82 < 2.00"
+        },
+        {
+          "id": "NEG_007",
+          "category": "absent_from_contracts",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_009",
+          "category": "absent_from_contracts",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_013",
+          "category": "future_events_not_established",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_014",
+          "category": "future_events_not_established",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_015",
+          "category": "future_events_not_established",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_016",
+          "category": "future_events_not_established",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_017",
+          "category": "future_events_not_established",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_018",
+          "category": "external_business_data",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_020",
+          "category": "external_business_data",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_023",
+          "category": "unsupported_legal_facts",
+          "abstained": true,
+          "reason": "Normalized BM25 score 1.65 < 2.00"
+        },
+        {
+          "id": "NEG_024",
+          "category": "unsupported_legal_facts",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_025",
+          "category": "unsupported_legal_facts",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_027",
+          "category": "unsupported_legal_facts",
+          "abstained": true,
+          "reason": "Normalized BM25 score 1.91 < 2.00"
+        },
+        {
+          "id": "NEG_028",
+          "category": "out_of_domain",
+          "abstained": true,
+          "reason": "Only 1 content words matched out of 6"
+        },
+        {
+          "id": "NEG_032",
+          "category": "out_of_domain",
+          "abstained": true,
+          "reason": "Only 1 content words matched out of 8"
+        }
+      ]
+    }
+  },
+  {
+    "name": "combined_norm_2.2_coverage_guard",
+    "type": "combined_norm_coverage",
+    "params": {
+      "min_norm_score": 2.2,
+      "min_words_for_guard": 5,
+      "max_matched_for_guard": 1
+    },
+    "results": {
+      "correct_neg_abstentions": 9,
+      "total_neg": 19,
+      "neg_abstention_rate": 0.47368421052631576,
+      "false_pos_abstentions": 4,
+      "total_pos": 140,
+      "false_pos_rate": 0.02857142857142857,
+      "mean_recall_at_5": 0.3166932671310566,
+      "mean_precision_at_5": 0.03702295332117882,
+      "neg_details": [
+        {
+          "id": "NEG_001",
+          "category": "outside_indexed_corpus",
+          "abstained": true,
+          "reason": "Normalized BM25 score 2.03 < 2.20"
+        },
+        {
+          "id": "NEG_003",
+          "category": "outside_indexed_corpus",
+          "abstained": true,
+          "reason": "Normalized BM25 score 1.67 < 2.20"
+        },
+        {
+          "id": "NEG_004",
+          "category": "outside_indexed_corpus",
+          "abstained": true,
+          "reason": "Only 1 content words matched out of 8"
+        },
+        {
+          "id": "NEG_006",
+          "category": "outside_indexed_corpus",
+          "abstained": true,
+          "reason": "Normalized BM25 score 1.82 < 2.20"
+        },
+        {
+          "id": "NEG_007",
+          "category": "absent_from_contracts",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_009",
+          "category": "absent_from_contracts",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_013",
+          "category": "future_events_not_established",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_014",
+          "category": "future_events_not_established",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_015",
+          "category": "future_events_not_established",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_016",
+          "category": "future_events_not_established",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_017",
+          "category": "future_events_not_established",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_018",
+          "category": "external_business_data",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_020",
+          "category": "external_business_data",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_023",
+          "category": "unsupported_legal_facts",
+          "abstained": true,
+          "reason": "Normalized BM25 score 1.65 < 2.20"
+        },
+        {
+          "id": "NEG_024",
+          "category": "unsupported_legal_facts",
+          "abstained": true,
+          "reason": "Normalized BM25 score 2.09 < 2.20"
+        },
+        {
+          "id": "NEG_025",
+          "category": "unsupported_legal_facts",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_027",
+          "category": "unsupported_legal_facts",
+          "abstained": true,
+          "reason": "Normalized BM25 score 1.91 < 2.20"
+        },
+        {
+          "id": "NEG_028",
+          "category": "out_of_domain",
+          "abstained": true,
+          "reason": "Only 1 content words matched out of 6"
+        },
+        {
+          "id": "NEG_032",
+          "category": "out_of_domain",
+          "abstained": true,
+          "reason": "Only 1 content words matched out of 8"
+        }
+      ]
+    }
+  },
+  {
+    "name": "combined_norm_2.4_coverage_guard",
+    "type": "combined_norm_coverage",
+    "params": {
+      "min_norm_score": 2.4,
+      "min_words_for_guard": 5,
+      "max_matched_for_guard": 1
+    },
+    "results": {
+      "correct_neg_abstentions": 10,
+      "total_neg": 19,
+      "neg_abstention_rate": 0.5263157894736842,
+      "false_pos_abstentions": 5,
+      "total_pos": 140,
+      "false_pos_rate": 0.03571428571428571,
+      "mean_recall_at_5": 0.30955040998819944,
+      "mean_precision_at_5": 0.03651977871800422,
+      "neg_details": [
+        {
+          "id": "NEG_001",
+          "category": "outside_indexed_corpus",
+          "abstained": true,
+          "reason": "Normalized BM25 score 2.03 < 2.40"
+        },
+        {
+          "id": "NEG_003",
+          "category": "outside_indexed_corpus",
+          "abstained": true,
+          "reason": "Normalized BM25 score 1.67 < 2.40"
+        },
+        {
+          "id": "NEG_004",
+          "category": "outside_indexed_corpus",
+          "abstained": true,
+          "reason": "Normalized BM25 score 2.25 < 2.40"
+        },
+        {
+          "id": "NEG_006",
+          "category": "outside_indexed_corpus",
+          "abstained": true,
+          "reason": "Normalized BM25 score 1.82 < 2.40"
+        },
+        {
+          "id": "NEG_007",
+          "category": "absent_from_contracts",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_009",
+          "category": "absent_from_contracts",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_013",
+          "category": "future_events_not_established",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_014",
+          "category": "future_events_not_established",
+          "abstained": true,
+          "reason": "Normalized BM25 score 2.21 < 2.40"
+        },
+        {
+          "id": "NEG_015",
+          "category": "future_events_not_established",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_016",
+          "category": "future_events_not_established",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_017",
+          "category": "future_events_not_established",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_018",
+          "category": "external_business_data",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_020",
+          "category": "external_business_data",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_023",
+          "category": "unsupported_legal_facts",
+          "abstained": true,
+          "reason": "Normalized BM25 score 1.65 < 2.40"
+        },
+        {
+          "id": "NEG_024",
+          "category": "unsupported_legal_facts",
+          "abstained": true,
+          "reason": "Normalized BM25 score 2.09 < 2.40"
+        },
+        {
+          "id": "NEG_025",
+          "category": "unsupported_legal_facts",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_027",
+          "category": "unsupported_legal_facts",
+          "abstained": true,
+          "reason": "Normalized BM25 score 1.91 < 2.40"
+        },
+        {
+          "id": "NEG_028",
+          "category": "out_of_domain",
+          "abstained": true,
+          "reason": "Only 1 content words matched out of 6"
+        },
+        {
+          "id": "NEG_032",
+          "category": "out_of_domain",
+          "abstained": true,
+          "reason": "Only 1 content words matched out of 8"
+        }
+      ]
+    }
+  },
+  {
+    "name": "combined_norm_2.5_coverage_guard",
+    "type": "combined_norm_coverage",
+    "params": {
+      "min_norm_score": 2.5,
+      "min_words_for_guard": 5,
+      "max_matched_for_guard": 1
+    },
+    "results": {
+      "correct_neg_abstentions": 10,
+      "total_neg": 19,
+      "neg_abstention_rate": 0.5263157894736842,
+      "false_pos_abstentions": 6,
+      "total_pos": 140,
+      "false_pos_rate": 0.04285714285714286,
+      "mean_recall_at_5": 0.30955040998819944,
+      "mean_precision_at_5": 0.03651977871800422,
+      "neg_details": [
+        {
+          "id": "NEG_001",
+          "category": "outside_indexed_corpus",
+          "abstained": true,
+          "reason": "Normalized BM25 score 2.03 < 2.50"
+        },
+        {
+          "id": "NEG_003",
+          "category": "outside_indexed_corpus",
+          "abstained": true,
+          "reason": "Normalized BM25 score 1.67 < 2.50"
+        },
+        {
+          "id": "NEG_004",
+          "category": "outside_indexed_corpus",
+          "abstained": true,
+          "reason": "Normalized BM25 score 2.25 < 2.50"
+        },
+        {
+          "id": "NEG_006",
+          "category": "outside_indexed_corpus",
+          "abstained": true,
+          "reason": "Normalized BM25 score 1.82 < 2.50"
+        },
+        {
+          "id": "NEG_007",
+          "category": "absent_from_contracts",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_009",
+          "category": "absent_from_contracts",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_013",
+          "category": "future_events_not_established",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_014",
+          "category": "future_events_not_established",
+          "abstained": true,
+          "reason": "Normalized BM25 score 2.21 < 2.50"
+        },
+        {
+          "id": "NEG_015",
+          "category": "future_events_not_established",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_016",
+          "category": "future_events_not_established",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_017",
+          "category": "future_events_not_established",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_018",
+          "category": "external_business_data",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_020",
+          "category": "external_business_data",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_023",
+          "category": "unsupported_legal_facts",
+          "abstained": true,
+          "reason": "Normalized BM25 score 1.65 < 2.50"
+        },
+        {
+          "id": "NEG_024",
+          "category": "unsupported_legal_facts",
+          "abstained": true,
+          "reason": "Normalized BM25 score 2.09 < 2.50"
+        },
+        {
+          "id": "NEG_025",
+          "category": "unsupported_legal_facts",
+          "abstained": false,
+          "reason": "Sufficient evidence"
+        },
+        {
+          "id": "NEG_027",
+          "category": "unsupported_legal_facts",
+          "abstained": true,
+          "reason": "Normalized BM25 score 1.91 < 2.50"
+        },
+        {
+          "id": "NEG_028",
+          "category": "out_of_domain",
+          "abstained": true,
+          "reason": "Only 1 content words matched out of 6"
+        },
+        {
+          "id": "NEG_032",
+          "category": "out_of_domain",
+          "abstained": true,
+          "reason": "Normalized BM25 score 2.41 < 2.50"
+        }
+      ]
+    }
+  }
+]
