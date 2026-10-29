@@ -1,7 +1,7 @@
 """Streamlit Web Application for JioStar Contract Intelligence Assistant.
 
-Evidence-Based Legal Clause Retrieval with verifiable character-offset evidence,
-interactive baseline vs final pipeline comparison, and evaluation history dashboard.
+Evidence-Based Legal Clause Retrieval with verifiable character-offset evidence
+and historical evaluation results dashboard.
 """
 
 import json
@@ -100,17 +100,6 @@ st.markdown(
         color: #111827;
         margin-top: 0.6rem;
     }
-    .pipeline-header {
-        font-size: 1.15rem;
-        font-weight: 700;
-        color: #1E3A8A;
-        margin-bottom: 0.2rem;
-    }
-    .pipeline-meta {
-        font-size: 0.85rem;
-        color: #4B5563;
-        margin-bottom: 0.8rem;
-    }
     </style>
     """,
     unsafe_allow_html=True,
@@ -155,7 +144,7 @@ def load_official_test_metrics():
         return json.load(f)
 
 
-def render_passage_card(p, pipeline, rank=None, key_suffix=""):
+def render_passage_card(p, pipeline, rank=None):
     """Render a single ranked contract passage card with exact offset validation."""
     doc = p["document"]
     score = p["score"]
@@ -306,181 +295,59 @@ def main():
         )
         st.write(f"• **Query Processing**: {qp_label}")
 
-    # Main Page: Tabbed Interface for Standard Search vs Direct Pipeline Comparison
-    search_tab, compare_tab = st.tabs(["🔍 Standard Search", "⚖️ Compare Baseline vs Final"])
+    # Standard Search Interface (Single Main Search Mode)
+    sample_queries = [
+        "Highlight the parts related to Exclusivity.",
+        "What is the governing law of this agreement?",
+        "Highlight the parts related to Termination for Convenience.",
+        "What is the airspeed velocity of an unladen European swallow? (Unanswerable)",
+        "What are Microsoft's service level agreements for Azure? (Outside Corpus)",
+    ]
+    selected_sample = st.selectbox(
+        "Select a sample query to test:",
+        ["(Custom Query)"] + sample_queries,
+        key="standard_sample_select",
+    )
 
-    # -------------------------------------------------------------
-    # TAB 1: STANDARD SEARCH MODE
-    # -------------------------------------------------------------
-    with search_tab:
-        st.markdown("---")
-        sample_queries = [
-            "Highlight the parts related to Exclusivity.",
-            "What is the governing law of this agreement?",
-            "Highlight the parts related to Termination for Convenience.",
-            "What is the airspeed velocity of an unladen European swallow? (Unanswerable)",
-            "What are Microsoft's service level agreements for Azure? (Outside Corpus)",
-        ]
-        selected_sample = st.selectbox(
-            "Select a sample query to test:",
-            ["(Custom Query)"] + sample_queries,
-            key="standard_sample_select",
-        )
+    default_text = "" if selected_sample == "(Custom Query)" else selected_sample
+    query = st.text_input(
+        "Enter legal query or contractual topic:",
+        value=default_text,
+        placeholder="e.g., Highlight clauses concerning non-solicitation or audit rights.",
+        key="standard_query_input",
+    )
 
-        default_text = "" if selected_sample == "(Custom Query)" else selected_sample
-        query = st.text_input(
-            "Enter legal query or contractual topic:",
-            value=default_text,
-            placeholder="e.g., Highlight clauses concerning non-solicitation or audit rights.",
-            key="standard_query_input",
-        )
+    col1, col2 = st.columns([1, 5])
+    with col1:
+        search_button = st.button("Search Clauses", type="primary", use_container_width=True, key="standard_search_btn")
 
-        col1, col2 = st.columns([1, 5])
-        with col1:
-            search_button = st.button("Search Clauses", type="primary", use_container_width=True, key="standard_search_btn")
+    if search_button or query:
+        if not query.strip():
+            st.warning("Please enter a non-empty query string.")
+        else:
+            with st.spinner("Searching indexed contractual clauses..."):
+                result = pipeline.search(query=query.strip(), top_k=top_k)
 
-        if search_button or query:
-            if not query.strip():
-                st.warning("Please enter a non-empty query string.")
-            else:
-                with st.spinner("Searching indexed contractual clauses..."):
-                    result = pipeline.search(query=query.strip(), top_k=top_k)
-
-                # Status and Results display
-                if result["status"] == "invalid_query":
-                    st.warning(f"Invalid query: {result['abstention_rationale']}")
-                elif result["status"] == "system_error":
-                    st.error(f"Search error: {result['abstention_rationale']}")
-                elif result["abstained"] or not result["passages"]:
-                    st.info(
-                        f"**No Relevant Clause Found (Abstained)**\n\n"
-                        f"{result['abstention_rationale']}\n\n"
-                        f"*The system abstained from returning unverified evidence because no candidate clause met the calibrated relevance and evidence criteria.*"
-                    )
-                else:
-                    st.success(
-                        f"Found **{result['returned_count']}** relevant passage(s) for query: *\"{query}\"*"
-                    )
-                    for p in result["passages"]:
-                        render_passage_card(p, pipeline, rank=p["rank"], key_suffix="_single")
-
-    # -------------------------------------------------------------
-    # TAB 2: BASELINE VS FINAL PIPELINE COMPARISON MODE
-    # -------------------------------------------------------------
-    with compare_tab:
-        st.markdown("---")
-        st.subheader("Direct Side-by-Side Pipeline Comparison")
-        st.markdown(
-            "Submit any legal question to run both the **Baseline BM25 Pipeline** (`configs/baseline.yaml`) "
-            "and the **Final Selected Pipeline** (`configs/final.yaml`) simultaneously and compare their retrieved "
-            "evidence, ranking scores, and abstention decisions."
-        )
-
-        comp_col1, comp_col2 = st.columns([4, 1])
-        with comp_col1:
-            comp_sample = st.selectbox(
-                "Select an example query for comparison:",
-                [
-                    "(Custom Query)",
-                    "Which agreements contain confidentiality obligations?",
-                    "Highlight the parts related to Exclusivity.",
-                    "What is the governing law of this agreement?",
-                    "Highlight the parts related to Termination for Convenience.",
-                    "What is the airspeed velocity of an unladen European swallow? (Unanswerable)",
-                    "What is the best recipe for making a Margherita pizza? (Out-of-Domain Smoke Test)",
-                ],
-                key="comp_sample_select",
-            )
-        with comp_col2:
-            comp_top_k = st.number_input(
-                "Comparison Top-K",
-                min_value=1,
-                max_value=10,
-                value=pipeline.default_top_k,
-                step=1,
-                key="comp_top_k_input",
-            )
-
-        comp_default = "" if comp_sample == "(Custom Query)" else comp_sample
-        comp_query = st.text_input(
-            "Enter legal query or contractual topic for comparative retrieval:",
-            value=comp_default,
-            key="comp_query_input",
-            placeholder="e.g., Which agreements contain indemnification provisions or caps on liability?",
-        )
-
-        comp_btn = st.button("Compare Pipelines", type="primary", use_container_width=True, key="comp_run_btn")
-
-        if comp_btn or (comp_query and comp_sample != "(Custom Query)"):
-            if not comp_query.strip():
-                st.warning("Please enter a non-empty query string for comparison.")
-            else:
-                base_p = get_cached_pipeline("configs/baseline.yaml")
-                final_p = get_cached_pipeline("configs/final.yaml")
-
-                with st.spinner("Executing parallel retrieval across baseline and final pipelines..."):
-                    base_res = base_p.search(query=comp_query.strip(), top_k=int(comp_top_k))
-                    final_res = final_p.search(query=comp_query.strip(), top_k=int(comp_top_k))
-
-                col_left, col_right = st.columns(2)
-
-                # Column 1: Baseline BM25
-                with col_left:
-                    st.markdown('<div class="pipeline-header">🏛️ Baseline BM25 Pipeline</div>', unsafe_allow_html=True)
-                    st.markdown(
-                        '<div class="pipeline-meta"><code>configs/baseline.yaml</code> • Fixed 800-char chunks • '
-                        'k1=1.5, b=0.75 • Direct Query • Raw BM25 Threshold (0.00)</div>',
-                        unsafe_allow_html=True,
-                    )
-
-                    if base_res["abstained"] or not base_res["passages"]:
-                        st.info(
-                            f"**No Relevant Clause Found (Abstained)**\n\n"
-                            f"{base_res['abstention_rationale']}\n\n"
-                            f"*Decision: System abstained because no candidate score exceeded the baseline threshold.*"
-                        )
-                    else:
-                        top1_score = base_res["passages"][0]["score"] if base_res["passages"] else 0.0
-                        st.success(f"**{base_res['returned_count']} passage(s) returned** (Top-1 Score: {top1_score:.4f})")
-                        for p in base_res["passages"]:
-                            render_passage_card(p, base_p, rank=p["rank"], key_suffix="_base")
-
-                # Column 2: Final Improved Pipeline
-                with col_right:
-                    st.markdown('<div class="pipeline-header">🚀 Final Selected Pipeline</div>', unsafe_allow_html=True)
-                    st.markdown(
-                        '<div class="pipeline-meta"><code>configs/final.yaml</code> • Clause-Aware 1000-char chunks • '
-                        'Legal Stemming • Two-Stage Filter • Normalized Score (≥2.40) + Coverage Guardrail</div>',
-                        unsafe_allow_html=True,
-                    )
-
-                    if final_res["abstained"] or not final_res["passages"]:
-                        st.info(
-                            f"**No Relevant Clause Found (Abstained)**\n\n"
-                            f"{final_res['abstention_rationale']}\n\n"
-                            f"*Decision: System abstained under calibrated normalized relevance and coverage guardrails.*"
-                        )
-                    else:
-                        top1_score = final_res["passages"][0]["score"] if final_res["passages"] else 0.0
-                        st.success(f"**{final_res['returned_count']} passage(s) returned** (Top-1 Score: {top1_score:.4f})")
-                        for p in final_res["passages"]:
-                            render_passage_card(p, final_p, rank=p["rank"], key_suffix="_final")
-
-                # Scientific interpretation disclaimer
-                st.markdown(
-                    """
-                    <div class="disclaimer-box" style="margin-top: 1.5rem;">
-                        <strong>Comparison Interpretation Note:</strong> These results show how two frozen retrieval configurations rank evidence 
-                        for the same query. Different passages do not automatically mean one system is correct on an individual ad-hoc query. 
-                        Aggregate benchmark measurements on ground-truth evaluation sets (detailed in the Evaluation Summary below) provide 
-                        the scientifically measured comparison.
-                    </div>
-                    """,
-                    unsafe_allow_html=True,
+            # Status and Results display
+            if result["status"] == "invalid_query":
+                st.warning(f"Invalid query: {result['abstention_rationale']}")
+            elif result["status"] == "system_error":
+                st.error(f"Search error: {result['abstention_rationale']}")
+            elif result["abstained"] or not result["passages"]:
+                st.info(
+                    f"**No Relevant Clause Found (Abstained)**\n\n"
+                    f"{result['abstention_rationale']}\n\n"
+                    f"*The system abstained from returning unverified evidence because no candidate clause met the calibrated relevance and evidence criteria.*"
                 )
+            else:
+                st.success(
+                    f"Found **{result['returned_count']}** relevant passage(s) for query: *\"{query}\"*"
+                )
+                for p in result["passages"]:
+                    render_passage_card(p, pipeline, rank=p["rank"])
 
     # -------------------------------------------------------------
-    # FEATURE 1: EVALUATION SUMMARY & IMPROVEMENT HISTORY (EXPANDER)
+    # EVALUATION RESULTS & IMPROVEMENT HISTORY (EXPANDABLE SECTION)
     # -------------------------------------------------------------
     st.markdown("---")
     with st.expander("📊 Evaluation Results & Improvement History", expanded=False):

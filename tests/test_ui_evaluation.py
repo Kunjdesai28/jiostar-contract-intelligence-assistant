@@ -1,4 +1,4 @@
-"""Tests for Streamlit UI helpers, comparative retrieval, and evaluation history."""
+"""Tests for Streamlit UI helpers, evaluation history loader, and exact offset verification."""
 
 from pathlib import Path
 import pytest
@@ -46,28 +46,21 @@ def test_load_official_test_metrics_values():
     assert abs_metrics.get("false_positive_abstentions") == "0/54"
 
 
-def test_parallel_pipeline_comparison_execution():
-    """Verify that baseline and final pipelines execute side-by-side with exact offsets."""
-    query = "Highlight provisions concerning confidentiality."
+def test_pipeline_execution_and_exact_offsets():
+    """Verify that default pipeline executes search with 100% exact substring match."""
+    query = "Highlight the parts related to Exclusivity."
     top_k = 3
 
-    base_p = get_cached_pipeline("configs/baseline.yaml")
-    final_p = get_cached_pipeline("configs/final.yaml")
+    pipeline = get_cached_pipeline("configs/final.yaml")
+    result = pipeline.search(query=query, top_k=top_k)
 
-    base_res = base_p.search(query=query, top_k=top_k)
-    final_res = final_p.search(query=query, top_k=top_k)
+    assert result["status"] == "results_found"
+    assert not result["abstained"]
+    assert len(result["passages"]) == top_k
 
-    # Both must return valid schema
-    for res, p in [(base_res, base_p), (final_res, final_p)]:
-        assert "status" in res
-        assert "abstained" in res
-        assert "passages" in res
-        assert "abstention_rationale" in res
-
-        # Verify exact substring offsets
-        for passage in res["passages"]:
-            start = passage["start_char"]
-            end = passage["end_char"]
-            doc_file = passage["file_path"]
-            raw_text = p.contracts[doc_file]["text"]
-            assert raw_text[start:end] == passage["text"]
+    for passage in result["passages"]:
+        start = passage["start_char"]
+        end = passage["end_char"]
+        doc_file = passage["file_path"]
+        raw_text = pipeline.contracts[doc_file]["text"]
+        assert raw_text[start:end] == passage["text"]
