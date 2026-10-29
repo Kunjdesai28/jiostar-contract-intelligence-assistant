@@ -232,7 +232,23 @@ All profiling was conducted on standard consumer CPU hardware (Python 3.11, Wind
 
 ---
 
-## 12. Reproduction Commands
+## 12. Post-Evaluation Manual Smoke Test: Lexical Abstention Limitation
+
+Following the completion of the official held-out test evaluation and configuration freeze, manual end-to-end smoke testing of the Streamlit interface identified a notable edge case:
+
+- **Query**: *"What is the best recipe for making a Margherita pizza?"*
+- **Expected Outcome**: Abstention (`no_relevant_clause`), as culinary recipes cannot be answered from commercial SEC EDGAR agreements.
+- **Observed Outcome**: Five passages were returned (`results_found`), with the top result retrieved from `cuad/PapaJohnsInternationalInc_...Endorsement Agreement.txt` (BM25 score: 18.1841, offsets: `[21013:21833]`).
+- **Technical Root Cause**:
+  1. **Normalized Score Threshold**: The query yielded 5 content words (`best`, `recipe`, `making`, `margherita`, `pizza`). Due to heavy repetition of the term *"pizza"* across the Papa John's endorsement agreement, the top candidate passage accumulated a high BM25 score of 18.1841. The normalized score was $\frac{18.1841}{5} = 3.6368$, exceeding the configured threshold of 2.40.
+  2. **Evidence Coverage Guardrail**: The retrieved passage described a marketing photo shoot: *"(one at a Papa John's Pizza restaurant; one making pizza with CEO Steve Ritchie)"*. Because the passage contained both *"making"* and *"pizza"*, exactly two content words matched. The coverage guardrail rule ($\text{total\_words} \ge 5 \text{ and } \text{matched\_words} \le 1$) did not trigger ($2 \le 1$ is False).
+- **Substantive Insight**: Keyword overlap does not establish true semantic evidence or answer support. Lexical overlap on generic terms (`"making"`, `"pizza"`) cannot differentiate a culinary recipe from a corporate endorsement agreement photoshoot obligation.
+- **Scientific Integrity Protocol**: This limitation was observed exclusively during post-freeze manual smoke testing. To adhere to strict scientific evaluation practices, **no model parameters, thresholds, dataset splits, or official test evaluation metrics were modified**.
+- **Future Directions**: Future research could explore lightweight cross-encoder rerankers, semantic Natural Language Inference (NLI) entailment models, or dedicated evidence-support classifiers to verify semantic agreement between user inquiries and retrieved clauses prior to passage presentation.
+
+---
+
+## 13. Reproduction Commands
 
 To reproduce the complete pipeline from scratch in a fresh environment:
 
@@ -260,6 +276,6 @@ python cli.py search --query "What is the governing law of this agreement?" --to
 
 ---
 
-## 13. Conclusion
+## 14. Conclusion
 
 The JioStar Contract Intelligence Assistant represents a rigorous, scientifically validated, and privacy-first solution for legal clause retrieval. By combining structure-aware chunking, morphological normalization, two-stage query processing, and a query-normalized abstention engine, the system delivers a **+172.9% relative recall gain** over baseline and achieves **46.2% negative query abstention** with **0% false abstention on held-out test data** in **27.4 ms**.

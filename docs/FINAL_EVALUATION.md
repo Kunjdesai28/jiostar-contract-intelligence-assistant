@@ -204,6 +204,8 @@ To inspect why the system fails or succeeds on challenging queries, we analyze 1
    The frozen unanswerable benchmark contains 32 queries (19 train, 13 test). While cross-validation confirmed threshold stability, a production deployment requires thousands of synthetic and real-world adversarial negative queries.
 4. **Lexical Chunks vs. Complex Cross-References**:
    Legal contracts frequently split obligations across definitions, exhibits, and schedules. Fixed-character or clause-level chunking cannot resolve cross-references like *"subject to the restrictions in Section 8.4(b)"*.
+5. **Post-Evaluation Observation — Lexical Abstention Limitation**:
+   As detailed in `REPORT.md` (Section 12), a post-evaluation manual smoke test revealed that an out-of-domain cooking question (*"What is the best recipe for making a Margherita pizza?"*) bypassed abstention because coincidental lexical overlap on two terms (*"making"*, *"pizza"*) in a Papa John's endorsement agreement satisfied both the normalized score threshold (3.6368 $\ge$ 2.40) and the coverage guardrail ($2 > 1$). This highlights that lexical frequency does not establish true semantic evidence or answer support. In strict adherence to scientific protocol, no post-hoc modifications were made to the frozen model parameters, thresholds, or test results. Future work could investigate semantic Natural Language Inference (NLI) or dedicated evidence-support classifiers.
 
 ---
 
