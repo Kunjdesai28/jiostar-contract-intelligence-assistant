@@ -1,196 +1,229 @@
 # JioStar Contract Intelligence Assistant
-## Production-Grade Contract Evidence Retrieval & Abstention Engine
+## Evidence-Based Contract Retrieval & Defensive Abstention Engine
 
-A verified, reproducible legal contract intelligence system that retrieves relevant contractual clauses from natural-language questions, extracts exact character-offset source evidence from commercial agreements, and defensively abstains when requested evidence is not supported.
+A verifiable, reproducible information retrieval system that retrieves relevant contractual clauses from natural-language questions, extracts exact character-offset source evidence from commercial agreements, and defensively abstains when requested evidence is not present in the indexed corpus.
 
----
-
-## 1. Project Overview & Key Capabilities
-
-The **JioStar Contract Intelligence Assistant** is built on the official **LegalBench-RAG CUAD** benchmark (SEC EDGAR commercial contracts). It is engineered for legal and corporate review workflows requiring high precision, verifiable evidence, and strict zero-hallucination guardrails.
-
-### Core Capabilities:
-- **Exact-Span Evidence Extraction**: Every retrieved passage includes `start_char` and `end_char` offsets pointing directly to the original contract. Passes the strict invariant:
-  $$\text{raw\_document}[\text{start\_char}:\text{end\_char}] == \text{displayed\_passage}$$
-- **Two-Stage Query Disambiguation**: Separates contract title preambles (`"Consider the Agreement between X and Y..."`) from substantive questions (`"What is the notice period for termination?"`), eliminating title-matching bias.
-- **Clause-Aware Structural Chunking**: Preserves numbered legal section boundaries (`1.1`, `Section 2`, `ARTICLE I`) without arbitrarily fragmenting contractual provisions.
-- **Calibrated Abstention Engine**: Solves raw BM25 score scaling issues via query-length normalized scoring and content coverage guardrails, correctly abstaining on unanswerable and out-of-domain inquiries.
-- **100% Local Execution**: Completely offline execution using deterministic BM25Okapi and domain-specific morphological stemming. Zero cloud API calls, zero data leakage, and low latency (~27 ms per query).
+Hosted Repository: [https://github.com/Kunjdesai28/jiostar-contract-intelligence-assistant](https://github.com/Kunjdesai28/jiostar-contract-intelligence-assistant) (Public Repository)
 
 ---
 
-## 2. System Architecture
+## 1. Overview
+
+The **JioStar Contract Intelligence Assistant** is an information retrieval system developed for the JioStar Data Science hiring assignment. Built upon the official **LegalBench-RAG CUAD** benchmark, it indexes 29 complex commercial agreements (SEC EDGAR filings) spanning 1,211,773 characters.
+
+### Key Capabilities:
+- **Natural-Language Querying**: Users submit questions through an interactive Streamlit web application or a scriptable Command-Line Interface (CLI).
+- **Exact-Span Evidence Extraction**: Every returned passage provides exact `start_char` and `end_char` offsets pointing directly to the original contract file. Every passage strictly satisfies:
+  $$\text{raw\_contract}[\text{start\_char}:\text{end\_char}] == \text{displayed\_passage}$$
+- **Two-Stage Query Disambiguation**: Dynamically isolates agreement title preambles (`"Consider the Agreement between X and Y..."`) from substantive questions (`"What is the notice period for termination?"`), resolving contract-title matching bias.
+- **Clause-Aware Structural Chunking**: Segments agreements along legal section boundaries (`1.1`, `Section 2`, `ARTICLE I`) rather than arbitrary character cuts, keeping contractual provisions intact.
+- **Defensive Abstention**: Evaluates query-length normalized BM25 relevance scores and content coverage guardrails to return a clean `no_relevant_clause` signal when evidence is absent, rather than surfacing irrelevant text.
+- **100% Local Execution**: All indexing, tokenization, stemming, retrieval, and abstention run entirely locally on CPU without external API calls or third-party cloud dependencies.
+
+> **Important Scope Notice**: This system is a lexical clause retrieval and evidence extraction assistant. It does not provide legal advice, does not guarantee statutory compliance, and does not generate automated legal conclusions.
+
+For complete numerical evaluation results, baseline comparisons, and iteration history, see [`REPORT.md`](REPORT.md).
+
+---
+
+## 2. Setup Guide
+
+### 2.1 Prerequisites
+- **Python Version**: Python 3.11 is required and verified (`3.11.9` tested).
+- **Git**: Installed and accessible from your terminal.
+- **Network Access**: Required only for initial dataset download from Hugging Face. Subsequent indexing, evaluation, CLI queries, and Streamlit runs execute 100% offline.
+- **API Keys**: **None**. The system does not call external LLMs or cloud endpoints; no API keys or `.env` secrets are required.
+
+### 2.2 Fresh Clone & Environment Installation
+
+#### On Windows (PowerShell):
+```powershell
+# 1. Clone repository
+git clone https://github.com/Kunjdesai28/jiostar-contract-intelligence-assistant.git
+cd jiostar-contract-intelligence-assistant
+
+# 2. If PowerShell script execution is restricted, enable process-level execution:
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+
+# 3. Create virtual environment with Python 3.11
+py -3.11 -m venv .venv
+
+# 4. Activate virtual environment
+.\.venv\Scripts\Activate.ps1
+
+# 5. Install dependencies
+pip install --upgrade pip
+pip install -r requirements.txt
+```
+
+#### On Linux / macOS (bash):
+```bash
+# 1. Clone repository
+git clone https://github.com/Kunjdesai28/jiostar-contract-intelligence-assistant.git
+cd jiostar-contract-intelligence-assistant
+
+# 2. Create virtual environment
+python3.11 -m venv .venv
+
+# 3. Activate virtual environment
+source .venv/bin/activate
+
+# 4. Install dependencies
+pip install --upgrade pip
+pip install -r requirements.txt
+```
+
+### 2.3 Dataset Acquisition & Preparation
+
+The raw CUAD benchmark contracts are downloaded directly from the official pinned Hugging Face repository and processed deterministically:
+
+```bash
+# Step 1: Download raw CUAD corpus & benchmark from Hugging Face (commit 2b9c248b)
+python scripts/download_dataset.py
+
+# Step 2: Prepare deterministic 194-query mini-benchmark and 32 frozen negatives
+python scripts/prepare_dataset.py
+
+# Step 3: Validate gold character spans and dataset invariants
+python scripts/validate_dataset.py
+
+# Step 4: Build the clause-aware BM25 retrieval index
+python scripts/build_index.py --force
+```
+
+---
+
+## 3. How to Run
+
+### 3.1 Streamlit Web Application
+Launch the interactive web interface:
+```bash
+streamlit run app/streamlit_app.py
+```
+Open your browser to `http://localhost:8501`. The web application defaults to the final production pipeline (`configs/final.yaml`) with full abstention controls, top-$K$ selection, and exact character offset displays.
+
+### 3.2 Command-Line Interface (CLI)
+The CLI supports human-readable text and machine-readable JSON output:
+
+```bash
+# Standard legal clause query
+python cli.py search --query "What is the governing law of this agreement?" --top-k 5 --config configs/final.yaml
+
+# JSON output mode (ideal for integration pipelines)
+python cli.py search --query "What is the termination notice period?" --top-k 3 --format json --config configs/final.yaml
+
+# Benchmark-style query with contract preamble
+python cli.py search --query "Consider the Amendment No. 3 to Wireless Content License Agreement between Fox Mobile Entertainment, Inc. and Glu Mobile Inc.; What is the expiration date of this contract?" --top-k 1 --config configs/final.yaml
+
+# Unsupported out-of-domain query triggering abstention
+python cli.py search --query "What is the average annual rainfall in the Amazon rainforest basin?" --config configs/final.yaml
+```
+
+### 3.3 Index & Evaluation Commands
+```bash
+# Rebuild the retrieval index
+python scripts/build_index.py --force
+
+# Run training split evaluation (safe, read-only)
+python scripts/evaluate_baseline.py --config configs/final.yaml --split train
+
+# Run full automated regression test suite (82 tests)
+python -m pytest -v
+
+# Run submission readiness verification script
+python scripts/verify_submission.py
+```
+
+### 3.4 Automated Self-Improvement Loop
+The project includes an automated self-improvement runner (`scripts/run_improvement_loop.py`) that diagnoses errors, proposes configurations, and evaluates candidates under frozen guardrails.
+
+> **Caution for Reviewers**: By default, `scripts/run_improvement_loop.py` writes output to `configs/final.yaml` and `experiments/improvement_log.jsonl`. To avoid overwriting frozen submission artifacts, always provide custom output paths when replaying the loop:
+> ```bash
+> python scripts/run_improvement_loop.py --log-path experiments/replay_improvement_log.jsonl --summary-path experiments/replay_improvement_summary.json --final-config-path configs/replay_final.yaml
+> ```
+
+---
+
+## 4. System Architecture
+
+The selected retrieval pipeline (`candidate_final_phase4`, configuration: [`configs/final.yaml`](configs/final.yaml)) operates deterministically:
 
 ```mermaid
 graph TD
     UserQuery[User Question] --> QueryProc[Two-Stage QueryProcessor]
-    QueryProc -->|Preamble / Document Context| Stage1[Stage 1: Document Discovery BM25]
+    QueryProc -->|Document Context| Stage1[Stage 1: Document Discovery BM25]
     QueryProc -->|Substantive Question| Stage2[Stage 2: Clause Ranking BM25]
-    Stage1 -->|Target Candidate Doc IDs| Stage2
+    Stage1 -->|Candidate Doc IDs| Stage2
     Stage2 --> Ranker[Deterministic Passage Ranker]
     Ranker --> Abstention{Abstention Engine}
-    Abstention -->|norm_score < 2.4 OR coverage guardrail| Abstain[Abstention: no_relevant_clause]
-    Abstention -->|Relevance criteria met| Evidence[Ranked Evidence Passages with Offsets]
+    Abstention -->|norm_score < 2.40 OR coverage guardrail| Abstain[Abstention: no_relevant_clause]
+    Abstention -->|Relevance criteria met| Evidence[Ranked Passages with Exact Offsets]
 ```
+
+### Pipeline Components & Configuration Locations:
+- **Two-Stage Query Processing (`src/retrieval/query_processor.py`)**: Uses regex boundary parsing to split query preambles from substantive questions.
+- **Clause-Aware Chunking (`src/indexing/chunker.py`)**: Segments text along legal headings (`chunk_size: 1000`, `overlap: 250`).
+- **Legal Morphological Tokenization (`src/retrieval/lexical_enhancement.py`)**: Suffix normalization protecting statutory modals (`shall`, `may`, `must`, `not`, `exclusive`).
+- **BM25 Retrieval Engine (`src/retrieval/bm25.py`)**: Rank-BM25 Okapi implementation ($k_1=1.5, b=0.75$).
+- **Abstention Engine (`src/retrieval/abstention.py`)**: Combines query-length normalized BM25 relevance with an evidence coverage guardrail.
+- **Pipeline Configurations**:
+  - Baseline configuration: [`configs/baseline.yaml`](configs/baseline.yaml)
+  - Phase 3 winner: [`configs/final_phase3.yaml`](configs/final_phase3.yaml)
+  - Frozen final configuration: [`configs/final.yaml`](configs/final.yaml)
 
 ---
 
-## 3. Dataset & Split Methodology
+## 5. Step-by-Step Reproduction Guide
 
-- **Source**: Pinned revision of [awinml/legalbench-rag](https://huggingface.co/datasets/awinml/legalbench-rag) (`commit 2b9c248b`), derived from the Contract Understanding Atticus Dataset (CUAD).
-- **Corpus**: 29 unique SEC EDGAR commercial agreements (1,211,773 UTF-8 characters).
-- **Benchmark Selection**: 194 benchmark queries with 272 gold character-level answer spans validated against source files.
-- **Deterministic Partitioning**:
-  - **Answerable Queries**: 140 Training / 54 Held-Out Test (partitioned by SHA-256 hash on normalized query text).
-  - **Frozen Negative Queries**: 19 Training / 13 Test across 6 categories (`outside_indexed_corpus`, `absent_from_contracts`, `future_events_not_established`, `external_business_data`, `unsupported_legal_facts`, `out_of_domain`).
-  - **Negative Query Checksum**: `7eaf304f4a22a4567100fb283a53f1bfc7b458eaa2f7feb7d78ba66db3d539d3`.
+To independently reproduce the reported results from a fresh clone:
 
----
+| Step | Action & Command | Target Artifact / Verification | Approx. Duration |
+|:---:|:---|:---|:---:|
+| **1** | Download CUAD data: `python scripts/download_dataset.py` | 463 files under `data/raw/` | ~15–30s |
+| **2** | Prepare benchmark: `python scripts/prepare_dataset.py` | `data/processed/` manifests and queries | ~3s |
+| **3** | Validate gold spans: `python scripts/validate_dataset.py` | Confirms 272/272 spans match raw text | ~1s |
+| **4** | Build retrieval index: `python scripts/build_index.py --force` | 1,991 chunks indexed from 29 contracts | ~2s |
+| **5** | Evaluate baseline train: `python scripts/evaluate_baseline.py --config configs/baseline.yaml --split train` | Confirms baseline Rec@5 = 0.1169 | ~4s |
+| **6** | Evaluate final train: `python scripts/evaluate_baseline.py --config configs/final.yaml --split train` | Confirms final Rec@5 = 0.3191 (pre-abstention) | ~9s |
+| **7** | Run unit tests: `python -m pytest -v` | 82/82 tests pass | ~1.5s |
+| **8** | Safe improvement loop replay: `python scripts/run_improvement_loop.py --log-path experiments/replay_log.jsonl --summary-path experiments/replay_summary.json --final-config-path configs/replay_final.yaml` | Replays 5 iterations (4 accepted, 1 rejected) | ~25s |
+| **9** | Inspect official held-out test results: `python -c "import json; print(json.dumps(json.load(open('experiments/final_test_metrics.json')), indent=2))"` | Inspects official test result artifact | < 1s |
+| **10**| Verify submission integrity: `python scripts/verify_submission.py` | 7/7 integrity checks pass | ~1s |
 
-## 4. Final Performance: Baseline vs. Selected Final System
-
-### Macro Character-Level Retrieval Metrics
-
-| Split | System / Configuration | Prec@1 | Rec@1 | Prec@3 | Rec@3 | Prec@5 | Rec@5 | Prec@10 | Rec@10 | Doc Hit@5 |
-|---|---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
-| **Train** | Phase 2 Baseline (`baseline.yaml`) | 0.0018 | 0.0037 | 0.0056 | 0.0310 | 0.0141 | 0.1169 | 0.0150 | 0.2318 | — |
-| **Train** | Phase 4 Final (`final.yaml`) | **0.0718** | **0.1385** | **0.0544** | **0.2670** | **0.0365** | **0.3096** | **0.0250** | **0.4208** | **81.4%** |
-| **Held-Out Test** | Phase 2 Baseline (Audited) | 0.0012 | 0.0028 | 0.0062 | 0.0350 | 0.0123 | 0.1085 | 0.0140 | 0.2150 | — |
-| **Held-Out Test** | **Phase 4 Official Final (`final.yaml`)** | **0.0325** | **0.0822** | **0.0514** | **0.2491** | **0.0429** | **0.2961** | **0.0274** | **0.3800** | **77.8%** |
-
-*Held-out test improvement: **+172.9% relative recall gain** over baseline at $K=5$.*
-
-### Abstention & Reliability Metrics
-
-| Metric | Phase 2 Baseline | Phase 3 Final | Phase 4 Train (Final) | Phase 4 Official Test |
-|---|:---:|:---:|:---:|:---:|
-| **Correct Negative Abstention** | 0/19 (0.0%) | 0/19 (0.0%) | **10/19 (52.6%)** | **6/13 (46.2%)** |
-| **False Positive Abstention** | 0/140 (0.0%) | 0/140 (0.0%) | **5/140 (3.6%)** | **0/54 (0.0%)** |
-| **Answerable Coverage** | 100.0% | 100.0% | **96.4%** | **100.0%** (54/54) |
-| **Mean Inference Latency** | ~14 ms | ~28 ms | **27.81 ms** | **27.40 ms** |
+### Held-Out Evaluation Protection Notice:
+In accordance with strict scientific evaluation protocols, `scripts/final_evaluation.py` was executed **exactly once** on the held-out test set (54 answerable + 13 unanswerable queries). The script contains an automated guardrail that aborts execution if `experiments/final_test_metrics.json` already exists. Reviewers should inspect the committed artifact (Step 9) rather than re-running the held-out evaluation.
 
 ---
 
-## 5. Five-Iteration Self-Improvement Loop Summary
+## 6. Assumptions and Design Decisions
 
-Executed strictly on training data under frozen acceptance criteria (Recall@5 gain, Precision drop $\le 20\%$, false abstention $\le 5\text{pp}$, latency factor $\le 3\times$):
-1. **Iteration 1 (`candidate_001`)**: Two-Stage Query Processing $\rightarrow$ **ACCEPTED** (Recall@5: 0.1169 $\rightarrow$ 0.2280, +95.0%).
-2. **Iteration 2 (`candidate_002`)**: Legal Morphological Normalization $\rightarrow$ **ACCEPTED** (Recall@5: 0.2280 $\rightarrow$ 0.2913, +27.8%).
-3. **Iteration 3 (`candidate_003`)**: Sliding Window Overlap Expansion (150 $\rightarrow$ 250) $\rightarrow$ **ACCEPTED** (Recall@5: 0.2913 $\rightarrow$ 0.3113, +6.9%).
-4. **Iteration 4 (`candidate_004`)**: BM25 Parameter Tuning ($k_1=1.2, b=0.65$) $\rightarrow$ **REJECTED** (Recall@5 dropped to 0.3061).
-5. **Iteration 5 (`candidate_005`)**: Clause-Aware Structural Chunking $\rightarrow$ **ACCEPTED** (Recall@5: 0.3113 $\rightarrow$ 0.3191, +2.5%).
-
----
-
-## 6. Quick Start & Reproduction Guide
-
-### Environment Setup
-```bash
-git clone https://github.com/Kunjdesai28/jiostar-contract-intelligence-assistant.git
-cd jiostar-contract-intelligence-assistant
-
-python -m venv .venv
-# On Windows PowerShell:
-.\.venv\Scripts\Activate.ps1
-# On Linux/macOS:
-source .venv/bin/activate
-
-pip install -r requirements.txt
-```
-
-### Dataset Preparation & Index Construction
-```bash
-# Verify raw contracts and validate gold spans
-python scripts/validate_spans.py
-
-# Verify submission integrity and invariants
-python scripts/verify_submission.py
-```
-
-### Automated Testing
-```bash
-python -m pytest -v
-```
-*(82 automated tests passing across 15 suites in ~1.2s).*
-
-### Launch Streamlit Web Application
-```bash
-streamlit run app/streamlit_app.py
-```
-Access the interactive UI in your browser at `http://localhost:8501`.
-
-### Command-Line Interface (CLI) Usage
-```bash
-# Standard search query
-python cli.py search --query "What is the governing law of this agreement?" --top-k 5 --config configs/final.yaml
-
-# JSON output mode
-python cli.py search --query "What is the termination notice period?" --top-k 3 --format json --config configs/final.yaml
-
-# Unsupported question triggering abstention
-python cli.py search --query "What is the average annual rainfall in the Amazon rainforest basin?" --config configs/final.yaml
-```
-
-### Inspect Official Test Metrics (Without Re-running)
-```bash
-python -c "import json; print(json.dumps(json.load(open('experiments/final_test_metrics.json')), indent=2))"
-```
+1. **CUAD Mini-Benchmark Selection**: To enable rapid, reproducible experimentation while preserving statistical significance, 194 queries across 29 diverse SEC EDGAR contracts were selected deterministically from the 4,042 CUAD queries.
+2. **Restricted Indexing Scope**: The retrieval collection indexes the 29 contracts associated with the selected benchmark queries (1,211,773 characters). Unreferenced CUAD contracts are excluded to maintain clean corpus boundaries.
+3. **Deterministic Splitting**: Train and test partitions (140 train / 54 test) were generated using a deterministic SHA-256 hash on normalized query text.
+4. **Frozen Unanswerable Negatives**: 32 negative queries (19 train / 13 test) across 6 categories were created and frozen with SHA-256 `7eaf304f4a22a4567100fb283a53f1bfc7b458eaa2f7feb7d78ba66db3d539d3`.
+5. **Character-Level Metrics**: Because legal clauses vary in length, retrieval quality is measured at the character level rather than token or document level, matching the LegalBench-RAG evaluation standard.
+6. **Zero-Indexing Character Offsets**: Character spans use Python slice semantics $[start:end]$, where index 0 is the first UTF-8 character of the contract.
+7. **Multiple Gold Spans**: Queries with multiple gold answer spans merge overlapping characters within the same document to prevent artificial metric inflation.
+8. **Overlapping Retrieved Passages**: Overlapping retrieved chunks in the same agreement are merged into a single character set before precision/recall calculation.
+9. **Macro Aggregation**: Precision@$K$ and Recall@$K$ are averaged macro-wise across queries, giving equal weight to every legal question regardless of answer span length.
+10. **Abstention Interpretation**: When the system abstains, it returns an empty passage list and status `no_relevant_clause`. An abstained answerable query receives 0.0 recall and precision.
+11. **Free-Form Queries Without Preamble**: Queries lacking contract titles search the global collection across all 29 contracts.
+12. **Offline Local Inference**: The runtime pipeline avoids external LLMs to ensure determinism, zero data leakage for confidential contracts, low latency (~27 ms), and exact substring offsets.
 
 ---
 
-## 7. Project Structure
+## 7. AI Tool Usage Disclosure
 
-```
-jiostar-contract-intelligence-assistant/
-├── app/
-│   └── streamlit_app.py            # Streamlit interactive web demo
-├── configs/
-│   ├── baseline.yaml               # Phase 2 BM25 baseline config
-│   ├── final_phase3.yaml           # Phase 3 self-improvement winner
-│   └── final.yaml                  # Frozen production configuration
-├── data/
-│   ├── processed/                  # Manifests, queries, mini dataset
-│   ├── raw/                        # 29 SEC EDGAR raw contract files
-│   └── unanswerable_queries.json   # 32 frozen unanswerable benchmark queries
-├── docs/
-│   ├── DATASET.md                  # Dataset lineage and split protocol
-│   ├── FINAL_EVALUATION.md         # Full experimental evaluation audit
-│   ├── PHASE2_AUDIT.md             # Baseline verification report
-│   ├── PHASE3_EXPERIMENTS.md       # Self-improvement loop log
-│   ├── PHASE4_FREEZE.md            # Configuration freeze manifest
-│   ├── SUBMISSION_CHECKLIST.md     # 20-point submission verification
-│   └── SUBMISSION_EMAIL.md         # Official submission email draft
-├── experiments/
-│   ├── baseline_train_metrics.json # Baseline train evaluation
-│   ├── final_test_metrics.json     # Official single held-out test evaluation
-│   ├── improvement_log.jsonl       # Append-only improvement loop history
-│   └── phase4_train_validation.json# 5-fold cross-validation metrics
-├── scripts/
-│   ├── build_index.py              # Index builder utility
-│   ├── calibrate_abstention.py     # Training abstention cross-validation
-│   ├── final_evaluation.py         # Official single test evaluation script
-│   ├── validate_spans.py           # Offset integrity validator
-│   └── verify_submission.py        # Automated submission readiness audit
-├── src/
-│   ├── indexing/                   # Clause-aware chunker
-│   ├── retrieval/                  # BM25, query processor, abstention engine
-│   └── evaluation/                 # Character metrics, span calculations
-├── tests/                          # 82 automated pytest suites
-├── cli.py                          # Command-line search interface
-├── REPORT.md                       # Comprehensive final technical report
-└── requirements.txt                # Pinned dependencies
-```
+- **Development Assistance**: Google DeepMind's Antigravity assistant was employed as a pair-programming and developer-assistance tool during development. Its contributions included drafting boilerplate code, suggesting test cases, refactoring modules, formatting markdown documentation, and running local terminal commands under continuous human review.
+- **Runtime Inference**: The submitted retrieval engine does **not** employ an LLM at runtime. All indexing, stemming, retrieval, ranking, and abstention decisions are executed locally by deterministic Python algorithms. No LLM API key is required.
 
 ---
 
-## 8. Limitations & Scope
+## 8. Summary of Performance and Documentation
 
-1. **Not Legal Advice**: The assistant retrieves source passages from indexed commercial contracts; it does not generate legal advice or guarantee statutory compliance.
-2. **Entailment Verification**: Pure lexical matching cannot verify whether historical events actually occurred outside the contract text (e.g., bankruptcy filings or arbitration proceedings).
-3. **Preamble Dependency**: Performance is optimal when queries specify the relevant agreement title or commercial context.
+For detailed performance tables, baseline comparisons, self-improvement loop iteration details, 10 concrete failure analyses, and limitations, please consult:
 
----
-
-## 9. AI Tool Usage Disclosure
-
-Development was assisted by Google DeepMind's Antigravity assistant under human engineering oversight for code drafting, refactoring, and documentation authoring. All retrieval algorithms and inference components operate 100% locally with zero external API calls at runtime.
+- **[`REPORT.md`](REPORT.md)**: Main technical report and comprehensive submission documentation.
+- **[`docs/FINAL_EVALUATION.md`](docs/FINAL_EVALUATION.md)**: Full experimental evaluation and audit report.
+- **[`docs/PHASE4_FREEZE.md`](docs/PHASE4_FREEZE.md)**: Cryptographic freeze manifest.
+- **[`experiments/final_test_metrics.json`](experiments/final_test_metrics.json)**: Official held-out test evaluation results.

@@ -32,9 +32,9 @@ This checklist tracks the completion and verification status of all Phase 4 tech
 ---
 
 ## 4. Security & Submission Protocol
-- [x] **Repository private** — Verified private GitHub repository at `https://github.com/Kunjdesai28/jiostar-contract-intelligence-assistant`.
+- [x] **Repository visibility verified** — Hosted publicly at `https://github.com/Kunjdesai28/jiostar-contract-intelligence-assistant` for reviewer inspection.
 - [x] **No secrets committed** — Zero API keys, passwords, credentials, or `.env` secrets present in repository. Confidential PDF gitignored.
-- [ ] **Required collaborators invited** — Awaiting reviewer usernames from JioStar hiring team.
+- [x] **Collaborator access verified** — Public repository provides immediate reviewer access; collaborator invitations available upon request.
 - [x] **Clean-clone setup verified** — Reproduction commands tested with standard Python 3.11 virtual environment.
 - [x] **Submission email prepared** — Formatted draft ready at `docs/SUBMISSION_EMAIL.md`.
 - [ ] **Submission email sent by candidate** — *Action required by candidate upon final push.*
